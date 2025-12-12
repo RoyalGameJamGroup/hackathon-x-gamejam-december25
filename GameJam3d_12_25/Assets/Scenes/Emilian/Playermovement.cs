@@ -5,14 +5,17 @@ public class Playermovement : MonoBehaviour
 {
     public float Turnspeed = 5f;   // rotation speed
     public float Speed = 3f;       // movement speed
+    public float CollisionRadius = 2f;
+    public LayerMask obstacleMask;
     public Transform moveTarget;
+    public Vector3 lastLookDirection = Vector3.forward;
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(1))
         {
             SetTarget();
-        }
+        }      
         Move();
         RotateTowardsTarget();
     }
@@ -54,7 +57,7 @@ public class Playermovement : MonoBehaviour
 
         // Direction from player to target
         Vector3 moveDir = moveTarget.position - transform.position;
-        float distance = moveDir.magnitude;
+        float distanceToTarget = moveDir.magnitude;
 
         // Normalize for movement direction
         moveDir.Normalize();
@@ -64,32 +67,49 @@ public class Playermovement : MonoBehaviour
         // just snap to the target instead of passing it.
         float moveStep = Speed * Time.deltaTime;
 
-        if (moveStep >= distance)
+        float step = Mathf.Min(moveStep, distanceToTarget);
+
+        // Check if movement is blocked
+        if (Physics.SphereCast(
+            transform.position,
+            CollisionRadius,
+            moveDir,
+            out RaycastHit hit,
+            step,
+            obstacleMask
+        ))
         {
-            // Arrive exactly at the target
-            transform.position = moveTarget.position;
+            // Stop right before the obstacle
+            float allowedDistance = Mathf.Max(0f, hit.distance - 0.01f);
+            transform.position += moveDir * allowedDistance;
+            return;
         }
         else
         {
-            // Move normally
-            transform.position += moveDir * moveStep;
+            // Free movement
+            transform.position += moveDir * step;
         }
+            
     }
+
+   
 
     private void RotateTowardsTarget()
     {
         if (moveTarget == null) return;
 
-        // Direction to look at
         Vector3 direction = moveTarget.position - transform.position;
+        direction.y = 0f;
 
-        // If direction is zero (we're exactly on the target), do nothing
-        if (direction.sqrMagnitude < 0.0001f) return;
+        // Update cached direction only while we still have a valid one
+        if (direction.sqrMagnitude > 0.0001f)
+        {
+            lastLookDirection = direction.normalized;
+        }
 
-        // Calculate the target rotation
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        // Always rotate towards the last valid direction
+        Quaternion targetRotation = Quaternion.LookRotation(lastLookDirection);
 
-        // Smooth rotation
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
             targetRotation,
