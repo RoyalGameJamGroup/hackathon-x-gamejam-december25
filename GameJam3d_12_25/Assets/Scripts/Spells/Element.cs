@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum Element
 {
-   fire,
-   water,
-   lightning 
+   Fire,
+   Water,
+   Lightning 
 }

@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
         );
     }
 
-    void PoopNei(int damage, Element el)
+    public void PoopNei(int damage, Element el)
     {
         health -= damage;
     }
