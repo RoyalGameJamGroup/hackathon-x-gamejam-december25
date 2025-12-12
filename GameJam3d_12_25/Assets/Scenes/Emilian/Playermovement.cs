@@ -9,9 +9,44 @@ public class Playermovement : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            SetTarget();
+        }
         Move();
         RotateTowardsTarget();
     }
+
+    private void SetTarget()
+    {
+        Camera cam = Camera.main;
+        if (cam == null) return;
+
+        // Mouse position in screen space
+        Vector3 mouseScreenPos = Input.mousePosition;
+
+        // Distance from camera to the movement plane (XZ plane at player's Y)
+        float planeY = transform.position.y;
+        float distanceToPlane = cam.transform.position.y - planeY;
+
+        mouseScreenPos.z = distanceToPlane;
+
+        // Convert to world position
+        Vector3 worldPos = cam.ScreenToWorldPoint(mouseScreenPos);
+
+        // Ensure the target is exactly on the movement plane
+        worldPos.y = planeY;
+
+        // Create target if it doesn't exist
+        if (moveTarget == null)
+        {
+            GameObject targetObj = new GameObject("MoveTarget");
+            moveTarget = targetObj.transform;
+        }
+
+        moveTarget.position = worldPos;
+    }
+
 
     private void Move()
     {
