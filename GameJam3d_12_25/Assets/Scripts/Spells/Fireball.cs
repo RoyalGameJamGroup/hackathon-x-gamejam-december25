@@ -15,7 +15,7 @@ public class Fireball: Spell
     // Update is called once per frame
     void Update()
     {
-       transform.Translate(new Vector3(direction.x, 0, direction.y) * speed * Time.deltaTime);
+       transform.Translate((new Vector3(direction.x, 0, direction.y)).normalized * speed * Time.deltaTime);
        if (Time.time - spawnTime > lifeTime)
        {
            Destroy(gameObject);
@@ -27,7 +27,7 @@ public class Fireball: Spell
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            gameObject.GetComponene<Enemy>().PoopNei(damage, Element.Fire);
+            gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Fire);
         }
     }
 }
