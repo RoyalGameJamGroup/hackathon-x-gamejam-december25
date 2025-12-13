@@ -12,6 +12,8 @@ public class CarDrop: Spell
     {
         targetPosition = transform.position + new Vector3(direction.x, 0, direction.y).normalized * distance;
         transform.position = new Vector3(targetPosition.x, 5, targetPosition.z);
+
+        PlaySpawnsSound();
     }
 
     // Update is called once per frame
@@ -20,6 +22,7 @@ public class CarDrop: Spell
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, 10f * Time.deltaTime);
         if (!hasLanded && transform.position == targetPosition)
         {
+            PlayImpactSound();
             hasLanded = true;
         }
     }

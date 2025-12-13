@@ -6,6 +6,7 @@ public class Spell : MonoBehaviour
     public AudioClip[] impactSounds;
 
     public AudioSource audioSource;
+    public GameObject impactAudioGO;
 
     public Vector2 direction;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,6 +28,8 @@ public class Spell : MonoBehaviour
 
     protected void PlayImpactSound(){
         int randomIndex = Random.Range(0, impactSounds.Length);
-        audioSource.PlayOneShot(impactSounds[randomIndex]);
+        
+        impactAudioGO.GetComponent<ImpactSoundManager>().clipToPlay = impactSounds[randomIndex];
+        Instantiate(impactAudioGO);
     }
 }
