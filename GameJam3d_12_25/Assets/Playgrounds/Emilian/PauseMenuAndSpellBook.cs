@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PauseMenuAndSpellBook : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject spellBook;
+
+    
 
     private void Awake()
     {
@@ -34,6 +37,7 @@ public class PauseMenuAndSpellBook : MonoBehaviour
         if(!spellBook.activeSelf)
         {
             pauseMenu.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
         }
     }
 
