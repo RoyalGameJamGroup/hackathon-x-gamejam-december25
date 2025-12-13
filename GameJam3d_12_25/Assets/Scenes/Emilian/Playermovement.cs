@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Playermovement : MonoBehaviour
 {
-    public float Turnspeed = 5f;   // rotation speed
+    public float Turnspeed = 180.0f;   // rotation speed
     public float Speed = 3f;       // movement speed
     public float CollisionRadius = 2f;
     public LayerMask obstacleMask;
@@ -94,26 +94,27 @@ public class Playermovement : MonoBehaviour
 
    
 
-    private void RotateTowardsTarget()
+   private void RotateTowardsTarget()
+{
+    if (moveTarget == null) return;
+
+    Vector3 direction = moveTarget.position - transform.position;
+    direction.y = 0f; // Keep rotation only on the Y-axis (horizontal plane)
+
+    if (direction.sqrMagnitude > 0.0001f)
     {
-        if (moveTarget == null) return;
-
-        Vector3 direction = moveTarget.position - transform.position;
-        direction.y = 0f;
-
-        // Update cached direction only while we still have a valid one
-        if (direction.sqrMagnitude > 0.0001f)
-        {
-            lastLookDirection = direction.normalized;
-        }
-
-        // Always rotate towards the last valid direction
-        Quaternion targetRotation = Quaternion.LookRotation(lastLookDirection);
-
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
-            targetRotation,
-            Turnspeed * Time.deltaTime
-        );
+        lastLookDirection = direction.normalized;
     }
+    
+    Quaternion targetRotation = Quaternion.LookRotation(lastLookDirection);
+
+    float maxDegreesDelta = Turnspeed * Time.deltaTime; 
+
+ 
+    transform.rotation = Quaternion.RotateTowards(
+        transform.rotation, 
+        targetRotation,     
+        maxDegreesDelta     
+    );
+} 
 }
