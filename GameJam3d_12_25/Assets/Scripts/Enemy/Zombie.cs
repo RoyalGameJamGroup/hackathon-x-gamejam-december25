@@ -67,6 +67,7 @@ public class Zombie : Enemy
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Zombie Triggered by: " + other.gameObject.name);
         if (other.gameObject.CompareTag("Player") && currentState == AttackState.Chase)
         {
             // Calculate the retreat position based on the current position and the desired distance

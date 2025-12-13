@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogWarning("Could not find a valid spawn position away from the player after " + maxAttempts + " attempts.");
         }
+        
+        randomPos.y = 0;
 
         return randomPos;
     }

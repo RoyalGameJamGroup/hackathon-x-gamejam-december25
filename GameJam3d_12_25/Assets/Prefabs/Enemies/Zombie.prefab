@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4193662420982965034}
   - component: {fileID: 7994113754281067463}
   - component: {fileID: 8389368110621391117}
-  - component: {fileID: 7163947696858226984}
+  - component: {fileID: 3982818960260452901}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -130,7 +130,7 @@ MonoBehaviour:
   health: 0
   stepBackDistance: 1
   pauseTime: 0.2
---- !u!54 &7163947696858226984
+--- !u!54 &3982818960260452901
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,8 +152,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
