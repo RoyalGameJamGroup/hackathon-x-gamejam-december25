@@ -24,11 +24,13 @@ public class CursePrefabLookup
 {
     public SpellType key;
     public GameObject value;
-    public int probability;
+    public float weight;
+    public GameObject icon;
 }
 
 public class MrSpell : MonoBehaviour
 {
+    public static MrSpell Instance {get; private set;}
     public List<SpellPrefabLookup> spellPrefabLookup = new List<SpellPrefabLookup>();
     public List<CursePrefabLookup> cursePrefabLookup = new List<CursePrefabLookup>();
     public Dictionary<string, SpellType> SpellLookup;
@@ -40,8 +42,10 @@ public class MrSpell : MonoBehaviour
     private MrInputVisualizer inputVisualizer;
     
     public Dictionary<SpellType, HashSet<int>> knownSpellCharIdxs = new Dictionary<SpellType, HashSet<int>>(); 
+    
     void Awake()
     {
+        if(Instance == null) Instance = this;
         spellAlphabet = GetAlphabet();
         //spellAlphabet = leftKeyboard.ToCharArray().ToList();
         spellNames = GenerateSpellKeysUniqueChar(spellPrefabLookup.Select(x=> x.wordLength).ToList());
@@ -120,6 +124,7 @@ public class MrSpell : MonoBehaviour
             knownSpellCharIdxs[spellType].UnionWith(correct);
             inputVisualizer.OnSpellFailure(correct, contained, typedText);
             typedText = "";
+            TriggerCurse();
             return;   
         }
         if(SpellLookup.ContainsKey(uncheckedInput))
@@ -147,9 +152,23 @@ public class MrSpell : MonoBehaviour
         castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
     }
 
+    public GameObject GetRandomCurse()
+    {
+        float probSum= cursePrefabLookup.Select(x => x.weight).Sum(); 
+        float random = Random.value * probSum;
+        foreach (var i in cursePrefabLookup)
+        {
+            random -= i.weight;
+            if (random <= 0f)
+                return i.value;
+        }
+
+        // Fallback (in case of floating-point precision issues)
+        return cursePrefabLookup[^1].value;
+    }
     public void TriggerCurse()
     {
-        GameObject prefab = cursePrefabLookup[0].value;
+        GameObject prefab = GetRandomCurse();
         var castedSpell =Instantiate(prefab,new Vector3(0, 0, 0), Quaternion.identity);
         castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
     }
