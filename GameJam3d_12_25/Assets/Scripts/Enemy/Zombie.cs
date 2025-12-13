@@ -10,35 +10,48 @@ public class Zombie : Enemy
     }
 
     [Header("Attack Settings")]
-    [SerializeField] float stepBackDistance = 1.0f;
+    [SerializeField] float stepBackDistance = 2.0f;
+    [SerializeField] float stepBackSpeed = 3.0f;
     [SerializeField] float pauseTime = 0.2f;
+    [SerializeField] float stepBackRadius = 1.0f;
 
     private AttackState currentState = AttackState.Chase;
     private float stateTimer = 0f;
     private Vector3 retreatTarget;
+
 
     void Update()
     {
         if (target == null) return;
 
         transform.LookAt(target.transform);
+        float step;
 
-        // The movement amount is consistent for both states
-        float step = speed * Time.deltaTime;
+        float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
         switch (currentState)
         {
             case AttackState.Chase:
-                // Move towards the target at the defined 'speed'
-                transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    target.transform.position,
-                    step
-                );
+                step = speed * Time.deltaTime;
+                
+                if(distanceToTarget < stepBackRadius)
+                {
+                    Vector3 directionAway = (transform.position - target.transform.position).normalized;
+                    retreatTarget = transform.position + directionAway * stepBackDistance;
+
+                    currentState = AttackState.SteppingBack;
+                    stateTimer = 0f;
+                }else{
+                    transform.position = Vector3.MoveTowards(
+                        transform.position,
+                        target.transform.position,
+                        step
+                    );
+                }
                 break;
 
             case AttackState.SteppingBack:
-                // Move TOWARDS the calculated 'retreatTarget' at the defined 'speed'
+                step = stepBackSpeed * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(
                     transform.position,
                     retreatTarget,
@@ -67,17 +80,11 @@ public class Zombie : Enemy
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Zombie Triggered by: " + other.gameObject.name);
-        if (other.gameObject.CompareTag("Player") && currentState == AttackState.Chase)
+        // Only trigger if we are chasing and not already in an attack sequence
+        if (other.gameObject.CompareTag("Player"))
         {
+            
             other.gameObject.GetComponent<PlayerHealth>()?.PoopNei(damage);
-
-            // Calculate the retreat position based on the current position and the desired distance
-            Vector3 directionAway = (transform.position - other.transform.position).normalized;
-            retreatTarget = transform.position + directionAway * stepBackDistance;
-
-            currentState = AttackState.SteppingBack;
-            stateTimer = 0f;
         }
     }
 }
