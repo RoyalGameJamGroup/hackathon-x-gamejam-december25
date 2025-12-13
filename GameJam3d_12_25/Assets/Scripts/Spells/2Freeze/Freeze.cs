@@ -13,6 +13,7 @@ public class Freeze: Spell
     void Start()
     {
        spawnTime = Time.time; 
+       PlaySpawnsSound();
     }
 
     // Update is called once per frame
