@@ -4,7 +4,7 @@ public class Fireball: Spell
 {
     float spawnTime;
     float lifeTime = 5f;
-    float speed = 1f;
+    float speed = 5f;
     int damage = 10;
 
     private Material fireballMaterial;
@@ -38,8 +38,8 @@ public class Fireball: Spell
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Fire);
-            //this.Destroy(gameObject);
+            other.gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Fire);
+            Destroy(gameObject);
         }
     }
 }
