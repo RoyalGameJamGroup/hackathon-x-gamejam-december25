@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Monke : Spell
@@ -27,6 +28,7 @@ public class Monke : Spell
     void Start()
     {
         PlaySpawnsSound();
+        StartCoroutine("timerKill");
     }
 
     // Update is called once per frame
@@ -81,11 +83,6 @@ public class Monke : Spell
                     break;
             }
         }
-
-        if (Time.time - spawnTime > lifeTime)
-        {
-           Destroy(gameObject);
-        }
     }
 
     void FindNearestEnemy()
@@ -119,5 +116,11 @@ public class Monke : Spell
             PlayImpactSound();
             other.gameObject.GetComponent<Enemy>()?.PoopNei(damage, Element.Physical);
         }
+    }
+
+    private IEnumerator timerKill()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        Destroy(gameObject);
     }
 }
