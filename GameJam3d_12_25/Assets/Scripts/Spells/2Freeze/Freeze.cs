@@ -19,7 +19,9 @@ public class Freeze: Spell
     // Update is called once per frame
     void Update()
     {
-       transform.Translate((new Vector3(direction.x, 0, direction.y)).normalized * speed * Time.deltaTime);
+       transform.position += (new Vector3(direction.x, 0, direction.y)).normalized * speed * Time.deltaTime;
+       transform.Rotate(new Vector3(0,1,0), 90 * Time.deltaTime *speed * 1.5f);
+
     }
 
     // Called when the collider other enters the trigger
