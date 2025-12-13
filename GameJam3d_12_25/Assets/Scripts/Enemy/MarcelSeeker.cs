@@ -15,12 +15,16 @@ public class MarcelSeeker : Enemy
         if (target == null) return;
 
         transform.LookAt(target.transform);
+        moveDir = (target.transform.position - transform.position).normalized;
+        step = speed * Time.deltaTime;
 
-        transform.position = Vector3.MoveTowards(
-            transform.position,
-            target.transform.position,
-            speed * Time.deltaTime
-        );
+        if(!movementBlocked){
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                target.transform.position,
+                step
+            );
+        }
     }
 
 

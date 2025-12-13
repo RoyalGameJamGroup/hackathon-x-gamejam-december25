@@ -187,6 +187,12 @@ MonoBehaviour:
   speed: 1
   damage: 10
   health: 50
+  gameManager: {fileID: 0}
+  scoreValue: 10
+  CollisionRadius: 0.5
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 64
   arrowPrefab: {fileID: 2491757163028220681, guid: 0f602d8625a0ccc48b6f421d625bf709, type: 3}
   spawnPos: {fileID: 1242509074287298367}
   fireRate: 3
