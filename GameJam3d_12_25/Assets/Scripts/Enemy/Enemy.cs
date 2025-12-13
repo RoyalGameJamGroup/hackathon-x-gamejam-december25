@@ -25,4 +25,9 @@ public class Enemy : MonoBehaviour
         status = el;
     }
 
+    public void KnockbackNei (Vector3 force)
+    {
+        transform.position += force;
+    }
+
 }
