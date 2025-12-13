@@ -71,6 +71,7 @@ public class MrSpell : MonoBehaviour
     }
     void OnGUI()
     {
+        if(!PauseManager.Instance.isRunning) return;
         Event e = Event.current;
         if (e.type == EventType.KeyDown && e.character != '\0' && IsInAlphabet(e.character))
         {
@@ -148,7 +149,7 @@ public class MrSpell : MonoBehaviour
 
         GameObject prefab = spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).value;
         Debug.Log(spell+" is casted "+ spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).spellName);
-        var castedSpell =Instantiate(prefab,transform.position + new Vector3(direction.x, 0, direction.y), Quaternion.identity);
+        var castedSpell = Instantiate(prefab, transform.position + new Vector3(direction.x, 0, direction.y), prefab.transform.rotation);
         castedSpell.GetComponent<Spell>().direction = direction;
     }
 
