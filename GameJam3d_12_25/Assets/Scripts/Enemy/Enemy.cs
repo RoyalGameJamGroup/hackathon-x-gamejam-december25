@@ -1,6 +1,7 @@
 using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -62,6 +63,23 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void Freeze(float length)
+    {
+        StopAllCoroutines(); 
+        
+        StartCoroutine(FreezeRoutine(length));
+    }
+
+    IEnumerator FreezeRoutine(float length)
+    {
+        movementBlocked = true;
+        
+        yield return new WaitForSeconds(length);
+        
+        movementBlocked = false;
+    }
+
 
     public void KnockbackNei (Vector3 force)
     {
