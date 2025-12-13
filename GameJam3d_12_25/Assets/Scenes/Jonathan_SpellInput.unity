@@ -645,6 +645,24 @@ MonoBehaviour:
   - key: 0
     value: {fileID: 2325970627108717316, guid: c5ba1df5cd388aa4c94eeede2d353c63, type: 3}
     wordLength: 2
+    icon: {fileID: 0}
+    spellName: Fireball
+    combo: 
+    description: 
+  - key: 1
+    value: {fileID: 1691485492486519632, guid: 90cd7d8630673134fa226c4e4b2f7bcc, type: 3}
+    wordLength: 2
+    icon: {fileID: 0}
+    spellName: Freeze
+    combo: 
+    description: 
+  - key: 2
+    value: {fileID: 3565351728660687301, guid: faa9eba6f437b244fbff256f50a09d23, type: 3}
+    wordLength: 2
+    icon: {fileID: 0}
+    spellName: Shockwave
+    combo: 
+    description: 
   cursePrefabLookup: []
   typedText: 
   spellNames: []
