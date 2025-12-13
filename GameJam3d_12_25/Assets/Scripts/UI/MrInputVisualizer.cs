@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,9 +9,11 @@ using UnityEngine.UI;
 public class MrInputVisualizer : MonoBehaviour
 {
     public GameObject KeyPrefab;
+    public GameObject QueueElementPrefab;
     public List<GameObject> CurrentSpell = new List<GameObject>();
     public List<GameObject> CurrentQueue = new List<GameObject>();
     private CancellationTokenSource ct;
+    private CancellationTokenSource ctqueue;
     [SerializeField]
     private GameObject KeysCollection;
     [SerializeField]
@@ -73,7 +76,13 @@ public class MrInputVisualizer : MonoBehaviour
     {
         ct?.Cancel();
         ct = new CancellationTokenSource();
-        await Task.Delay(1000, ct.Token);
+        await Task.Delay(500, ct.Token);
+    }
+    private async Task OnQueued()
+    {
+        ctqueue?.Cancel();
+        ctqueue = new CancellationTokenSource();
+        await Task.Delay(500, ctqueue.Token);
     }
 
     private void CreateWord(string word)
@@ -94,5 +103,42 @@ public class MrInputVisualizer : MonoBehaviour
         }
         CurrentSpell.Clear();
     }
-    
+
+    public async Task ShowQueue(Queue<SpellType> queue, bool succuess, List<SpellPrefabLookup> spelllookups)
+    {
+        ctqueue?.Cancel();
+        ClearQueue();
+        CreateQueue(queue, succuess, spelllookups);
+        if (succuess)
+        {
+            QueueCollection.GetComponent<Image>().color = Color.green;    
+        }
+        else
+        {
+            QueueCollection.GetComponent<Image>().color = Color.red;
+        }
+
+        await OnQueued();
+        QueueCollection.GetComponent<Image>().color = Color.clear;
+    }
+
+    public void ClearQueue()
+    {
+        foreach (var keyInstance in CurrentQueue)
+        {
+            Destroy(keyInstance);
+        }
+        CurrentQueue.Clear();
+    }
+
+    public void CreateQueue(Queue<SpellType> queue, bool succuess, List<SpellPrefabLookup> spelllookups)
+    {
+        foreach (var e in queue)
+        {
+            var queueElement = Instantiate(QueueElementPrefab, QueueCollection.transform);
+            Sprite s = spelllookups.Find(x => x.key == e).icon;
+            queueElement.GetComponentInChildren<Image>().sprite = s;
+            CurrentQueue.Add(queueElement);
+        }
+    }
 }
