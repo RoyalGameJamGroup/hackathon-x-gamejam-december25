@@ -644,8 +644,8 @@ MonoBehaviour:
   spellPrefabLookup:
   - key: 0
     value: {fileID: 2325970627108717316, guid: c5ba1df5cd388aa4c94eeede2d353c63, type: 3}
+    wordLength: 12
   cursePrefabLookup: []
-  spellWordLengths: 03000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000
   typedText: 
   spellNames: []
   inputVisualizer: {fileID: 1565022201}

@@ -47,6 +47,19 @@ public class MrInputVisualizer : MonoBehaviour
         ct?.Cancel();
         ClearKeys();
         CreateWord(word);
+        foreach (var c in CurrentSpell)
+        {
+            c.GetComponent<Image>().color = Color.red;    
+        }
+        foreach (int c in containedChars)
+        {
+            CurrentSpell[c].GetComponent<Image>().color = Color.yellow;
+        }
+        foreach (int c in correctChars)
+        {
+            CurrentSpell[c].GetComponent<Image>().color = Color.green;
+        }
+        
         KeysCollection.GetComponent<Image>().color = Color.red;
         await WordEnded();
         KeysCollection.GetComponent<Image>().color = Color.clear;
