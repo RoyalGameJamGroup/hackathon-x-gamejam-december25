@@ -1,17 +1,20 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Spells;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class MrInputVisualizer : MonoBehaviour
 {
     public GameObject KeyPrefab;
     public List<GameObject> CurrentSpell = new List<GameObject>();
+    public List<GameObject> CurrentQueue = new List<GameObject>();
     private CancellationTokenSource ct;
     [SerializeField]
     private GameObject KeysCollection;
+    [SerializeField]
+    private GameObject QueueCollection;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -91,4 +94,5 @@ public class MrInputVisualizer : MonoBehaviour
         }
         CurrentSpell.Clear();
     }
+    
 }
