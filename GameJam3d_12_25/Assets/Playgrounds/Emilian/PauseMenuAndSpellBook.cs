@@ -31,13 +31,16 @@ public class PauseMenuAndSpellBook : MonoBehaviour
         if (pauseMenu.activeSelf)
         {
             pauseMenu.SetActive(false);
+
+            PauseManager.Instance.SetGameRunningState(true);
             return;
         }
            
         if(!spellBook.activeSelf)
         {
             pauseMenu.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(null);
+            PauseManager.Instance.SetGameRunningState(false);
+            
         }
     }
 
@@ -46,12 +49,14 @@ public class PauseMenuAndSpellBook : MonoBehaviour
         if (spellBook.activeSelf)
         {
             spellBook.SetActive(false);
+            PauseManager.Instance.SetGameRunningState(true);
             return;
         }
 
         if (!pauseMenu.activeSelf)
         {
             spellBook.SetActive(true);
+            PauseManager.Instance.SetGameRunningState(false);
         }
     }
 }

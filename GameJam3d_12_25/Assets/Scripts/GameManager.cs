@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    
+
     [Header("Enemy Prefabs")]
     [SerializeField] GameObject zombiePrefab;
     [SerializeField] GameObject sceletonPrefab;
@@ -15,7 +18,10 @@ public class GameManager : MonoBehaviour
 
     public int score;
 
+    
+
     private float spawnTimer;
+    
 
     void Start()
     {
@@ -39,7 +45,7 @@ public class GameManager : MonoBehaviour
         Vector3 spawnPosition = GetRandomSpawnPosition();
 
         GameObject[] enemyPrefabs = { zombiePrefab, sceletonPrefab, seekerPrefab };
-        GameObject enemyToSpawn = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+        GameObject enemyToSpawn = enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)];
 
         enemyToSpawn.GetComponent<Enemy>().target = playerTransform.gameObject;
         enemyToSpawn.GetComponent<Enemy>().gameManager = this;
@@ -55,7 +61,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < maxAttempts; i++)
         {
-            Vector3 randomDirection = Random.insideUnitSphere * spawnRadius;
+            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * spawnRadius;
             randomDirection.y = 0;
 
             Vector3 candidatePosition = transform.position + randomDirection;
@@ -101,4 +107,6 @@ public class GameManager : MonoBehaviour
         score += points;
         Debug.Log("Score: " + score);
     }
+
+    
 }

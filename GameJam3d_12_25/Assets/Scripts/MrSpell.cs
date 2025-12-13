@@ -57,6 +57,10 @@ public class MrSpell : MonoBehaviour
             SpellLookup.Add(spellNames[i], spellPrefabLookup[i].key);
             spellPrefabLookup[i].combo = spellNames[i];
         }
+        foreach (var spellType in spellPrefabLookup.Select(x => x.key))
+        {
+            knownSpellCharIdxs.TryAdd(spellType, new HashSet<int>());
+        }
     }
 
     
@@ -73,6 +77,7 @@ public class MrSpell : MonoBehaviour
     }
     void OnGUI()
     {
+        if(!PauseManager.Instance.isRunning) return;
         Event e = Event.current;
         if (e.type == EventType.KeyDown && e.character != '\0' && IsInAlphabet(e.character))
         {
@@ -161,11 +166,10 @@ public class MrSpell : MonoBehaviour
         Vector2 mousePos = (Vector2)Input.mousePosition;
         Vector2 direction = (mousePos - screenCenter).normalized;
 
-
         GameObject prefab = spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).value;
         Debug.Log(spell+" is casted "+ spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).spellName);
-        var castedSpell =Instantiate(prefab,transform.position + new Vector3(direction.x, 0, direction.y), Quaternion.identity);
-        castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
+        var castedSpell = Instantiate(prefab, transform.position + new Vector3(direction.x, 0, direction.y), prefab.transform.rotation);
+        castedSpell.GetComponent<Spell>().direction = direction;
     }
 
     public GameObject GetRandomCurse()
