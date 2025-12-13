@@ -27,7 +27,7 @@ public class MarcelSeeker : Enemy
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Boom");
+            other.gameObject.GetComponent<PlayerHealth>()?.PoopNei(damage);
             Destroy(gameObject);
         }
     }

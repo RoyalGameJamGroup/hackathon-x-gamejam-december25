@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         GameObject enemyToSpawn = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
 
         enemyToSpawn.GetComponent<Enemy>().target = playerTransform.gameObject;
+        enemyToSpawn.GetComponent<Enemy>().gameManager = this;
 
         Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
     }
@@ -80,6 +81,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogWarning("Could not find a valid spawn position away from the player after " + maxAttempts + " attempts.");
         }
+        
+        randomPos.y = 0;
 
         return randomPos;
     }
@@ -91,5 +94,11 @@ public class GameManager : MonoBehaviour
         {
             playerTransform = playerObj.transform;
         }
+    }
+
+    public void AddScore(int points)
+    {
+        score += points;
+        Debug.Log("Score: " + score);
     }
 }
