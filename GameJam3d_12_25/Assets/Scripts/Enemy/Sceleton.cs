@@ -6,7 +6,6 @@ public class Sceleton : Enemy
     [SerializeField] GameObject arrowPrefab;
     [SerializeField] GameObject spawnPos;
     [SerializeField] float fireRate = 3f;
-    [SerializeField] float arrowSpeed = 10f;
     
     [Header("Movement")]
     [SerializeField] float minEngagementDistance = 5f;
@@ -64,5 +63,6 @@ public class Sceleton : Enemy
         GameObject newArrow = Instantiate(arrowPrefab, spawnPos.transform.position, Quaternion.LookRotation(shootDirection));
 
         newArrow.GetComponent<Arrow>().direction = new Vector2(shootDirection.x, shootDirection.z);
+        newArrow.GetComponent<Arrow>().damage = damage;
     }
 }

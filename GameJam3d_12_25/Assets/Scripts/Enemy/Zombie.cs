@@ -70,6 +70,8 @@ public class Zombie : Enemy
         Debug.Log("Zombie Triggered by: " + other.gameObject.name);
         if (other.gameObject.CompareTag("Player") && currentState == AttackState.Chase)
         {
+            other.gameObject.GetComponent<PlayerHealth>()?.PoopNei(damage);
+
             // Calculate the retreat position based on the current position and the desired distance
             Vector3 directionAway = (transform.position - other.transform.position).normalized;
             retreatTarget = transform.position + directionAway * stepBackDistance;

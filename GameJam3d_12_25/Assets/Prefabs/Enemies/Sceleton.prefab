@@ -185,10 +185,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 1
-  damage: 0
-  health: 0
+  damage: 10
+  health: 50
   arrowPrefab: {fileID: 2491757163028220681, guid: 0f602d8625a0ccc48b6f421d625bf709, type: 3}
   spawnPos: {fileID: 1242509074287298367}
   fireRate: 3
-  arrowSpeed: 10
   minEngagementDistance: 8

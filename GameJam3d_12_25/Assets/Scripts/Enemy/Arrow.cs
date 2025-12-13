@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    float spawnTime;
-    float lifeTime = 5f;
-    float speed = 2f;
-    int damage = 10;
+    [SerializeField] public float spawnTime;
+    [SerializeField] public float lifeTime = 5f;
+    [SerializeField] public float speed = 2f;
+    public int damage;
 
     public Vector2 direction;
 
@@ -31,7 +31,7 @@ public class Arrow : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Arrow hit the player!");
+            other.gameObject.GetComponent<PlayerHealth>()?.PoopNei(damage);
             Destroy(gameObject);
         }
     }

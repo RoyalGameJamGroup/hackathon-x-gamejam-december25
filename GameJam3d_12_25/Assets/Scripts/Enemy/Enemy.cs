@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] public GameObject target;
     [SerializeField] protected int speed = 2;
-    [SerializeField] protected int damage;
-    [SerializeField] protected int health;
+    [SerializeField] protected int damage = 10;
+    [SerializeField] protected int health = 50;
     Element status;
 
 
