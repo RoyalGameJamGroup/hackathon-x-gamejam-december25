@@ -40,6 +40,8 @@ public class MrSpell : MonoBehaviour
     public List<string> spellNames;
     [SerializeField]
     private MrInputVisualizer inputVisualizer;
+
+    public GameObject lastSpell;
     
     public Dictionary<SpellType, HashSet<int>> knownSpellCharIdxs = new Dictionary<SpellType, HashSet<int>>(); 
     
@@ -167,6 +169,21 @@ public class MrSpell : MonoBehaviour
 
         GameObject prefab = spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).value;
         Debug.Log(spell+" is casted "+ spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).spellName);
+        var castedSpell = Instantiate(prefab, transform.position + new Vector3(direction.x, 0, direction.y), prefab.transform.rotation);
+        castedSpell.GetComponent<Spell>().direction = direction;
+        castedSpell.GetComponent<Spell>().lastSpell = lastSpell;
+        lastSpell = prefab;
+    }
+
+    public void RedoSpell(GameObject lastSpell){
+        Debug.Log("Redoing last spell");
+        Debug.Log(lastSpell);
+        if(lastSpell == null) return;
+        Vector2 screenCenter = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+        Vector2 mousePos = (Vector2)Input.mousePosition;
+        Vector2 direction = (mousePos - screenCenter).normalized;
+
+        GameObject prefab = lastSpell;
         var castedSpell = Instantiate(prefab, transform.position + new Vector3(direction.x, 0, direction.y), prefab.transform.rotation);
         castedSpell.GetComponent<Spell>().direction = direction;
     }
