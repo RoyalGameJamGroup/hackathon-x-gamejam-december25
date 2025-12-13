@@ -4,6 +4,19 @@ namespace Spells
     {
         Fireball,
         Freeze,
-        Shockwave
+        Shockwave,
+        Autodrop,
+        RocknRoll,
+        Monke,
+        Duplicate,
+        Exploding,
+        DoubleSpell,
+        Shield,
+        Banana,
+        ChainLightning,
+        Teleport,
+        Blackhole,
+        Dummy,
+        NuclearBrr
     }
 }

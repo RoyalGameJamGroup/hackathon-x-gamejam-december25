@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 634859673496371488}
   m_Layer: 0
   m_Name: Crock
-  m_TagString: Untagged
+  m_TagString: Spawnable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,6 +141,7 @@ MonoBehaviour:
   impactAudioGO: {fileID: 6863343268011871430, guid: c5eab6f5a43072248b02cf7284b34c0c, type: 3}
   direction: {x: 0, y: 0}
   speed: 3
+  rotationSpeed: 500
 --- !u!82 &1084384361201431101
 AudioSource:
   m_ObjectHideFlags: 0

@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 548375476049944602}
   - component: {fileID: 1534925836242631337}
   - component: {fileID: 2622892787425618663}
+  - component: {fileID: -793950711398032358}
   m_Layer: 0
   m_Name: Banana
-  m_TagString: Untagged
+  m_TagString: Spawnable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,6 +209,22 @@ MonoBehaviour:
   rotationSpeed: 360
   damage: 10
   selfRotationSpeed: 720
+--- !u!114 &-793950711398032358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8041214988261130649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43357707bfad25642828f27ffab7f93c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 300
+  knockbackForce: 10
+  spellSize: 15
+  explosion: {fileID: 3224753767020532059, guid: 2ca697908d775ce48ba670ac2f753d65, type: 3}
 --- !u!1001 &4589149180922490133
 PrefabInstance:
   m_ObjectHideFlags: 0
