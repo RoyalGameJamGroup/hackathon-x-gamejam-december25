@@ -3,8 +3,8 @@ using UnityEngine;
 public class Fireball: Spell
 {
     float spawnTime;
-    float lifeTime = 500f;
-    float speed = 0f;
+    float lifeTime = 5f;
+    float speed = 1f;
     int damage = 10;
 
     private Material fireballMaterial;
@@ -39,6 +39,7 @@ public class Fireball: Spell
         if (other.gameObject.CompareTag("Enemy"))
         {
             gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Fire);
+            //this.Destroy(gameObject);
         }
     }
 }
