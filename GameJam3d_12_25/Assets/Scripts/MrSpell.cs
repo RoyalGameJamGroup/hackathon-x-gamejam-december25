@@ -29,6 +29,8 @@ public class CursePrefabLookup
 
 public class MrSpell : MonoBehaviour
 {
+    public static MrSpell Instance { get; private set; }
+
     public List<SpellPrefabLookup> spellPrefabLookup = new List<SpellPrefabLookup>();
     public List<CursePrefabLookup> cursePrefabLookup = new List<CursePrefabLookup>();
     public Dictionary<string, SpellType> SpellLookup;
@@ -39,9 +41,12 @@ public class MrSpell : MonoBehaviour
     [SerializeField]
     private MrInputVisualizer inputVisualizer;
     
-    public Dictionary<SpellType, HashSet<int>> knownSpellCharIdxs = new Dictionary<SpellType, HashSet<int>>(); 
+    public Dictionary<SpellType, HashSet<int>> knownSpellCharIdxs = new Dictionary<SpellType, HashSet<int>>();
+
+    private bool gameIsRunning;
     void Awake()
     {
+        if (Instance == null) Instance = this;
         spellAlphabet = GetAlphabet();
         //spellAlphabet = leftKeyboard.ToCharArray().ToList();
         spellNames = GenerateSpellKeysUniqueChar(spellPrefabLookup.Select(x=> x.wordLength).ToList());
@@ -50,6 +55,10 @@ public class MrSpell : MonoBehaviour
         {
             SpellLookup.Add(spellNames[i], spellPrefabLookup[i].key);
             spellPrefabLookup[i].combo = spellNames[i];
+        }
+        foreach(SpellType spellType in spellPrefabLookup.Select(x=>x.key))
+        {
+            knownSpellCharIdxs.TryAdd(spellType, new HashSet<int>());
         }
     }
 
@@ -67,6 +76,8 @@ public class MrSpell : MonoBehaviour
     }
     void OnGUI()
     {
+        if(!PauseManager.Instance.isRunning)
+            { return; }
         Event e = Event.current;
         if (e.type == EventType.KeyDown && e.character != '\0' && IsInAlphabet(e.character))
         {
