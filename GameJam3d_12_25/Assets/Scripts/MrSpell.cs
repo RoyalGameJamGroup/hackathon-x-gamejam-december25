@@ -14,6 +14,10 @@ public class SpellPrefabLookup
     public SpellType key;
     public GameObject value;
     public int wordLength;
+    public GameObject icon;
+    public string spellName;
+    public string combo;
+    public string description;
 }
 [Serializable] 
 public class CursePrefabLookup
@@ -44,7 +48,8 @@ public class MrSpell : MonoBehaviour
         SpellLookup = new Dictionary<string, SpellType>();
         for (int i = 0; i < spellPrefabLookup.Count; i++)
         {
-            SpellLookup.Add(spellNames[i], spellPrefabLookup[0].key);
+            SpellLookup.Add(spellNames[i], spellPrefabLookup[i].key);
+            spellPrefabLookup[i].combo = spellNames[i];
         }
     }
 
@@ -137,6 +142,7 @@ public class MrSpell : MonoBehaviour
         Vector2 direction = (new Vector2(Mathf.Sin(yRot), Mathf.Cos(yRot))).normalized;
 
         GameObject prefab = spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).value;
+        Debug.Log(spell+" is casted "+ spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).spellName);
         var castedSpell =Instantiate(prefab,transform.position + new Vector3(direction.x, 0, direction.y), Quaternion.identity);
         castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
     }
@@ -232,6 +238,15 @@ public class MrSpell : MonoBehaviour
     {
         return spells.Where(s => s.StartsWith(prefix)).ToList();
     }
-    
+
+    public bool GetSpellData(SpellType spell, out string spellname, out string description, out string combo, out GameObject icon)
+    {
+        int idx = spellPrefabLookup.FindIndex(x=>x.key == spell);
+        spellname =  spellPrefabLookup[idx].spellName;
+        combo = spellPrefabLookup[idx].combo;
+        description = spellPrefabLookup[idx].description;
+        icon = spellPrefabLookup[idx].icon;
+        return true;
+    }
     
 }
