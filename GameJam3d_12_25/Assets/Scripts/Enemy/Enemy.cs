@@ -14,12 +14,34 @@ public class Enemy : MonoBehaviour
     public GameManager gameManager;
     [SerializeField] protected int scoreValue = 10;
 
+    protected Vector3 moveDir;
+    protected float step;
+    [SerializeField] public float CollisionRadius = 0.5f;
+    [SerializeField] public LayerMask obstacleMask;
+
+    protected bool movementBlocked = false;
 
 
     // Update is called once per frame
     protected void Update()
     {
-       
+       // Check if movement is blocked
+        if (Physics.SphereCast(
+            transform.position,
+            CollisionRadius,
+            moveDir,
+            out RaycastHit hit,
+            step,
+            obstacleMask
+        ))
+        {
+            Debug.Log("Enemy movement blocked by " + hit.collider.gameObject.name);
+            movementBlocked = true;
+        }
+        else
+        {
+            movementBlocked = false;
+        }
     }
 
     public void PoopNei(int damage, Element el)

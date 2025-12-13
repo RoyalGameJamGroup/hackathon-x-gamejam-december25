@@ -22,10 +22,10 @@ public class Zombie : Enemy
 
     void Update()
     {
+        base.Update();
         if (target == null) return;
 
         transform.LookAt(target.transform);
-        float step;
 
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
@@ -36,28 +36,33 @@ public class Zombie : Enemy
                 
                 if(distanceToTarget < stepBackRadius)
                 {
-                    Vector3 directionAway = (transform.position - target.transform.position).normalized;
-                    retreatTarget = transform.position + directionAway * stepBackDistance;
+                    moveDir = (transform.position - target.transform.position).normalized;
+                    retreatTarget = transform.position + moveDir * stepBackDistance;
 
                     currentState = AttackState.SteppingBack;
                     stateTimer = 0f;
                 }else{
-                    transform.position = Vector3.MoveTowards(
-                        transform.position,
-                        target.transform.position,
-                        step
-                    );
+                    moveDir = (target.transform.position - transform.position).normalized;
+                    if(!movementBlocked){
+                        transform.position = Vector3.MoveTowards(
+                            transform.position,
+                            target.transform.position,
+                            step
+                        );
+                    }
                 }
                 break;
 
             case AttackState.SteppingBack:
                 step = stepBackSpeed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    retreatTarget,
-                    step
-                );
-
+                if(!movementBlocked){
+                    transform.position = Vector3.MoveTowards(
+                        transform.position,
+                        retreatTarget,
+                        step
+                    );
+                }
+                
                 // Check if the zombie has reached the retreat target
                 if (transform.position == retreatTarget)
                 {
