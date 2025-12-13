@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class Sceleton : Enemy
 {
+    [Header("Ranged Attack")]
     [SerializeField] GameObject arrowPrefab;
     [SerializeField] GameObject spawnPos;
     [SerializeField] float fireRate = 3f;
-    [SerializeField] float arrowSpeed = 10f;
+    
+    [Header("Movement")]
+    [SerializeField] float minEngagementDistance = 5f;
 
     private float fireTimer;
 
@@ -16,15 +19,28 @@ public class Sceleton : Enemy
 
     void Update()
     {
+        base.Update();
         if (target == null) return;
 
+        Vector3 lookAtTarget = target.transform.position;
+        lookAtTarget.y = transform.position.y; // keep only horizontal rotation
         transform.LookAt(target.transform);
+        
+        float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
-        transform.position = Vector3.MoveTowards(
-            transform.position,
-            target.transform.position,
-            speed * Time.deltaTime
-        );
+        step = speed * Time.deltaTime;
+        moveDir = (target.transform.position - transform.position).normalized;
+
+        if (distanceToTarget > minEngagementDistance)
+        {
+            if(!movementBlocked){
+                transform.position = Vector3.MoveTowards(
+                    transform.position,
+                    target.transform.position,
+                    step
+                );
+            }
+        }
 
         fireTimer -= Time.deltaTime;
 
@@ -37,19 +53,11 @@ public class Sceleton : Enemy
 
     void Shoot()
     {
-        GameObject newArrow = Instantiate(arrowPrefab, spawnPos.transform.position, spawnPos.transform.rotation);
-
         Vector3 shootDirection = transform.forward;
 
-        Rigidbody arrowRb = newArrow.GetComponent<Rigidbody>();
+        GameObject newArrow = Instantiate(arrowPrefab, spawnPos.transform.position, Quaternion.LookRotation(shootDirection));
 
-        if (arrowRb != null)
-        {
-            arrowRb.linearVelocity = shootDirection * arrowSpeed;
-        }
-        else
-        {
-            Debug.LogError("Arrow prefab is missing a Rigidbody component!");
-        }
+        newArrow.GetComponent<Arrow>().direction = new Vector2(shootDirection.x, shootDirection.z);
+        newArrow.GetComponent<Arrow>().damage = damage;
     }
 }

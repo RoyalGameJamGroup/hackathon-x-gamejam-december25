@@ -11,15 +11,20 @@ public class MarcelSeeker : Enemy
     // Update is called once per frame
     void Update()
     {
+        base.Update();
         if (target == null) return;
 
         transform.LookAt(target.transform);
+        moveDir = (target.transform.position - transform.position).normalized;
+        step = speed * Time.deltaTime;
 
-        transform.position = Vector3.MoveTowards(
-            transform.position,
-            target.transform.position,
-            speed * Time.deltaTime
-        );
+        if(!movementBlocked){
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                target.transform.position,
+                step
+            );
+        }
     }
 
 
@@ -27,7 +32,7 @@ public class MarcelSeeker : Enemy
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Boom");
+            other.gameObject.GetComponent<PlayerHealth>()?.PoopNei(damage);
             Destroy(gameObject);
         }
     }

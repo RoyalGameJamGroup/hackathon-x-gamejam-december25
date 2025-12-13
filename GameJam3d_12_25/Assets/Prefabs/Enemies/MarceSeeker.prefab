@@ -11,13 +11,12 @@ GameObject:
   - component: {fileID: 884310366890744650}
   - component: {fileID: 3998153094890293019}
   - component: {fileID: 2551365974134798201}
-  - component: {fileID: 2387953191767332262}
   - component: {fileID: 5056111294804030636}
   - component: {fileID: 1984789016966739370}
   - component: {fileID: 5120263590485282754}
   m_Layer: 0
   m_Name: MarceSeeker
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7842535421275196409}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.83, y: -0.57701385, z: 4.06}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -68,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 23e5046134a8e9243b00072c8f6524f3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90,27 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2387953191767332262
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7842535421275196409}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5056111294804030636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,8 +103,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 2
-  damage: 0
-  health: 0
+  damage: 10
+  health: 50
+  gameManager: {fileID: 0}
+  scoreValue: 10
+  CollisionRadius: 0.5
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!54 &1984789016966739370
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8203438694013455559}
   - component: {fileID: 5491947760473773743}
   - component: {fileID: 5665758584113731470}
-  - component: {fileID: 1977923577728838956}
   - component: {fileID: 8864783571646149945}
   - component: {fileID: 6532895708641183932}
   - component: {fileID: 1133660271287773425}
@@ -68,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 23e5046134a8e9243b00072c8f6524f3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90,29 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1977923577728838956
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2491757163028220681}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!54 &8864783571646149945
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -135,8 +111,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -175,3 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da10b58f6f9e024baba29ba67f1dafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnTime: 0
+  lifeTime: 5
+  speed: 2
+  damage: 10
+  direction: {x: 0, y: 0}

@@ -132,8 +132,12 @@ public class MrSpell : MonoBehaviour
 
     public void SpawnSpell(string spell)
     {
+        // Get rotation
+        float yRot = transform.eulerAngles.y * Mathf.Deg2Rad;
+        Vector2 direction = (new Vector2(Mathf.Sin(yRot), Mathf.Cos(yRot))).normalized;
+
         GameObject prefab = spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).value;
-        var castedSpell =Instantiate(prefab,new Vector3(0, 0, 0), Quaternion.identity);
+        var castedSpell =Instantiate(prefab,transform.position + new Vector3(direction.x, 0, direction.y), Quaternion.identity);
         castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
     }
 

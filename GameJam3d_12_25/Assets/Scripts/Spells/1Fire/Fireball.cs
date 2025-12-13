@@ -4,7 +4,7 @@ public class Fireball: Spell
 {
     float spawnTime;
     float lifeTime = 5f;
-    float speed = 1f;
+    float speed = 5f;
     int damage = 10;
 
     private Material fireballMaterial;
@@ -12,14 +12,18 @@ public class Fireball: Spell
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
        spawnTime = Time.time; 
+        PlaySpawnSoundLooped();
+        // set y rotation with euler angles but keep x and z rotation 
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       transform.Translate((new Vector3(direction.x, 0, direction.y)).normalized * speed * Time.deltaTime);
+
+        transform.rotation = Quaternion.Euler(0, Mathf.Atan2(-direction.x, -direction.y) * Mathf.Rad2Deg, 0);
+       transform.position = transform.position + ((new Vector3(direction.x, 0, direction.y)).normalized * speed * Time.deltaTime);
        if (Time.time - spawnTime > lifeTime)
        {
            Destroy(gameObject);
@@ -38,8 +42,9 @@ public class Fireball: Spell
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Fire);
-            //this.Destroy(gameObject);
+            other.gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Fire);
+            PlayImpactSound();
+            Destroy(gameObject);
         }
     }
 }
