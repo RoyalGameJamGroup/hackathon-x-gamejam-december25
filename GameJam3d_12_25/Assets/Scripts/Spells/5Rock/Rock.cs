@@ -3,6 +3,7 @@ using UnityEngine;
 public class Rock : Spell
 {
     [SerializeField] float speed = 3f;
+    [SerializeField] float lifetime = 5f;
 
     [Header("Rock Rotation")]
     [SerializeField] float rotationSpeed = 500f;
@@ -33,12 +34,13 @@ public class Rock : Spell
     // Called when the collider other enters the trigger
     private void OnTriggerEnter(Collider other)
     {
+        PlayImpactSound();
         Debug.Log("Rock hit " + other.gameObject.name);
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Projectile"))
         {
             Destroy(other.gameObject);
+        }else{
+            Destroy(gameObject);
         }
-        PlayImpactSound();
-        Destroy(gameObject);
     }
 }
