@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Spells;
@@ -18,10 +19,20 @@ public class MrInputVisualizer : MonoBehaviour
     private GameObject KeysCollection;
     [SerializeField]
     private GameObject QueueCollection;
+
+    [SerializeField] private Color wrong;
+    [SerializeField] private Color right;
+    [SerializeField] private Color semicorrect;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         PauseManager.Instance.OnPauseStateChanged += ToggleUI;
+        for (int i = 0; i < MrSpell.Instance.queueSize; i++)
+        {
+            var queueElement = Instantiate(QueueElementPrefab, QueueCollection.transform);
+            CurrentQueue.Add(queueElement);
+            queueElement.GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").color = Color.clear;
+        }
     }
 
     // Update is called once per frame
@@ -47,7 +58,7 @@ public class MrInputVisualizer : MonoBehaviour
         ct?.Cancel();
         ClearKeys();
         CreateWord(word);
-        KeysCollection.GetComponent<Image>().color = Color.green;
+        KeysCollection.GetComponent<Image>().color = right;
         await WordEnded();
         KeysCollection.GetComponent<Image>().color = Color.clear;
         ClearKeys();
@@ -60,18 +71,18 @@ public class MrInputVisualizer : MonoBehaviour
         CreateWord(word);
         foreach (var c in CurrentSpell)
         {
-            c.GetComponent<Image>().color = Color.red;    
+            c.GetComponent<Image>().color = wrong;    
         }
         foreach (int c in containedChars)
         {
-            CurrentSpell[c].GetComponent<Image>().color = Color.yellow;
+            CurrentSpell[c].GetComponent<Image>().color = semicorrect;
         }
         foreach (int c in correctChars)
         {
-            CurrentSpell[c].GetComponent<Image>().color = Color.green;
+            CurrentSpell[c].GetComponent<Image>().color = right;
         }
         
-        KeysCollection.GetComponent<Image>().color = Color.red;
+        KeysCollection.GetComponent<Image>().color = wrong;
         await WordEnded();
         KeysCollection.GetComponent<Image>().color = Color.clear;
         ClearKeys();
@@ -87,7 +98,7 @@ public class MrInputVisualizer : MonoBehaviour
     {
         ctqueue?.Cancel();
         ctqueue = new CancellationTokenSource();
-        await Task.Delay(500, ctqueue.Token);
+        await Task.Delay(100, ctqueue.Token);
     }
 
     private void CreateWord(string word)
@@ -116,11 +127,11 @@ public class MrInputVisualizer : MonoBehaviour
         CreateQueue(queue, succuess, spelllookups);
         if (succuess)
         {
-            QueueCollection.GetComponent<Image>().color = Color.green;    
+            QueueCollection.GetComponent<Image>().color = right;    
         }
         else
         {
-            QueueCollection.GetComponent<Image>().color = Color.red;
+            QueueCollection.GetComponent<Image>().color = wrong;
         }
 
         await OnQueued();
@@ -131,19 +142,27 @@ public class MrInputVisualizer : MonoBehaviour
     {
         foreach (var keyInstance in CurrentQueue)
         {
-            Destroy(keyInstance);
+            //Destroy(keyInstance);
         }
-        CurrentQueue.Clear();
+        //CurrentQueue.Clear();
     }
 
     public void CreateQueue(Queue<SpellType> queue, bool succuess, List<SpellPrefabLookup> spelllookups)
     {
-        foreach (var e in queue)
+        for (int i = 0; i < MrSpell.Instance.queueSize; i++)
         {
-            var queueElement = Instantiate(QueueElementPrefab, QueueCollection.transform);
-            Sprite s = spelllookups.Find(x => x.key == e).icon;
-            queueElement.GetComponentInChildren<Image>().sprite = s;
-            CurrentQueue.Add(queueElement);
+            if (i < queue.Count)
+            {
+                SpellType e = queue.ToArray()[i];
+                Sprite s = spelllookups.Find(x => x.key == e).icon;
+                CurrentQueue[i].GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").sprite = s;
+                CurrentQueue[i].GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").color = Color.white;
+            }
+            else
+            {
+                CurrentQueue[i].GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").color = Color.clear;
+            }
+            
         }
     }
 }
