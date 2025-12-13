@@ -146,11 +146,10 @@ public class MrSpell : MonoBehaviour
         Vector2 mousePos = (Vector2)Input.mousePosition;
         Vector2 direction = (mousePos - screenCenter).normalized;
 
-
         GameObject prefab = spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).value;
         Debug.Log(spell+" is casted "+ spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).spellName);
         var castedSpell =Instantiate(prefab,transform.position + new Vector3(direction.x, 0, direction.y), Quaternion.identity);
-        castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
+        castedSpell.GetComponent<Spell>().direction = direction;
     }
 
     public GameObject GetRandomCurse()
