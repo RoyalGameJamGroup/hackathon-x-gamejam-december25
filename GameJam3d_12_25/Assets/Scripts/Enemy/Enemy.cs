@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField] public GameObject target;
-    [SerializeField] protected int speed = 2;
+    [SerializeField] protected float speed = 2.0f;
     [SerializeField] protected int damage = 10;
     [SerializeField] protected int health = 50;
     Element status;
@@ -14,12 +14,42 @@ public class Enemy : MonoBehaviour
     public GameManager gameManager;
     [SerializeField] protected int scoreValue = 10;
 
+    Vector3 knockbackForce;
+    float knockBackTimer = 0f;
+
+    protected Vector3 moveDir;
+    protected float step;
+    [SerializeField] public float CollisionRadius = 0.5f;
+    [SerializeField] public LayerMask obstacleMask;
+
+    protected bool movementBlocked = false;
 
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
-       
+
+      if(Time.time < knockBackTimer){
+        transform.position += knockbackForce * Time.deltaTime;
+      }
+
+       // Check if movement is blocked
+        if (Physics.SphereCast(
+            transform.position,
+            CollisionRadius,
+            moveDir,
+            out RaycastHit hit,
+            step,
+            obstacleMask
+        ))
+        {
+            Debug.Log("Enemy movement blocked by " + hit.collider.gameObject.name);
+            movementBlocked = true;
+        }
+        else
+        {
+            movementBlocked = false;
+        }
     }
 
     public void PoopNei(int damage, Element el)
@@ -28,14 +58,16 @@ public class Enemy : MonoBehaviour
         status = el;
         if(health <= 0)
         {
-            gameManager.AddScore(scoreValue);
+            gameManager?.AddScore(scoreValue);
             Destroy(gameObject);
         }
     }
 
     public void KnockbackNei (Vector3 force)
     {
-        transform.position += force;
+      knockBackTimer = Time.time + 0.3f;
+      Debug.Log("timer: " + knockBackTimer);
+      knockbackForce = force;
     }
 
 }

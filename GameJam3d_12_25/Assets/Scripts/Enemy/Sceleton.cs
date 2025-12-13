@@ -19,32 +19,27 @@ public class Sceleton : Enemy
 
     void Update()
     {
+        base.Update();
         if (target == null) return;
 
+        Vector3 lookAtTarget = target.transform.position;
+        lookAtTarget.y = transform.position.y; // keep only horizontal rotation
         transform.LookAt(target.transform);
         
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
-        float step = speed * Time.deltaTime;
+
+        step = speed * Time.deltaTime;
+        moveDir = (target.transform.position - transform.position).normalized;
 
         if (distanceToTarget > minEngagementDistance)
         {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                target.transform.position,
-                step
-            );
-        }
-        else
-        {
-            Vector3 directionAway = transform.position - target.transform.position;
-            
-            Vector3 retreatPosition = transform.position + directionAway.normalized;
-            
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                retreatPosition,
-                step
-            );
+            if(!movementBlocked){
+                transform.position = Vector3.MoveTowards(
+                    transform.position,
+                    target.transform.position,
+                    step
+                );
+            }
         }
 
         fireTimer -= Time.deltaTime;

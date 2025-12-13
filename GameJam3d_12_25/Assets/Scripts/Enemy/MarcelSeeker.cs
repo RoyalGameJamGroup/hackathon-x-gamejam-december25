@@ -11,15 +11,23 @@ public class MarcelSeeker : Enemy
     // Update is called once per frame
     void Update()
     {
+        base.Update();
         if (target == null) return;
 
+        Vector3 lookAtTarget = target.transform.position;
+        lookAtTarget.y = transform.position.y; // keep only horizontal rotation
         transform.LookAt(target.transform);
+        
+        moveDir = (target.transform.position - transform.position).normalized;
+        step = speed * Time.deltaTime;
 
-        transform.position = Vector3.MoveTowards(
-            transform.position,
-            target.transform.position,
-            speed * Time.deltaTime
-        );
+        if(!movementBlocked){
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                target.transform.position,
+                step
+            );
+        }
     }
 
 
