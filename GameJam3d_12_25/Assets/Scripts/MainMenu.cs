@@ -13,8 +13,7 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsMenu;
     public GameObject creditsScreen;
     public GameObject controlsScreen;
-
-    public AudioSource music;
+    
     public AudioMixer audioMixer;
     public Slider mastSlider, musicSlider, sfxSlider;
 
