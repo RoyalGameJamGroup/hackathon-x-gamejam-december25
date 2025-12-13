@@ -4,5 +4,6 @@ public enum Element
 {
    Fire,
    Water,
-   Lightning 
+   Lightning, 
+   Physical
 }

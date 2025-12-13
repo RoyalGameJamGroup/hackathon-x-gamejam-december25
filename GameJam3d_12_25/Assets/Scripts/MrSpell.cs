@@ -24,13 +24,13 @@ public class CursePrefabLookup
 {
     public SpellType key;
     public GameObject value;
-    public int probability;
+    public float weight;
+    public GameObject icon;
 }
 
 public class MrSpell : MonoBehaviour
 {
-    public static MrSpell Instance { get; private set; }
-
+    public static MrSpell Instance {get; private set;}
     public List<SpellPrefabLookup> spellPrefabLookup = new List<SpellPrefabLookup>();
     public List<CursePrefabLookup> cursePrefabLookup = new List<CursePrefabLookup>();
     public Dictionary<string, SpellType> SpellLookup;
@@ -41,12 +41,11 @@ public class MrSpell : MonoBehaviour
     [SerializeField]
     private MrInputVisualizer inputVisualizer;
     
-    public Dictionary<SpellType, HashSet<int>> knownSpellCharIdxs = new Dictionary<SpellType, HashSet<int>>();
-
-    private bool gameIsRunning;
+    public Dictionary<SpellType, HashSet<int>> knownSpellCharIdxs = new Dictionary<SpellType, HashSet<int>>(); 
+    
     void Awake()
     {
-        if (Instance == null) Instance = this;
+        if(Instance == null) Instance = this;
         spellAlphabet = GetAlphabet();
         //spellAlphabet = leftKeyboard.ToCharArray().ToList();
         spellNames = GenerateSpellKeysUniqueChar(spellPrefabLookup.Select(x=> x.wordLength).ToList());
@@ -55,10 +54,6 @@ public class MrSpell : MonoBehaviour
         {
             SpellLookup.Add(spellNames[i], spellPrefabLookup[i].key);
             spellPrefabLookup[i].combo = spellNames[i];
-        }
-        foreach(SpellType spellType in spellPrefabLookup.Select(x=>x.key))
-        {
-            knownSpellCharIdxs.TryAdd(spellType, new HashSet<int>());
         }
     }
 
@@ -76,8 +71,6 @@ public class MrSpell : MonoBehaviour
     }
     void OnGUI()
     {
-        if(!PauseManager.Instance.isRunning)
-            { return; }
         Event e = Event.current;
         if (e.type == EventType.KeyDown && e.character != '\0' && IsInAlphabet(e.character))
         {
@@ -131,6 +124,7 @@ public class MrSpell : MonoBehaviour
             knownSpellCharIdxs[spellType].UnionWith(correct);
             inputVisualizer.OnSpellFailure(correct, contained, typedText);
             typedText = "";
+            TriggerCurse();
             return;   
         }
         if(SpellLookup.ContainsKey(uncheckedInput))
@@ -148,9 +142,10 @@ public class MrSpell : MonoBehaviour
 
     public void SpawnSpell(string spell)
     {
-        // Get rotation
-        float yRot = transform.eulerAngles.y * Mathf.Deg2Rad;
-        Vector2 direction = (new Vector2(Mathf.Sin(yRot), Mathf.Cos(yRot))).normalized;
+        Vector2 screenCenter = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+        Vector2 mousePos = (Vector2)Input.mousePosition;
+        Vector2 direction = (mousePos - screenCenter).normalized;
+
 
         GameObject prefab = spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).value;
         Debug.Log(spell+" is casted "+ spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).spellName);
@@ -158,9 +153,23 @@ public class MrSpell : MonoBehaviour
         castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
     }
 
+    public GameObject GetRandomCurse()
+    {
+        float probSum= cursePrefabLookup.Select(x => x.weight).Sum(); 
+        float random = Random.value * probSum;
+        foreach (var i in cursePrefabLookup)
+        {
+            random -= i.weight;
+            if (random <= 0f)
+                return i.value;
+        }
+
+        // Fallback (in case of floating-point precision issues)
+        return cursePrefabLookup[^1].value;
+    }
     public void TriggerCurse()
     {
-        GameObject prefab = cursePrefabLookup[0].value;
+        GameObject prefab = GetRandomCurse();
         var castedSpell =Instantiate(prefab,new Vector3(0, 0, 0), Quaternion.identity);
         castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
     }

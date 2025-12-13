@@ -100,6 +100,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8aa2b9f1789676740bb857e92f4b3011, type: 3}
   impactSounds: []
   audioSource: {fileID: 230442182920187300}
+  impactAudioGO: {fileID: 6863343268011871430, guid: c5eab6f5a43072248b02cf7284b34c0c, type: 3}
   direction: {x: 0, y: 0}
 --- !u!82 &230442182920187300
 AudioSource:
