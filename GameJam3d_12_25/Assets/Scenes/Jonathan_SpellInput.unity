@@ -337,7 +337,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3820e2ad8e06db048b375106c1252bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellPrefab:
+  - {fileID: 2325970627108717316, guid: c5ba1df5cd388aa4c94eeede2d353c63, type: 3}
   typedText: 
+  spellNames: []
+  spellWordLengths: 01000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000
 --- !u!4 &1574641922
 Transform:
   m_ObjectHideFlags: 0
