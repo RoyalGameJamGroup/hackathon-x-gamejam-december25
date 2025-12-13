@@ -19,6 +19,7 @@ public class Zombie : Enemy
 
     void Update()
     {
+        base.Update(); 
         if (target == null) return;
 
         transform.LookAt(target.transform);
