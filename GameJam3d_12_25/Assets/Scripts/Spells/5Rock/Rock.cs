@@ -23,7 +23,9 @@ public class Rock : Spell
     {
         if (childToRotate != null)
         {
-            childToRotate.Rotate(Vector3.right, rotationSpeed * Time.deltaTime, Space.Self);
+            Vector3 movementVector = (new Vector3(direction.x, 0, direction.y)).normalized;
+            Vector3 rollAxis = Vector3.Cross(movementVector, Vector3.up);
+            childToRotate.Rotate(rollAxis, -rotationSpeed * Time.deltaTime, Space.World);
         }
         transform.Translate((new Vector3(direction.x, 0, direction.y)).normalized * speed * Time.deltaTime);
     }
