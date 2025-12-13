@@ -248,5 +248,26 @@ public class MrSpell : MonoBehaviour
         icon = spellPrefabLookup[idx].icon;
         return true;
     }
+
+    public bool GetKnownSpellData(SpellType spell, out string spellname, out string description, out string combo,
+        out GameObject icon)
+    {
+        string spellCombo;
+        GetSpellData(spell, out spellname, out description, out spellCombo, out icon);
+        string knownCombo = "";
+        for(int i=0;i<spellCombo.Length;i++)
+        {
+            if (knownSpellCharIdxs[spell].Contains(i))
+            {
+                knownCombo += spellCombo[i];
+            }
+            else
+            {
+                knownCombo += "_";
+            }
+        }
+        combo = knownCombo;
+        return true;
+    }
     
 }
