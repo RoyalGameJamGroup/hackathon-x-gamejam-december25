@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2679133785986028152}
   - component: {fileID: 775154109189494784}
   - component: {fileID: 8653861584653051529}
+  - component: {fileID: 8182211761591514903}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Spawnable
@@ -195,6 +196,24 @@ Animation:
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
+--- !u!114 &8182211761591514903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5850672490497389020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43357707bfad25642828f27ffab7f93c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 30
+  knockbackForce: 10
+  spellSize: 15
+  explosion: {fileID: 3224753767020532059, guid: 2ca697908d775ce48ba670ac2f753d65, type: 3}
+  dupMaxDistance: 20
+  dupEffect: {fileID: 3224753767020532059, guid: 922ee9509c2c2404bac7b8c4ce7670cc, type: 3}
 --- !u!1001 &6863719653819873209
 PrefabInstance:
   m_ObjectHideFlags: 0
