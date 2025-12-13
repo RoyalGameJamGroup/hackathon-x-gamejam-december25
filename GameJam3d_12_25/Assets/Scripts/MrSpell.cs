@@ -55,6 +55,10 @@ public class MrSpell : MonoBehaviour
             SpellLookup.Add(spellNames[i], spellPrefabLookup[i].key);
             spellPrefabLookup[i].combo = spellNames[i];
         }
+        foreach (var spellType in spellPrefabLookup.Select(x => x.key))
+        {
+            knownSpellCharIdxs.TryAdd(spellType, new HashSet<int>());
+        }
     }
 
     
