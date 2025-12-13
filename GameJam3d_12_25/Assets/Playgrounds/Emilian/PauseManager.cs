@@ -14,7 +14,7 @@ public class PauseManager : MonoBehaviour
 
     public void SetGameRunningState(bool isRunningValue)
     {
-        if (isRunningValue != isRunning)
+        if (isRunningValue == isRunning)
         {
             return;
         }
@@ -22,11 +22,11 @@ public class PauseManager : MonoBehaviour
 
         if (isRunning)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 1;
         }
         else
         {
-            Time.timeScale = 1;
+            Time.timeScale = 0;
         }
         OnPauseStateChanged?.Invoke(isRunning);
     }

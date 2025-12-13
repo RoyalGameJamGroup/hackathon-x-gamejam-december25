@@ -21,7 +21,7 @@ public class MrInputVisualizer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        PauseManager.Instance.OnPauseStateChanged += ToggleUI;
     }
 
     // Update is called once per frame
@@ -30,6 +30,11 @@ public class MrInputVisualizer : MonoBehaviour
         
     }
 
+    public void ToggleUI(bool isRunning)
+    {
+        KeysCollection.SetActive(isRunning);
+        QueueCollection.SetActive(isRunning);
+    }
     public void OnKeyPressed(string word)
     {
         ct?.Cancel();
