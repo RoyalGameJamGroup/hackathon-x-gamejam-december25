@@ -24,6 +24,8 @@ public class Shockwave: Spell
     }
 
     void doShockwave(){
+
+        PlaySpawnsSound();
         Renderer renderer = GetComponentInChildren<Renderer>(); 
         {
             renderer.material.SetFloat("_StartTime", Time.time);
