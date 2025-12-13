@@ -2865,6 +2865,14 @@ PrefabInstance:
       propertyPath: inputVisualizer
       value: 
       objectReference: {fileID: 1399404741}
+    - target: {fileID: 1625297206907568906, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
+      propertyPath: spellPrefabLookup.Array.data[8].value
+      value: 
+      objectReference: {fileID: 8654183040624769782, guid: c3bceceb638fbcb41a8b3cd4221cfbfa, type: 3}
+    - target: {fileID: 1625297206907568906, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
+      propertyPath: spellPrefabLookup.Array.data[8].wordLength
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1766717613415512699, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.53
