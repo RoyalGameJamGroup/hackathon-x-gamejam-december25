@@ -866,9 +866,10 @@ GameObject:
   - component: {fileID: 3920929267890298592}
   - component: {fileID: 626047656728984421}
   - component: {fileID: 4926528703629270960}
+  - component: {fileID: 6945412723515511163}
   m_Layer: 0
   m_Name: Monke
-  m_TagString: Untagged
+  m_TagString: Spawnable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1090,6 +1091,22 @@ MonoBehaviour:
   returnToNeutralWhenIdle: 1
   neutralReturnSpeed: 10
   phaseOffset: 0
+--- !u!114 &6945412723515511163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7430780266611255194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43357707bfad25642828f27ffab7f93c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 30
+  knockbackForce: 10
+  spellSize: 15
+  explosion: {fileID: 3224753767020532059, guid: 2ca697908d775ce48ba670ac2f753d65, type: 3}
 --- !u!1 &7829698231139805267
 GameObject:
   m_ObjectHideFlags: 0

@@ -483,9 +483,10 @@ GameObject:
   - component: {fileID: 3139839791960532529}
   - component: {fileID: 1749636858935982254}
   - component: {fileID: 6602491382840486906}
+  - component: {fileID: -6498712806925581368}
   m_Layer: 6
   m_Name: Car
-  m_TagString: Untagged
+  m_TagString: Spawnable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -671,6 +672,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-6498712806925581368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4085808666896605890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43357707bfad25642828f27ffab7f93c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 300
+  knockbackForce: 100
+  spellSize: 30
+  explosion: {fileID: 3224753767020532059, guid: 3a34c05596a480441a257851e0b984dd, type: 3}
 --- !u!1 &6141512595844369591
 GameObject:
   m_ObjectHideFlags: 0
