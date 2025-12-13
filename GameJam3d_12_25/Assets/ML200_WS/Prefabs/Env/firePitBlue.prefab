@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6834010714626356979}
   m_Layer: 0
-  m_Name: firePit
+  m_Name: firePitBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3041361585236085671}
   - component: {fileID: 5317489933234583937}
   m_Layer: 0
-  m_Name: fire
+  m_Name: particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4966,7 +4966,7 @@ GameObject:
   - component: {fileID: 4066977572216812430}
   - component: {fileID: 7226031289411954230}
   m_Layer: 0
-  m_Name: fire
+  m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4997,7 +4997,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 1, g: 0.6601781, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.48461604, b: 1, a: 1}
   m_Intensity: 10
   m_Range: 13.423897
   m_SpotAngle: 30
