@@ -1107,6 +1107,8 @@ MonoBehaviour:
   knockbackForce: 10
   spellSize: 15
   explosion: {fileID: 3224753767020532059, guid: 2ca697908d775ce48ba670ac2f753d65, type: 3}
+  dupMaxDistance: 5
+  dupEffect: {fileID: 3224753767020532059, guid: 922ee9509c2c2404bac7b8c4ce7670cc, type: 3}
 --- !u!1 &7829698231139805267
 GameObject:
   m_ObjectHideFlags: 0
