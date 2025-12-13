@@ -11,6 +11,7 @@ public class MarcelSeeker : Enemy
     // Update is called once per frame
     void Update()
     {
+        base.Update();
         if (target == null) return;
 
         transform.LookAt(target.transform);

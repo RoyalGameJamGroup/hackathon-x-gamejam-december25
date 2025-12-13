@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField] public GameObject target;
-    [SerializeField] protected int speed = 2;
+    [SerializeField] protected float speed = 2.0f;
     [SerializeField] protected int damage = 10;
     [SerializeField] protected int health = 50;
     Element status;
@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
        
     }
@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
         status = el;
         if(health <= 0)
         {
-            gameManager.AddScore(scoreValue);
+            gameManager?.AddScore(scoreValue);
             Destroy(gameObject);
         }
     }
