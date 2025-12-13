@@ -142,9 +142,10 @@ public class MrSpell : MonoBehaviour
 
     public void SpawnSpell(string spell)
     {
-        // Get rotation
-        float yRot = transform.eulerAngles.y * Mathf.Deg2Rad;
-        Vector2 direction = (new Vector2(Mathf.Sin(yRot), Mathf.Cos(yRot))).normalized;
+        Vector2 screenCenter = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+        Vector2 mousePos = (Vector2)Input.mousePosition;
+        Vector2 direction = (mousePos - screenCenter).normalized;
+
 
         GameObject prefab = spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).value;
         Debug.Log(spell+" is casted "+ spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).spellName);
