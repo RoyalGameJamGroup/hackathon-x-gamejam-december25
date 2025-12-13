@@ -332,7 +332,7 @@ PrefabInstance:
     - target: {fileID: 1625297206907568906, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
       propertyPath: spellPrefabLookup.Array.data[0].value
       value: 
-      objectReference: {fileID: 1691485492486519632, guid: 90cd7d8630673134fa226c4e4b2f7bcc, type: 3}
+      objectReference: {fileID: 4238561978152580730, guid: 148f5035d2836e449985ac48104e04cb, type: 3}
     - target: {fileID: 1625297206907568906, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
       propertyPath: spellPrefabLookup.Array.data[1].value
       value: 
