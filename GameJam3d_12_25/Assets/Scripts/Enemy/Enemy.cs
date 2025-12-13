@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public LayerMask obstacleMask;
 
     protected bool movementBlocked = false;
+    protected bool frozen = false;
 
 
     // Update is called once per frame
@@ -35,22 +36,25 @@ public class Enemy : MonoBehaviour
       }
 
        // Check if movement is blocked
-        if (Physics.SphereCast(
-            transform.position,
-            CollisionRadius,
-            moveDir,
-            out RaycastHit hit,
-            step,
-            obstacleMask
-        ))
-        {
-            Debug.Log("Enemy movement blocked by " + hit.collider.gameObject.name);
-            movementBlocked = true;
-        }
-        else
-        {
-            movementBlocked = false;
-        }
+       if(!frozen){
+            if (Physics.SphereCast(
+                transform.position,
+                CollisionRadius,
+                moveDir,
+                out RaycastHit hit,
+                step,
+                obstacleMask
+            ))
+            {
+                Debug.Log("Enemy movement blocked by " + hit.collider.gameObject.name);
+                movementBlocked = true;
+            }
+            else
+            {
+                movementBlocked = false;
+            }
+       }
+        
     }
 
     public void PoopNei(int damage, Element el)
@@ -66,18 +70,20 @@ public class Enemy : MonoBehaviour
 
     public void Freeze(float length)
     {
-        StopAllCoroutines(); 
-        
+        Debug.Log("I'm freezing");
         StartCoroutine(FreezeRoutine(length));
     }
 
     IEnumerator FreezeRoutine(float length)
     {
+        frozen = true;
         movementBlocked = true;
+        Debug.Log("Frozen for " + length + " seconds");
         
         yield return new WaitForSeconds(length);
-        
+        Debug.Log("Thawing out");
         movementBlocked = false;
+        frozen = false;
     }
 
 

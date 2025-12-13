@@ -25,12 +25,14 @@ public class Freeze: Spell
     // Called when the collider other enters the trigger
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Freeze spell collided with " + other.gameObject.name);
-        if (other.gameObject.CompareTag("Enemy"))
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, spellSize);
+        foreach (var hitCollider in hitColliders)
         {
-            other.gameObject.GetComponent<Enemy>().Freeze(length);
-                
-            Destroy(gameObject);
+            if (hitCollider.gameObject.CompareTag("Enemy"))
+            {
+                hitCollider.gameObject.GetComponent<Enemy>().Freeze(length);
+                Destroy(gameObject);
+            }
         }
     }
 }
