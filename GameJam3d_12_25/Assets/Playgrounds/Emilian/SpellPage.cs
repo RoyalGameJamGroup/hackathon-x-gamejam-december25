@@ -10,13 +10,13 @@ public class SpellPage : MonoBehaviour
     [SerializeField] private TextMeshProUGUI spellName;
     [SerializeField] private TextMeshProUGUI comboName;
     [SerializeField] private TextMeshProUGUI spellDescription;
-    [SerializeField] private GameObject spellIcon;
+    [SerializeField] private Image spellIcon;
     private void OnEnable()
     {
         string name;
         string comboNameString;
         string description;
-        GameObject icon;
+        Sprite icon;
 
         bool ranCorrectly = MrSpell.Instance.GetKnownSpellData(spellType,out name, out description, out comboNameString, out icon);
         if (!ranCorrectly)
@@ -24,7 +24,7 @@ public class SpellPage : MonoBehaviour
         spellName.text = name;
         comboName.text = comboNameString;
         spellDescription.text = description;
-        spellIcon = icon;
+        spellIcon.sprite = icon;
 
     }
 }
