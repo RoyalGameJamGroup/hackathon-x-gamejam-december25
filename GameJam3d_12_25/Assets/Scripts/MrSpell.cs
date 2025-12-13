@@ -22,8 +22,7 @@ public class SpellPrefabLookup
 [Serializable] 
 public class CursePrefabLookup
 {
-    public SpellType key;
-    public GameObject value;
+    public MalusController.MalusType key;
     public float weight;
     public Sprite icon;
 }
@@ -105,7 +104,7 @@ public class MrSpell : MonoBehaviour
     public void ProcessInputToSpell(string uncheckedInput)
     {
         
-        Debug.Log(uncheckedInput);
+        //Debug.Log(uncheckedInput);
         if (!SpellLookup.Keys.ToList().Any(x => IsPrefixOfSpell(uncheckedInput, x)))
         {
             string closest = GetClosestSpell(typedText);
@@ -152,7 +151,7 @@ public class MrSpell : MonoBehaviour
         SpellType spellType = SpellLookup[spell];
         if (spellQueue.Contains(spellType))
         {
-            Debug.Log("Spell is in Queue");
+            //Debug.Log("Spell is in Queue");
             inputVisualizer.ShowQueue(spellQueue, false, spellPrefabLookup);
             return;
         }
@@ -172,7 +171,7 @@ public class MrSpell : MonoBehaviour
         castedSpell.GetComponent<Spell>().direction = direction;
     }
 
-    public GameObject GetRandomCurse()
+    public MalusController.MalusType GetRandomCurse()
     {
         float probSum= cursePrefabLookup.Select(x => x.weight).Sum(); 
         float random = Random.value * probSum;
@@ -180,17 +179,16 @@ public class MrSpell : MonoBehaviour
         {
             random -= i.weight;
             if (random <= 0f)
-                return i.value;
+                return i.key;
         }
 
         // Fallback (in case of floating-point precision issues)
-        return cursePrefabLookup[^1].value;
+        return cursePrefabLookup[^1].key;
     }
     public void TriggerCurse()
     {
-        GameObject prefab = GetRandomCurse();
-        var castedSpell =Instantiate(prefab,new Vector3(0, 0, 0), Quaternion.identity);
-        castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
+        MalusController.MalusType malus = GetRandomCurse();
+        MalusController.Instance.AddMalus(malus);
     }
     public bool IsPrefixOfSpell(string possiblePrefix, string spell)
     {
