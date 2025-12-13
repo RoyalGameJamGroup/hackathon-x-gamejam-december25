@@ -14,7 +14,10 @@ public class MarcelSeeker : Enemy
         base.Update();
         if (target == null) return;
 
+        Vector3 lookAtTarget = target.transform.position;
+        lookAtTarget.y = transform.position.y; // keep only horizontal rotation
         transform.LookAt(target.transform);
+        
         moveDir = (target.transform.position - transform.position).normalized;
         step = speed * Time.deltaTime;
 

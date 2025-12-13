@@ -54,6 +54,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1803bce0dcb5ff84b93b388514a6d9bd, type: 3}
   - {fileID: 8300000, guid: 03ef7bce3f57d7e42ae88c5e31652fc1, type: 3}
   audioSource: {fileID: -8092231493828941208}
+  impactAudioGO: {fileID: 6863343268011871430, guid: c5eab6f5a43072248b02cf7284b34c0c, type: 3}
   direction: {x: 0, y: 0}
 --- !u!135 &335281341848785756
 SphereCollider:
