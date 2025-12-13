@@ -87,8 +87,12 @@ public class MrSpell : MonoBehaviour
 
     public void SpawnSpell(string spell)
     {
-        var castedSpell =Instantiate(SpellLookup[spell],new Vector3(0, 0, 0), Quaternion.identity);
-        castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
+        // Get rotation
+        float yRot = transform.eulerAngles.y * Mathf.Deg2Rad;
+        Vector2 direction = (new Vector2(Mathf.Sin(yRot), Mathf.Cos(yRot))).normalized;
+        
+        var castedSpell =Instantiate(SpellLookup[spell],  transform.position + new Vector3(direction.x, 0, direction.y), Quaternion.identity);
+        castedSpell.GetComponent<Spell>().direction=direction;
     }
     public bool IsPrefixOfSpell(string possiblePrefix, string spell)
     {
