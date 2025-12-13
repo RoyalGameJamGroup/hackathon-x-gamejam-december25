@@ -10,6 +10,9 @@ public class Banana : Spell
     [SerializeField] float rotationSpeed = 360.0f;
     [SerializeField] int damage = 10;
     
+    [Header("Self Rotation")]
+    [SerializeField] float selfRotationSpeed = 720f; // NEW: Speed of rotation on its own axis (degrees per second)
+    
     private Transform playerTransform;
     private float currentAngle = 0f;
     private float spawnTime;
@@ -42,6 +45,7 @@ public class Banana : Spell
             return;
         }
 
+        // 1. Orbital Movement Logic (Around the player)
         currentAngle += rotationSpeed * Time.deltaTime;
         
         if (currentAngle > 360)
@@ -57,9 +61,14 @@ public class Banana : Spell
         Vector3 newPosition = playerTransform.position + new Vector3(x, 0, z);
         transform.position = newPosition;
 
+        // 2. NEW: Self Rotation Logic (On its own axis)
+        // Rotate around the Y-axis (or whichever axis looks best for a banana/boomerang spin)
+        transform.Rotate(Vector3.forward, selfRotationSpeed * Time.deltaTime, Space.Self);
+
+        // 3. Lifetime Check
         if (Time.time - spawnTime > lifeTime)
         {
-           Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
