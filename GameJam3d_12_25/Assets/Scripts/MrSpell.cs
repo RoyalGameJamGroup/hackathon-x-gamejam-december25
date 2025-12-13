@@ -14,7 +14,7 @@ public class SpellPrefabLookup
     public SpellType key;
     public GameObject value;
     public int wordLength;
-    public GameObject icon;
+    public Sprite icon;
     public string spellName;
     public string combo;
     public string description;
@@ -25,7 +25,7 @@ public class CursePrefabLookup
     public SpellType key;
     public GameObject value;
     public float weight;
-    public GameObject icon;
+    public Sprite icon;
 }
 
 public class MrSpell : MonoBehaviour
@@ -36,6 +36,7 @@ public class MrSpell : MonoBehaviour
     public Dictionary<string, SpellType> SpellLookup;
     public string typedText = "";
     private List<char> spellAlphabet;
+    [SerializeField] public int queueSize =1;
     [SerializeField]
     public List<string> spellNames;
     [SerializeField]
@@ -43,6 +44,7 @@ public class MrSpell : MonoBehaviour
     
     public Dictionary<SpellType, HashSet<int>> knownSpellCharIdxs = new Dictionary<SpellType, HashSet<int>>(); 
     
+    public Queue<SpellType> spellQueue = new Queue<SpellType>();
     void Awake()
     {
         if(Instance == null) Instance = this;
@@ -147,6 +149,19 @@ public class MrSpell : MonoBehaviour
 
     public void SpawnSpell(string spell)
     {
+        SpellType spellType = SpellLookup[spell];
+        if (spellQueue.Contains(spellType))
+        {
+            Debug.Log("Spell is in Queue");
+            inputVisualizer.ShowQueue(spellQueue, false, spellPrefabLookup);
+            return;
+        }
+
+
+        if(spellQueue.Count >=queueSize) spellQueue.Dequeue();
+        spellQueue.Enqueue(spellType);
+        
+        inputVisualizer.ShowQueue(spellQueue, true, spellPrefabLookup);
         Vector2 screenCenter = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
         Vector2 mousePos = (Vector2)Input.mousePosition;
         Vector2 direction = (mousePos - screenCenter).normalized;
@@ -263,7 +278,7 @@ public class MrSpell : MonoBehaviour
         return spells.Where(s => s.StartsWith(prefix)).ToList();
     }
 
-    public bool GetSpellData(SpellType spell, out string spellname, out string description, out string combo, out GameObject icon)
+    public bool GetSpellData(SpellType spell, out string spellname, out string description, out string combo, out Sprite icon)
     {
         int idx = spellPrefabLookup.FindIndex(x=>x.key == spell);
         spellname =  spellPrefabLookup[idx].spellName;
@@ -274,7 +289,7 @@ public class MrSpell : MonoBehaviour
     }
 
     public bool GetKnownSpellData(SpellType spell, out string spellname, out string description, out string combo,
-        out GameObject icon)
+        out Sprite icon)
     {
         string spellCombo;
         GetSpellData(spell, out spellname, out description, out spellCombo, out icon);
