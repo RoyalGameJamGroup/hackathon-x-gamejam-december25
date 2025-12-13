@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
 
-    [SerializeField] int maxHealth = 100;
-    int currentHealth;
+    public int maxHealth = 100;
+    public int currentHealth;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
