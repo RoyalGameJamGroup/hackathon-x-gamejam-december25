@@ -48,7 +48,7 @@ public class MrSpell : MonoBehaviour
         SpellLookup = new Dictionary<string, SpellType>();
         for (int i = 0; i < spellPrefabLookup.Count; i++)
         {
-            SpellLookup.Add(spellNames[i], spellPrefabLookup[0].key);
+            SpellLookup.Add(spellNames[i], spellPrefabLookup[i].key);
             spellPrefabLookup[i].combo = spellNames[i];
         }
     }
@@ -142,6 +142,7 @@ public class MrSpell : MonoBehaviour
         Vector2 direction = (new Vector2(Mathf.Sin(yRot), Mathf.Cos(yRot))).normalized;
 
         GameObject prefab = spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).value;
+        Debug.Log(spell+" is casted "+ spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).spellName);
         var castedSpell =Instantiate(prefab,transform.position + new Vector3(direction.x, 0, direction.y), Quaternion.identity);
         castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
     }
