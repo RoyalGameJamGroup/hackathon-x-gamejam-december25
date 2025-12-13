@@ -26,6 +26,8 @@ GameJam3d_12_25/[Aa]ssets/Plugins/Editor/JetBrains*
 # Visual Studio cache directory
 .vs/
 
+.vscode/
+
 # Gradle cache directory
 .gradle/
 
