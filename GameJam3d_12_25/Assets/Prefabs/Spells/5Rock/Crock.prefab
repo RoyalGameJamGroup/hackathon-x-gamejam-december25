@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 7483218771098275035}
   - component: {fileID: 1084384361201431101}
   - component: {fileID: 634859673496371488}
+  - component: {fileID: 3034512666881460243}
   m_Layer: 0
   m_Name: Crock
   m_TagString: Spawnable
@@ -262,3 +263,21 @@ CapsuleCollider:
   m_Height: 3.97
   m_Direction: 0
   m_Center: {x: 0.01, y: 0.57, z: 0}
+--- !u!114 &3034512666881460243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5501196126074623107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43357707bfad25642828f27ffab7f93c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  knockbackForce: 30
+  spellSize: 20
+  explosion: {fileID: 3224753767020532059, guid: 2ca697908d775ce48ba670ac2f753d65, type: 3}
+  dupMaxDistance: 5
+  dupEffect: {fileID: 3224753767020532059, guid: 922ee9509c2c2404bac7b8c4ce7670cc, type: 3}
