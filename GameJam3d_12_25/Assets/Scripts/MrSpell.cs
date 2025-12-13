@@ -71,6 +71,7 @@ public class MrSpell : MonoBehaviour
     }
     void OnGUI()
     {
+        if(!PauseManager.Instance.isRunning) return;
         Event e = Event.current;
         if (e.type == EventType.KeyDown && e.character != '\0' && IsInAlphabet(e.character))
         {
