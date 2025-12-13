@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnSounds:
-  - {fileID: 8300000, guid: 8465c225868d0594a9f537c61804094b, type: 3}
+  - {fileID: 8300000, guid: e1ea224cf7334e248a0157454f5e0795, type: 3}
   impactSounds: []
   audioSource: {fileID: 9100577645752181510}
   direction: {x: 0, y: 0}
