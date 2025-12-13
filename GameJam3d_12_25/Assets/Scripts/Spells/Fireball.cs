@@ -3,8 +3,8 @@ using UnityEngine;
 public class Fireball: Spell
 {
     float spawnTime;
-    float lifeTime = 500f;
-    float speed = 0f;
+    float lifeTime = 5f;
+    float speed = 5f;
     int damage = 10;
 
     private Material fireballMaterial;

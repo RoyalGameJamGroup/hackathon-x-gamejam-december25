@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class MrSpell : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MrSpell : MonoBehaviour
     public Dictionary<string, GameObject> SpellLookup;
     public string typedText = "";
     private List<char> spellAlphabet;
+    private string leftKeyboard = "qwertzasdfghyxcvb";
     [SerializeField]
     public List<string> spellNames;
     public List<int> spellWordLengths = new List<int>()
@@ -23,12 +25,14 @@ public class MrSpell : MonoBehaviour
     
     void Awake()
     {
+        
         spellAlphabet = new List<char>();
         for (char c = 'a'; c <= 'z'; c++)
         {
             spellAlphabet.Add(c);
         }
-        spellNames = GenerateSpellKeys(spellWordLengths);
+        //spellAlphabet = leftKeyboard.ToCharArray().ToList();
+        spellNames = GenerateSpellKeysUniqueChar(spellWordLengths);
         SpellLookup = new Dictionary<string, GameObject>();
         for (int i = 0; i < spellPrefab.Length; i++)
         {
@@ -50,6 +54,7 @@ public class MrSpell : MonoBehaviour
 
         foreach (var key in keyboard.allKeys)
         {
+            if(!IsInAlphabet(key)) continue;
             if (key.wasPressedThisFrame)
             {
                 //Debug.Log("Pressed: " + key.keyCode);
@@ -59,6 +64,12 @@ public class MrSpell : MonoBehaviour
         }
     }
 
+    public bool IsInAlphabet(KeyControl input)
+    {
+        string keyPressed =(input.keyCode + "").ToLower();
+        if(keyPressed.Length != 1)return false;
+        return spellAlphabet.Contains(keyPressed[0]);
+    }
     public void ProcessInputToSpell(string uncheckedInput)
     {
         Debug.Log(typedText);
@@ -70,18 +81,22 @@ public class MrSpell : MonoBehaviour
         if(SpellLookup.ContainsKey(uncheckedInput))
         {
             typedText = "";
-            var castedSpell =Instantiate(SpellLookup[uncheckedInput],new Vector3(0, 0, 0), Quaternion.identity);
-            castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
+            SpawnSpell(uncheckedInput);
         }
     }
 
+    public void SpawnSpell(string spell)
+    {
+        var castedSpell =Instantiate(SpellLookup[spell],new Vector3(0, 0, 0), Quaternion.identity);
+        castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
+    }
     public bool IsPrefixOfSpell(string possiblePrefix, string spell)
     {
         if(possiblePrefix.Length > spell.Length) return false;
         return spell.Substring(0,possiblePrefix.Length).Equals(possiblePrefix);
     }
 
-    public List<string> GenerateSpellKeys( List<int> spellLengths)
+    public List<string> GenerateSpellKeysUniqueChar( List<int> spellLengths)
     {
         int spellCount = spellLengths.Count;
         List<string> spellKeys = new List<string>();
@@ -107,5 +122,17 @@ public class MrSpell : MonoBehaviour
         List<char> usable = spellAlphabet.Except(alreadyUsedChars).ToList();
 
         return usable[Random.Range(0, usable.Count)];
+    }
+
+    public List<string> GenerateSpellKeys(List<int> spellLengths)
+    {
+        List<int> sortedDesc = spellLengths
+            .OrderByDescending(i => i)
+            .ToList();
+        return GenerateSpellKeys(sortedDesc);
+    }
+    public List<string> GetSpellsWithSamePrefix(string prefix, List<string> spells)
+    {
+        return spells.Where(s => s.StartsWith(prefix)).ToList();
     }
 }
