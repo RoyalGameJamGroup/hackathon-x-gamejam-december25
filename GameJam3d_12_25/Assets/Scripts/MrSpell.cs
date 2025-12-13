@@ -14,6 +14,10 @@ public class SpellPrefabLookup
     public SpellType key;
     public GameObject value;
     public int wordLength;
+    public GameObject icon;
+    public string spellName;
+    public string combo;
+    public string description;
 }
 [Serializable] 
 public class CursePrefabLookup
@@ -45,6 +49,7 @@ public class MrSpell : MonoBehaviour
         for (int i = 0; i < spellPrefabLookup.Count; i++)
         {
             SpellLookup.Add(spellNames[i], spellPrefabLookup[0].key);
+            spellPrefabLookup[i].combo = spellNames[i];
         }
     }
 
@@ -232,6 +237,15 @@ public class MrSpell : MonoBehaviour
     {
         return spells.Where(s => s.StartsWith(prefix)).ToList();
     }
-    
+
+    public bool GetSpellData(SpellType spell, out string spellname, out string description, out string combo, out GameObject icon)
+    {
+        int idx = spellPrefabLookup.FindIndex(x=>x.key == spell);
+        spellname =  spellPrefabLookup[idx].spellName;
+        combo = spellPrefabLookup[idx].combo;
+        description = spellPrefabLookup[idx].description;
+        icon = spellPrefabLookup[idx].icon;
+        return true;
+    }
     
 }

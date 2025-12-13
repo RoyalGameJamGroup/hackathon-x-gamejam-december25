@@ -645,6 +645,10 @@ MonoBehaviour:
   - key: 0
     value: {fileID: 2325970627108717316, guid: c5ba1df5cd388aa4c94eeede2d353c63, type: 3}
     wordLength: 2
+    icon: {fileID: 0}
+    spellName: Fireball
+    combo: 
+    description: 
   cursePrefabLookup: []
   typedText: 
   spellNames: []
