@@ -393,7 +393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2144925515459413, guid: 022298ec092cec745a83814432cdef71, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4705103438893339463, guid: 022298ec092cec745a83814432cdef71, type: 3}
       propertyPath: m_LocalPosition.x
@@ -870,7 +870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7303138421928064261, guid: 6799c68d3ddeae2439e43f70dc8dfa49, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -928,6 +928,10 @@ PrefabInstance:
     - target: {fileID: 5501196126074623107, guid: e43bbfc7882ac284190532dd6c1fcf8b, type: 3}
       propertyPath: m_Name
       value: Crock
+      objectReference: {fileID: 0}
+    - target: {fileID: 5501196126074623107, guid: e43bbfc7882ac284190532dd6c1fcf8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5720636012029525857, guid: e43bbfc7882ac284190532dd6c1fcf8b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1070,6 +1074,10 @@ PrefabInstance:
     - target: {fileID: 4085808666896605890, guid: a109d5c76194fe94aad00e09e1a21b00, type: 3}
       propertyPath: m_Name
       value: Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085808666896605890, guid: a109d5c76194fe94aad00e09e1a21b00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
