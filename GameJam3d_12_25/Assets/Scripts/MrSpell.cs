@@ -1,19 +1,23 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Spells;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using Random = UnityEngine.Random;
 
+[Serializable] 
+public class EffectPrefabLookup
+{
+    public SpellType key;
+    public GameObject value;
+}
 public class MrSpell : MonoBehaviour
 {
-    
-    public GameObject[] spellPrefab;
-    public Dictionary<string, GameObject> SpellLookup;
-    public string typedText = "";
-    private List<char> spellAlphabet;
-    private string leftKeyboard = "qwertzasdfghyxcvb";
-    [SerializeField]
-    public List<string> spellNames;
+    public List<EffectPrefabLookup> spellPrefabLookup = new List<EffectPrefabLookup>();
+    public List<EffectPrefabLookup> cursePrefabLookup = new List<EffectPrefabLookup>();
     public List<int> spellWordLengths = new List<int>()
     {
         4,4,4,4,
@@ -21,65 +25,79 @@ public class MrSpell : MonoBehaviour
         4,4,4,4,
         4,4,4,4
     };
+    public Dictionary<string, SpellType> SpellLookup;
+    public string typedText = "";
+    private List<char> spellAlphabet;
+    [SerializeField]
+    public List<string> spellNames;
+    [SerializeField]
+    private MrInputVisualizer inputVisualizer;
     
     
     void Awake()
     {
-        
-        spellAlphabet = new List<char>();
-        for (char c = 'a'; c <= 'z'; c++)
-        {
-            spellAlphabet.Add(c);
-        }
+        spellAlphabet = GetAlphabet();
         //spellAlphabet = leftKeyboard.ToCharArray().ToList();
         spellNames = GenerateSpellKeysUniqueChar(spellWordLengths);
-        SpellLookup = new Dictionary<string, GameObject>();
-        for (int i = 0; i < spellPrefab.Length; i++)
+        SpellLookup = new Dictionary<string, SpellType>();
+        for (int i = 0; i < spellPrefabLookup.Count; i++)
         {
-            SpellLookup.Add(spellNames[i], spellPrefab[i]);
+            SpellLookup.Add(spellNames[i], spellPrefabLookup[0].key);
         }
-
     }
+
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     { 
-        typedText = "";   
-        
+        typedText = ""; 
     }
 
     // Update is called once per frame
     void Update()
     {
-        var keyboard = Keyboard.current;
-
-        foreach (var key in keyboard.allKeys)
+        
+    }
+    void OnGUI()
+    {
+        Event e = Event.current;
+        if (e.type == EventType.KeyDown && e.character != '\0' && IsInAlphabet(e.character))
         {
-            if(!IsInAlphabet(key)) continue;
-            if (key.wasPressedThisFrame)
-            {
-                //Debug.Log("Pressed: " + key.keyCode);
-                typedText += (key.keyCode+"").ToLower();
-                ProcessInputToSpell(typedText);
-            }
+            typedText += e.character;
+            inputVisualizer.OnKeyPressed(typedText);
+            ProcessInputToSpell(typedText);
+            //Debug.Log("ONGUI Typed: " + typedText);
         }
     }
-
-    public bool IsInAlphabet(KeyControl input)
+    private List<char> GetAlphabet()
     {
-        string keyPressed =(input.keyCode + "").ToLower();
-        if(keyPressed.Length != 1)return false;
-        return spellAlphabet.Contains(keyPressed[0]);
+        var alphabet = new List<char>();
+        for (char c = 'a'; c <= 'z'; c++)
+        {
+            alphabet.Add(c);
+        }
+        return alphabet;
+    }
+    public bool IsInAlphabet(char input)
+    {
+        //string keyPressed =(input.keyCode + "").ToLower();
+        //if(keyPressed.Length != 1)return false;
+        return spellAlphabet.Contains(input);
     }
     public void ProcessInputToSpell(string uncheckedInput)
     {
-        Debug.Log(typedText);
+        
+        Debug.Log(uncheckedInput);
         if (!SpellLookup.Keys.ToList().Any(x => IsPrefixOfSpell(uncheckedInput, x)))
         {
+            inputVisualizer.OnSpellFailure(new List<int>(), new List<int>(), typedText);
             typedText = "";
             return;   
         }
         if(SpellLookup.ContainsKey(uncheckedInput))
         {
+            
+            inputVisualizer.OnSpellSuccess(typedText);
             typedText = "";
             SpawnSpell(uncheckedInput);
         }
@@ -87,7 +105,15 @@ public class MrSpell : MonoBehaviour
 
     public void SpawnSpell(string spell)
     {
-        var castedSpell =Instantiate(SpellLookup[spell],new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject prefab = spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).value;
+        var castedSpell =Instantiate(prefab,new Vector3(0, 0, 0), Quaternion.identity);
+        castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
+    }
+
+    public void TriggerCurse()
+    {
+        GameObject prefab = cursePrefabLookup[0].value;
+        var castedSpell =Instantiate(prefab,new Vector3(0, 0, 0), Quaternion.identity);
         castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
     }
     public bool IsPrefixOfSpell(string possiblePrefix, string spell)
