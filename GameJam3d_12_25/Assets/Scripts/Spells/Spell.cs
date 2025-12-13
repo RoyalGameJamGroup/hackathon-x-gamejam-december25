@@ -11,7 +11,6 @@ public class Spell : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       // audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -23,6 +22,13 @@ public class Spell : MonoBehaviour
     protected void PlaySpawnsSound(){
         int randomIndex = Random.Range(0, spawnSounds.Length);
         audioSource.PlayOneShot(spawnSounds[randomIndex]);
+    }
+
+    protected void PlaySpawnSoundLooped(){
+        int randomIndex = Random.Range(0, spawnSounds.Length);
+        audioSource.clip = spawnSounds[randomIndex];
+        audioSource.loop = true;
+        audioSource.Play();
     }
 
     protected void PlayImpactSound(){
