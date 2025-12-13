@@ -7,12 +7,11 @@ public class Freeze: Spell
     float speed = 1f;
     int damage = 5;
 
-    private Material fireballMaterial;
-    private readonly string directionPropertyName = "_direction";
+    float spellSize = 2f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
        spawnTime = Time.time; 
     }
 
@@ -20,17 +19,6 @@ public class Freeze: Spell
     void Update()
     {
        transform.Translate((new Vector3(direction.x, 0, direction.y)).normalized * speed * Time.deltaTime);
-       if (Time.time - spawnTime > lifeTime)
-       {
-           Destroy(gameObject);
-       }
-
-       Renderer renderer = GetComponentInChildren<Renderer>(); 
-        {
-            // NOTE: Use .material to get an instance copy, so you don't affect other fireballs
-            fireballMaterial = renderer.material; 
-            fireballMaterial.SetVector(directionPropertyName, direction);
-        }
     }
 
     // Called when the collider other enters the trigger
@@ -38,7 +26,16 @@ public class Freeze: Spell
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Fire);
+            // do a sphere cast to find all enemies in range
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, spellSize);
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.gameObject.CompareTag("Enemy"))
+                {
+                    hitCollider.gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Water);
+                }
+            }
+            Destroy(gameObject);
         }
     }
 }
