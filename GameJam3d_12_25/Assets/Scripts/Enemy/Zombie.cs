@@ -26,6 +26,8 @@ public class Zombie : Enemy
 
         if (target == null) return;
 
+        Vector3 lookAtTarget = target.transform.position;
+        lookAtTarget.y = transform.position.y; // keep only horizontal rotation
         transform.LookAt(target.transform);
 
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
