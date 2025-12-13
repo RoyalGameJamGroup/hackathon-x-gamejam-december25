@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected int health = 50;
     Element status;
 
+    public GameManager gameManager;
+    [SerializeField] protected int scoreValue = 10;
+
 
 
     // Update is called once per frame
@@ -23,6 +26,11 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
         status = el;
+        if(health <= 0)
+        {
+            gameManager.AddScore(scoreValue);
+            Destroy(gameObject);
+        }
     }
 
     public void KnockbackNei (Vector3 force)

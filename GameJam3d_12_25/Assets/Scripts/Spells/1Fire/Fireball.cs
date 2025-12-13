@@ -38,7 +38,7 @@ public class Fireball: Spell
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Fire);
+            other.gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Fire);
             Destroy(gameObject);
         }
     }

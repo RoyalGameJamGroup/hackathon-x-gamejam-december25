@@ -32,8 +32,8 @@ public class Arrow : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<PlayerHealth>()?.PoopNei(damage);
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 }
 
