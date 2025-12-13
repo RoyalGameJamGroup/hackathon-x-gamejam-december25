@@ -24,6 +24,13 @@ public class Spell : MonoBehaviour
         audioSource.PlayOneShot(spawnSounds[randomIndex]);
     }
 
+    protected void PlaySpawnSoundLooped(){
+        int randomIndex = Random.Range(0, spawnSounds.Length);
+        audioSource.clip = spawnSounds[randomIndex];
+        audioSource.loop = true;
+        audioSource.Play();
+    }
+
     protected void PlayImpactSound(){
         int randomIndex = Random.Range(0, impactSounds.Length);
         audioSource.PlayOneShot(impactSounds[randomIndex]);

@@ -21,6 +21,10 @@ public class Shockwave: Spell
     // Update is called once per frame
     void Update()
     {
+       if (Time.time - spawnTime > lifeTime)
+       {
+           Destroy(gameObject);
+       } 
     }
 
     void doShockwave(){
