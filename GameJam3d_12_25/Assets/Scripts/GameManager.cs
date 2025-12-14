@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        
         UpdateLevelBar();
 
         spell1button.onClick.AddListener(() => {
@@ -77,10 +78,15 @@ public class GameManager : MonoBehaviour
         spawnTimer = spawnInterval;
         FindPlayer();
     }
-
+    /*
+    PauseManager.Instance.OnPauseStateChanged += ToggleUI;
+    public void ToggleUI(bool isActive)
+    {
+        
+    }*/
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             TriggerLevelUp();
         }
@@ -203,8 +209,8 @@ public class GameManager : MonoBehaviour
         uiObject.SetActive(true);
         spell1ImageUI.sprite = spell1Icon;
         spell2ImageUI.sprite = spell2Icon;
-        spell1text.text = spell1Name + "\n" + spell1Desc;
-        spell2text.text = spell2Name + "\n" + spell2Desc;
+//        spell1text.text = spell1Name + "\n" + spell1Desc;
+//        spell2text.text = spell2Name + "\n" + spell2Desc;
 
         PauseManager.Instance.SetGameRunningState(false);
 
