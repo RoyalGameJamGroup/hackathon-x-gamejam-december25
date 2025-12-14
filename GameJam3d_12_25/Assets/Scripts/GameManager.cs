@@ -16,6 +16,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] float spawnRadius = 20f;
     [SerializeField] float minPlayerDistance = 10f;
 
+
+    [Header("Base Speeds")]
+    [SerializeField] public float zombieSpeed = 2f;
+    [SerializeField] public float sceletonSpeed = 1f;
+    [SerializeField] public float seekerSpeed = 2f;
+
     public int score;
 
     
@@ -46,6 +52,20 @@ public class GameManager : MonoBehaviour
 
         GameObject[] enemyPrefabs = { zombiePrefab, sceletonPrefab, seekerPrefab };
         GameObject enemyToSpawn = enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)];
+
+        // Set enemy speed based on type
+        if (enemyToSpawn == zombiePrefab)
+        {
+            enemyToSpawn.GetComponent<Enemy>().speed = zombieSpeed;
+        }
+        else if (enemyToSpawn == sceletonPrefab)
+        {
+            enemyToSpawn.GetComponent<Enemy>().speed = sceletonSpeed;
+        }
+        else if (enemyToSpawn == seekerPrefab)
+        {
+            enemyToSpawn.GetComponent<Enemy>().speed = seekerSpeed;
+        }
 
         enemyToSpawn.GetComponent<Enemy>().target = playerTransform.gameObject;
         enemyToSpawn.GetComponent<Enemy>().gameManager = this;
