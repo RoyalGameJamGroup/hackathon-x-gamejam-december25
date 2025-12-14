@@ -160,7 +160,14 @@ MonoBehaviour:
   impactSounds: []
   audioSource: {fileID: 9100577645752181510}
   impactAudioGO: {fileID: 6863343268011871430, guid: c5eab6f5a43072248b02cf7284b34c0c, type: 3}
+  effectPrefab: {fileID: 0}
   direction: {x: 0, y: 0}
+  lastSpell: {fileID: 0}
+  lifeTime: 5
+  speed: 1
+  damage: 10
+  knockbackForce: 10
+  spellSize: 10
 --- !u!82 &9100577645752181510
 AudioSource:
   m_ObjectHideFlags: 0

@@ -50,11 +50,14 @@ MonoBehaviour:
   impactSounds: []
   audioSource: {fileID: 7942573709389930886}
   impactAudioGO: {fileID: 6863343268011871430, guid: c5eab6f5a43072248b02cf7284b34c0c, type: 3}
+  effectPrefab: {fileID: 0}
   direction: {x: 0, y: 0}
+  lastSpell: {fileID: 0}
   range: 10
   maxBounces: 10
-  baseDamage: 40
+  baseDamage: 100
   bounceDelay: 0.1
+  bounceDamageMultiplier: 0.85
   strikeEffect: {fileID: 1978487345069978976, guid: c3754b2da582bd343b75a033c01f3ab1, type: 3}
   lightningLinePrefab: {fileID: 5718786758549779452, guid: 20e17d40076ab114b85095c3ec678ab6, type: 3}
 --- !u!82 &7942573709389930886

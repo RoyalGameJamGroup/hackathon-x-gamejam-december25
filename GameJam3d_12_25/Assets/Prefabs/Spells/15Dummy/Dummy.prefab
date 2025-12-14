@@ -78,10 +78,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 46a6aee09174f6d4697fad945c27c901, type: 3}
   audioSource: {fileID: 775154109189494784}
   impactAudioGO: {fileID: 6863343268011871430, guid: c5eab6f5a43072248b02cf7284b34c0c, type: 3}
+  effectPrefab: {fileID: 0}
   direction: {x: 0, y: 0}
-  damage: 20
+  lastSpell: {fileID: 0}
+  damage: 200
   distance: 5
-  enemyAttraction: 3
+  enemyAttraction: 8
+  lifetime: 10
 --- !u!82 &775154109189494784
 AudioSource:
   m_ObjectHideFlags: 0

@@ -70,6 +70,9 @@ public class MrSpell : MonoBehaviour
     void Start()
     { 
         typedText = ""; 
+        SetSpellKnown(SpellType.Fireball);
+        SetSpellKnown(SpellType.Freeze);
+        SetSpellKnown(SpellType.Shockwave);
     }
 
     // Update is called once per frame

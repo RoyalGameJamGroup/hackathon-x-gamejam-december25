@@ -236,6 +236,10 @@ public class MrInputVisualizer : MonoBehaviour
                 Sprite s = spelllookups.Find(x => x.key == e).icon;
                 CurrentQueue[i].GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").sprite = s;
                 CurrentQueue[i].GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").color = Color.white;
+
+                string spellText = MrSpell.Instance.spellPrefabLookup.Find(x => x.key == e).combo;
+
+                CurrentQueue[i].GetComponentInChildren<TextMeshProUGUI>().text = spellText;
             }
             else
             {
