@@ -1313,7 +1313,7 @@ GameObject:
   - component: {fileID: 3274439717348603417}
   - component: {fileID: 4102875244515905861}
   m_Layer: 0
-  m_Name: Sceleton 1
+  m_Name: SceletonBoss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1329,7 +1329,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2837830146820545328}
@@ -1385,7 +1385,7 @@ CapsuleCollider:
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0.41, z: -0.00000008940697}
+  m_Center: {x: 0.000000059604645, y: 0.54, z: -0.00000008940697}
 --- !u!114 &3274439717348603417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1400,12 +1400,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 1
-  damage: 10
+  damage: 20
   obstacleMask:
     serializedVersion: 2
     m_Bits: 64
   CollisionRadius: 0.5
-  health: 50
+  health: 250
   maxhealth: 0
   status: 0
   scoreValue: 10

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4145040009350979194}
   - component: {fileID: 8737010981478965840}
   - component: {fileID: 7290339615210203600}
-  m_Layer: 0
+  - component: {fileID: 7911230711089868810}
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,6 +87,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7911230711089868810
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4885386510482142599}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0016685987, y: 0.029727207, z: 0.07999999}
+  m_Center: {x: -0.000000001193257, y: -0.00006821565, z: 0.039999995}
 --- !u!1 &9220573838785957158
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1027260597211597278}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: door2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

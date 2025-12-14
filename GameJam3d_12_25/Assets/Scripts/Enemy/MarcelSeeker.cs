@@ -2,40 +2,33 @@ using UnityEngine;
 
 public class MarcelSeeker : Enemy
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         base.Start();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        base.Update();
-        if (target == null) return;
+        base.Update(); // Runs Knockback logic
 
+        // 1. If we are frozen or flying backward, don't run AI
+        if (target == null || IsStatusImpaired()) return;
+
+        // 2. Rotation
         Vector3 lookAtTarget = target.transform.position;
-        lookAtTarget.y = transform.position.y; // keep only horizontal rotation
-        transform.LookAt(target.transform);
-        
-        moveDir = (target.transform.position - transform.position).normalized;
-        step = speed * Time.deltaTime;
+        lookAtTarget.y = transform.position.y;
+        transform.LookAt(lookAtTarget);
 
-        if(!movementBlocked){
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                target.transform.position,
-                step
-            );
-        }
+        // 3. Movement using Base Class Helper (Handles Collisions)
+        float currentSpeed = speed * gameManager.speedMult;
+        MoveWithCollisionCheck(target.transform.position, currentSpeed);
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerHealth>()?.PoopNei(damage);
+            other.gameObject.GetComponent<PlayerHealth>()?.PoopNei((int)(damage * gameManager.damageMult));
             Destroy(gameObject);
         }
     }

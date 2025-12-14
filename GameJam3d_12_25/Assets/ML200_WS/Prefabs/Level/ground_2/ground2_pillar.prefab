@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8994683601543003572}
   - component: {fileID: 8254981301195957728}
   - component: {fileID: 6142137438639389627}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,8 @@ GameObject:
   - component: {fileID: 9044561067679192120}
   - component: {fileID: 7853036957932820846}
   - component: {fileID: 6136052028967617799}
-  m_Layer: 0
+  - component: {fileID: 3094176516969082447}
+  m_Layer: 6
   m_Name: ground2_pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,3 +176,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &3094176516969082447
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6957787183671414880}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.01
+  m_Height: 0.2
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
