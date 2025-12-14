@@ -4,6 +4,7 @@ public class Rock : Spell
 {
     [SerializeField] float speed = 3f;
     [SerializeField] float lifetime = 5f;
+    [SerializeField] int damage = 5;
 
     [Header("Rock Rotation")]
     [SerializeField] float rotationSpeed = 500f;
@@ -39,7 +40,7 @@ public class Rock : Spell
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Projectile"))
         {
             SpawnEffect();
-            other.gameObject.GetComponent<Enemy>().Kill();
+            other.gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Physical);
         }else if(!other.gameObject.CompareTag("Spell")){
             Destroy(gameObject);
         }

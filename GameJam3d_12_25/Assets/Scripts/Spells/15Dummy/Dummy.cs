@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Linq;
+using System.Collections;
 
 public class Dummy : Spell
 {
@@ -8,6 +9,7 @@ public class Dummy : Spell
     [SerializeField] int damage = 20;
     [SerializeField] float distance = 5f;
     [SerializeField] int enemyAttraction = 3;
+    [SerializeField] float lifetime = 5f;
 
     void Start()
     {
@@ -23,6 +25,14 @@ public class Dummy : Spell
                 nearestEnemies[i].GetComponent<Enemy>().target = this.gameObject;
             }
         }
+
+        StartCoroutine(kill());
+    }
+
+    IEnumerator kill()
+    {
+        yield return new WaitForSeconds(lifetime);
+        Destroy(gameObject);
     }
 
     void OnDestroy()

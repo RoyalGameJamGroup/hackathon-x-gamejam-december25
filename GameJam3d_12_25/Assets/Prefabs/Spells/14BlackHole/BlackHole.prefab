@@ -51,10 +51,11 @@ MonoBehaviour:
   impactSounds: []
   audioSource: {fileID: 2020390527098033304}
   impactAudioGO: {fileID: 6863343268011871430, guid: c5eab6f5a43072248b02cf7284b34c0c, type: 3}
+  effectPrefab: {fileID: 0}
   direction: {x: 0, y: 0}
   lastSpell: {fileID: 0}
   lifeTime: 10
-  damage: 3
+  damage: 30
   spellSize: 10
   triggerTime: 1
   sparks: {fileID: 1978487345069978976, guid: 76417d9c3ea1fb6469cb1333818ed8f7, type: 3}

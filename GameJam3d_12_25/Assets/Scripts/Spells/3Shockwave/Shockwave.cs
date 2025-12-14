@@ -3,12 +3,12 @@ using UnityEngine;
 public class Shockwave: Spell
 {
     float spawnTime;
-    float lifeTime = 5f;
-    float speed = 1f;
-    int damage = 1;
-    float knockbackForce = 10f;
+    public float lifeTime = 5f;
+    public float speed = 1f;
+    public int damage = 1;
+    public float knockbackForce = 10f;
 
-    float spellSize = 15f;
+    public float spellSize = 15f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

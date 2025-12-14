@@ -19,7 +19,7 @@ public class Shield: Spell
             hits++;
             hits++;
             SpawnEffect();
-            other.gameObject.GetComponent<Enemy>().Kill();          
+            other.gameObject.GetComponent<Enemy>().PoopNei(200, Element.Physical);          
             PlayImpactSound();
         }
         else if(other.gameObject.CompareTag("Projectile"))

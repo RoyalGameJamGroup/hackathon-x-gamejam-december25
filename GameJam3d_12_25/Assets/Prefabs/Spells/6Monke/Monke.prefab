@@ -935,13 +935,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c755a15c3a28aa84283c434f666379db, type: 3}
   audioSource: {fileID: 626047656728984421}
   impactAudioGO: {fileID: 6863343268011871430, guid: c5eab6f5a43072248b02cf7284b34c0c, type: 3}
+  effectPrefab: {fileID: 0}
   direction: {x: 0, y: 0}
+  lastSpell: {fileID: 0}
   speed: 4
   lifeTime: 20
   stepBackDistance: 2
   stepBackSpeed: 3
   stepBackRadius: 1
-  damage: 5
+  damage: 50
+  doppelAgent: 0
 --- !u!54 &3920929267890298592
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1103,7 +1106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43357707bfad25642828f27ffab7f93c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 300
   knockbackForce: 10
   spellSize: 15
   explosion: {fileID: 3224753767020532059, guid: 2ca697908d775ce48ba670ac2f753d65, type: 3}

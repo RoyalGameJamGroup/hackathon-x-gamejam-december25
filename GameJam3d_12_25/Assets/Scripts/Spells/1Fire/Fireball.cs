@@ -3,9 +3,9 @@ using UnityEngine;
 public class Fireball: Spell
 {
     float spawnTime;
-    float lifeTime = 5f;
-    float speed = 5f;
-    int damage = 10;
+    public float lifeTime = 5f;
+    public float speed = 5f;
+    public int damage = 10;
 
     private Material fireballMaterial;
     private readonly string directionPropertyName = "_direction";

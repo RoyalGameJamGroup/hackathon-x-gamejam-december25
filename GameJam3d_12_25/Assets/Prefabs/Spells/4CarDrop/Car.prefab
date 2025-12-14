@@ -564,16 +564,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4085808666896605890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9931ac500efdb449cc855f11142a13, type: 3}
+  m_Script: {fileID: 11500000, guid: 2778304c123358e449db720fec49d14c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnSounds:
-  - {fileID: 8300000, guid: e9014bc003eed8b44b73580fce81d159, type: 3}
-  impactSounds:
-  - {fileID: 8300000, guid: 5c9bf1d491bfc274688985a5f911ad02, type: 3}
+  spawnSounds: []
+  impactSounds: []
   audioSource: {fileID: 6602491382840486906}
   impactAudioGO: {fileID: 6863343268011871430, guid: c5eab6f5a43072248b02cf7284b34c0c, type: 3}
+  effectPrefab: {fileID: 3224753767020532059, guid: 2ca697908d775ce48ba670ac2f753d65, type: 3}
   direction: {x: 0, y: 0}
+  lastSpell: {fileID: 0}
   distance: 5
 --- !u!82 &6602491382840486906
 AudioSource:
@@ -684,10 +684,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43357707bfad25642828f27ffab7f93c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 300
+  damage: 3000
   knockbackForce: 100
   spellSize: 30
   explosion: {fileID: 3224753767020532059, guid: 3a34c05596a480441a257851e0b984dd, type: 3}
+  dupMaxDistance: 10
+  dupEffect: {fileID: 0}
 --- !u!1 &6141512595844369591
 GameObject:
   m_ObjectHideFlags: 0

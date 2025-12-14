@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float minPlayerDistance = 10f;
 
     public int score;
-    public int nextLevelScoreThreshold = 500;
+    public int nextLevelScoreThreshold = 50;
     public Transform levelFillRect;
 
 
@@ -168,7 +168,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Level Up Triggered!");
         score = 0;
-        nextLevelScoreThreshold += 10; // Increase threshold for next level
+        nextLevelScoreThreshold = (int)(1.5f * nextLevelScoreThreshold); // Increase threshold for next level
         Debug.Log("Level Up! Next level score threshold: " + nextLevelScoreThreshold);
 
         // Retrieve random unknown spells from MrSpell
