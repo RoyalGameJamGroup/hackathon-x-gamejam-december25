@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4635960616258813348}
   m_Layer: 0
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   audioSource: {fileID: 4635960616258813348}
   impactAudioGO: {fileID: 6863343268011871430, guid: c5eab6f5a43072248b02cf7284b34c0c, type: 3}
   direction: {x: 0, y: 0}
+  lastSpell: {fileID: 0}
 --- !u!82 &4635960616258813348
 AudioSource:
   m_ObjectHideFlags: 0
