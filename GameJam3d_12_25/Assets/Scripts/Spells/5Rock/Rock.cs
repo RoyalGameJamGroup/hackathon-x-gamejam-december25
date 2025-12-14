@@ -38,8 +38,9 @@ public class Rock : Spell
         Debug.Log("Rock hit " + other.gameObject.name);
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Projectile"))
         {
-            Destroy(other.gameObject);
-        }else{
+            SpawnEffect();
+            other.gameObject.GetComponent<Enemy>().Kill();
+        }else if(!other.gameObject.CompareTag("Spell")){
             Destroy(gameObject);
         }
     }

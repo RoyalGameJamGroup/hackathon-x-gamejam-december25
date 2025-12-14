@@ -11,6 +11,9 @@ public class MalusController : MonoBehaviour
     [SerializeField] private BrainrotController brainrotController;
     [SerializeField] private SpeedUpMalus speedUpMalus;
     [SerializeField] private GameObject detonation;
+    [SerializeField] private FilterMalusController filterMalusController;
+    [SerializeField] private SchizoMalusController schizoMalusController;
+    [SerializeField] private DoppelagentMalus doppelagentMalus;
 
 
 
@@ -58,9 +61,10 @@ public class MalusController : MonoBehaviour
                 break;
             case MalusType.Rebellion:
                 //Get all current companions and turn them hostile
+                doppelagentMalus.turnOver();
                 break;
             case MalusType.Filter:
-                //Add Filter as Overlay
+                filterMalusController.IncreaseFilters();
                 filterCount++;
                 break;
             case MalusType.Brainrot:
@@ -74,7 +78,7 @@ public class MalusController : MonoBehaviour
                 speedUpCount++;
                 break;
             case MalusType.Schizo:
-                //Activate audiosource/increase it's severity
+                schizoMalusController.InCreaseSchizoLevel();
                 schizoCount++;
                 break;
             case MalusType.Detonation:

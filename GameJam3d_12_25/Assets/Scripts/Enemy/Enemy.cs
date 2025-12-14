@@ -15,9 +15,11 @@ public class Enemy : MonoBehaviour
 
     [Header("Status")]
     public int health = 50;
+
     [HideInInspector] public int maxhealth;
-    public Element status;
+    public Element status = Element.None;;
     [SerializeField] protected int scoreValue = 10;
+
 
     [Header("UI")]
     public GameObject healthBar;
@@ -33,6 +35,9 @@ public class Enemy : MonoBehaviour
     // Status flags
     protected bool frozen = false;
     protected bool isBeingKnockedBack = false;
+
+    public GameObject dieEffect;
+
 
     protected virtual void Start()
     {
@@ -140,9 +145,16 @@ public class Enemy : MonoBehaviour
         status = el;
         if (health <= 0)
         {
-            gameManager?.AddScore(scoreValue);
-            Destroy(gameObject);
+            Kill();
         }
+    }
+
+    public virtual void Kill(){
+        gameManager?.AddScore(scoreValue);
+        if(dieEffect != null){
+            Instantiate(dieEffect, transform.position, Quaternion.identity);
+        }
+        Destroy(gameObject);
     }
 
     public void Freeze(float length)

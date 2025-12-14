@@ -8,6 +8,8 @@ public class Spell : MonoBehaviour
     public AudioSource audioSource;
     public GameObject impactAudioGO;
 
+    public GameObject effectPrefab;
+
     public Vector2 direction;
     public GameObject lastSpell;
     
@@ -30,4 +32,11 @@ public class Spell : MonoBehaviour
         impactAudioGO.GetComponent<ImpactSoundManager>().clipToPlay = impactSounds[randomIndex];
         Instantiate(impactAudioGO);
     }
+
+    public void SpawnEffect(){
+        if(effectPrefab != null){
+            Instantiate(effectPrefab, transform.position, Quaternion.identity);
+        }
+    }
+
 }

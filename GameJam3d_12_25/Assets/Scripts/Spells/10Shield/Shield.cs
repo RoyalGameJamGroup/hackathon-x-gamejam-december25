@@ -18,12 +18,14 @@ public class Shield: Spell
         {
             hits++;
             hits++;
-            Destroy(other.gameObject); 
+            SpawnEffect();
+            other.gameObject.GetComponent<Enemy>().Kill();          
             PlayImpactSound();
         }
         else if(other.gameObject.CompareTag("Projectile"))
         {
             hits++;
+            SpawnEffect();
             Destroy(other.gameObject);
             PlayImpactSound();
         }

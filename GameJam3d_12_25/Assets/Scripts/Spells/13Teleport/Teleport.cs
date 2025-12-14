@@ -7,6 +7,7 @@ public class Teleport : Spell
 
     void Start()
     {
+        SpawnEffect();
         PlaySpawnsSound();
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player"); 
 
