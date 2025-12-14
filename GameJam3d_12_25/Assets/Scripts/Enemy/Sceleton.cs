@@ -14,6 +14,7 @@ public class Sceleton : Enemy
 
     void Start()
     {
+        base.Start();
         fireTimer = fireRate;
     }
 

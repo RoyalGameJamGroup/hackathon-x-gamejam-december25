@@ -80,6 +80,7 @@ MonoBehaviour:
   distance: 5
   height: 7
   model: {fileID: 4410874016010739977}
+  detonation: {fileID: 1409949841121097207, guid: 51cf742c9af3d9140b7e9fd00afa606b, type: 3}
 --- !u!82 &2033074983837076579
 AudioSource:
   m_ObjectHideFlags: 0

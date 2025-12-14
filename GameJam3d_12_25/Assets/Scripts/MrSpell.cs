@@ -209,6 +209,7 @@ public class MrSpell : MonoBehaviour
     public void TriggerCurse()
     {
         MalusController.MalusType malus = GetRandomCurse();
+        malus = MalusController.MalusType.Detonation;
         MalusController.Instance.AddMalus(malus);
     }
     public bool IsPrefixOfSpell(string possiblePrefix, string spell)

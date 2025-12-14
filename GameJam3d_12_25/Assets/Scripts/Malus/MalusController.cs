@@ -1,10 +1,17 @@
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class MalusController : MonoBehaviour
 {
     //Millions of references, if this wasn't a gamejam these should all be accessible through some central singleton but alas...
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private Playermovement playermovement;
+    [SerializeField] private ShortSightedController shortSightedController;
+    [SerializeField] private BrainrotController brainrotController;
+    [SerializeField] private SpeedUpMalus speedUpMalus;
+    [SerializeField] private GameObject detonation;
+    [SerializeField] private FilterMalusController filterMalusController;
 
 
 
@@ -47,18 +54,24 @@ public class MalusController : MonoBehaviour
                 break;
             case MalusType.Shortsighted:
                 //Add Overlay that get worse, depending on the already aquired shortSightedCount
+                shortSightedController.AddShortSightedNess();
                 shortSightedCount++;
                 break;
+            case MalusType.Rebellion:
+                //Get all current companions and turn them hostile
+                break;
             case MalusType.Filter:
-                //Add Filter as Overlay
+                filterMalusController.IncreaseFilters();
                 filterCount++;
                 break;
             case MalusType.Brainrot:
                 //Add Brainrot as Overlay and Audio
+                brainrotController.ActivateRandomVideoPlayer();
                 brainrotCount++;
                 break;
             case MalusType.SpeedUp:
                 //Access enemies, double their speed
+                speedUpMalus.ApplySpeedUp();
                 speedUpCount++;
                 break;
             case MalusType.Schizo:
@@ -67,6 +80,8 @@ public class MalusController : MonoBehaviour
                 break;
             case MalusType.Detonation:
                 //Kill the player but for now do nothing (we don't use that one without conditions being met)
+                GameObject player = GameObject.FindWithTag("Player");
+                Instantiate(detonation, player.transform.position, Quaternion.identity);
                 detonationCount++;
                 break;
 

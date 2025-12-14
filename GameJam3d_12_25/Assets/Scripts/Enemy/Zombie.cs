@@ -19,6 +19,10 @@ public class Zombie : Enemy
     private float stateTimer = 0f;
     private Vector3 retreatTarget;
 
+    private void Start()
+    {
+        base.Start();
+    }
 
     void Update()
     {

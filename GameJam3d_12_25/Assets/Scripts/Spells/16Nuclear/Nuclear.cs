@@ -7,9 +7,11 @@ public class Nuclear : Spell
     [SerializeField] float height = 40f;
 
     [SerializeField] GameObject model;
+    [SerializeField] GameObject detonation;
 
     Vector3 targetPosition;
     bool falling = false;
+    bool explosionSet = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +35,10 @@ public class Nuclear : Spell
     {
         if (falling){
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, 10f * Time.deltaTime);
+        }
+        if((transform.position - targetPosition).magnitude < 0.1f && explosionSet == false) { 
+            Instantiate(detonation, transform.position, Quaternion.identity);
+            explosionSet=true;
         }
     }
 
