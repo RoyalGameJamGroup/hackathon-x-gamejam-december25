@@ -10,7 +10,7 @@ public class MalusController : MonoBehaviour
     [SerializeField] private ShortSightedController shortSightedController;
     [SerializeField] private BrainrotController brainrotController;
     [SerializeField] private SpeedUpMalus speedUpMalus;
-    [SerializeField] private FilterMalusController filterMalusController;
+    [SerializeField] private GameObject detonation;
 
 
 
@@ -60,7 +60,7 @@ public class MalusController : MonoBehaviour
                 //Get all current companions and turn them hostile
                 break;
             case MalusType.Filter:
-                filterMalusController.IncreaseFilters();
+                //Add Filter as Overlay
                 filterCount++;
                 break;
             case MalusType.Brainrot:
@@ -79,6 +79,8 @@ public class MalusController : MonoBehaviour
                 break;
             case MalusType.Detonation:
                 //Kill the player but for now do nothing (we don't use that one without conditions being met)
+                GameObject player = GameObject.FindWithTag("Player");
+                Instantiate(detonation, player.transform.position, Quaternion.identity);
                 detonationCount++;
                 break;
 
