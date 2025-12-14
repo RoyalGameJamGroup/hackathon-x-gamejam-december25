@@ -32,6 +32,9 @@ public class Enemy : MonoBehaviour
     protected bool frozen = false;
 
 
+    public GameObject dieEffect;
+
+
     protected virtual void Start()
     {
         maxhealth = health;
@@ -85,6 +88,9 @@ public class Enemy : MonoBehaviour
 
     public virtual void Kill(){
         gameManager?.AddScore(scoreValue);
+        if(dieEffect != null){
+            Instantiate(dieEffect, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 

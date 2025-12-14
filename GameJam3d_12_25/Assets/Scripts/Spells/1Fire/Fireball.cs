@@ -44,6 +44,7 @@ public class Fireball: Spell
         {
             other.gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Fire);
             PlayImpactSound();
+            SpawnEffect();
             Destroy(gameObject);
         }
     }

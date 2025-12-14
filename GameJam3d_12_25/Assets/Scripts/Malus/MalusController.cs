@@ -13,6 +13,7 @@ public class MalusController : MonoBehaviour
     [SerializeField] private GameObject detonation;
     [SerializeField] private FilterMalusController filterMalusController;
     [SerializeField] private SchizoMalusController schizoMalusController;
+    [SerializeField] private DoppelagentMalus doppelagentMalus;
 
 
 
@@ -60,6 +61,7 @@ public class MalusController : MonoBehaviour
                 break;
             case MalusType.Rebellion:
                 //Get all current companions and turn them hostile
+                doppelagentMalus.turnOver();
                 break;
             case MalusType.Filter:
                 filterMalusController.IncreaseFilters();

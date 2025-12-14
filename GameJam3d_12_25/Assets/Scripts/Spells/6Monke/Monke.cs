@@ -22,6 +22,7 @@ public class Monke : Spell
     
 
     private Transform nearestEnemy;
+    public bool doppelAgent = false;
     private Vector3 retreatTarget = Vector3.zero;
     private float spawnTime;
 
@@ -87,6 +88,10 @@ public class Monke : Spell
 
     void FindNearestEnemy()
     {
+        if (doppelAgent){
+            nearestEnemy = GameObject.FindGameObjectWithTag("Player").transform;
+            return;
+        }
         // Find all GameObjects tagged "Enemy"
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         
@@ -112,9 +117,16 @@ public class Monke : Spell
     {
         // Only trigger if we are chasing and not already in an attack sequence
         if (other.gameObject.CompareTag("Enemy") && currentState == AttackState.Chase)
-        {
+        {   
+            SpawnEffect();
             PlayImpactSound();
             other.gameObject.GetComponent<Enemy>()?.PoopNei(damage, Element.Physical);
+        }
+        if(other.gameObject.CompareTag("Player") && doppelAgent)
+        {
+            SpawnEffect();
+            PlayImpactSound();
+            other.gameObject.GetComponent<PlayerHealth>()?.PoopNei(damage);
         }
     }
 
