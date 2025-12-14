@@ -30,7 +30,7 @@ public class ShortSightedController : MonoBehaviour
             Debug.LogError("Vignette override not found in Volume Profile.");
             return;
         }
-        vignette.intensity.value += .3f;
+        vignette.intensity.value += .03f;
     }
 
     private void PauseManager_OnPauseStateChanged(bool isRunning)

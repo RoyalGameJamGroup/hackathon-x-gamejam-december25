@@ -14,6 +14,7 @@ public class MalusController : MonoBehaviour
     [SerializeField] private FilterMalusController filterMalusController;
     [SerializeField] private SchizoMalusController schizoMalusController;
     [SerializeField] private DoppelagentMalus doppelagentMalus;
+    [SerializeField] private GameManager gman;
 
 
 
@@ -49,8 +50,8 @@ public class MalusController : MonoBehaviour
         {
             case MalusType.GoFast:
                 //Access player controller, double (?) speed, halve HP
-                playermovement.Speed *= 2;
-                playerHealth.maxHealth-= playerHealth.maxHealth / 2;
+                playermovement.Speed *= 1.05f;
+                playerHealth.maxHealth-= (int)(playerHealth.maxHealth / 1.1f);
                 if (playerHealth.maxHealth < playerHealth.currentHealth)
                     playerHealth.currentHealth = playerHealth.maxHealth;
                 goFastCount++;
@@ -59,6 +60,10 @@ public class MalusController : MonoBehaviour
                 //Add Overlay that get worse, depending on the already aquired shortSightedCount
                 shortSightedController.AddShortSightedNess();
                 shortSightedCount++;
+
+                gman.playerDamageMult *= 1.1f;
+
+
                 break;
             case MalusType.Rebellion:
                 //Get all current companions and turn them hostile
