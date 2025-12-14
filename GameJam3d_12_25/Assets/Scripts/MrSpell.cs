@@ -308,6 +308,46 @@ public class MrSpell : MonoBehaviour
         return true;
     }
 
+    public (SpellType spell1, SpellType spell2, bool unknownSpellsExist) GetRandomUnknownSpell()
+    {
+        List<SpellType> stillUnknownSpells = new List<SpellType>();
+        foreach (SpellType spellType in SpellLookup.Values)
+        {
+            
+            string spellName;
+            string description;
+            string combo;
+            Sprite icon;
+            GetKnownSpellData(spellType, out spellName, out description, out combo, out icon);
+            if (combo.Contains("_"))
+            {
+                stillUnknownSpells.Add(spellType);
+            }
+        }
+        if(stillUnknownSpells.Count == 0) return (SpellType.Fireball,SpellType.Fireball,false);
+        int randmIdx1 = (int)Math.Floor( Random.value * stillUnknownSpells.Count());
+        SpellType spell1 = stillUnknownSpells[randmIdx1];
+        stillUnknownSpells.RemoveAt(randmIdx1);
+        int randmIdx2 = (int)Math.Floor( Random.value * stillUnknownSpells.Count());
+        SpellType spell2 = stillUnknownSpells[randmIdx2];
+        stillUnknownSpells.RemoveAt(randmIdx2);
+        
+        
+        return (spell1, spell2, true);
+    }
+
+    public void SetSpellKnown(SpellType spell)
+    {
+        string spellName;
+        string description;
+        string combo;
+        Sprite icon;
+        GetSpellData(spell, out spellName, out description, out combo, out icon);
+        knownSpellCharIdxs[spell].UnionWith(Enumerable
+            .Range(0, combo.Length)
+            .ToList());
+    }
+
     public bool GetKnownSpellData(SpellType spell, out string spellname, out string description, out string combo,
         out Sprite icon)
     {
