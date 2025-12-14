@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Spells;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,8 +13,10 @@ public class MrInputVisualizer : MonoBehaviour
 {
     public GameObject KeyPrefab;
     public GameObject QueueElementPrefab;
+    public GameObject CursePrefab;
     public List<GameObject> CurrentSpell = new List<GameObject>();
     public List<GameObject> CurrentQueue = new List<GameObject>();
+    public Dictionary<MalusController.MalusType, GameObject> Curses = new Dictionary<MalusController.MalusType, GameObject>();
     private CancellationTokenSource ct;
     private CancellationTokenSource ctqueue;
     [SerializeField]
@@ -72,6 +76,7 @@ public class MrInputVisualizer : MonoBehaviour
         ct?.Cancel();
         ClearKeys();
         CreateWord(word);
+        
         foreach (var c in CurrentSpell)
         {
             c.GetComponent<Image>().color = wrong;    
@@ -86,9 +91,19 @@ public class MrInputVisualizer : MonoBehaviour
         }
         
         KeysCollection.GetComponent<Image>().color = wrong;
+        
+        
         await WordEnded();
         KeysCollection.GetComponent<Image>().color = Color.clear;
         ClearKeys();
+    }
+
+    public void updateCurses()
+    {
+        foreach (MalusController.MalusType curse in MrSpell.Instance.cursePrefabLookup.Select(x=>x.key))
+        {
+            ShowCurse(curse);
+        }
     }
 
     private async Task WordEnded()
@@ -130,6 +145,54 @@ public class MrInputVisualizer : MonoBehaviour
         spellAnimation.GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").sprite = spell;
         spellAnimation.GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").color = Color.white;
         CurrentSpell.Add(spellAnimation);
+    }
+    public void ShowCurse(MalusController.MalusType curseType)
+    {
+        int count = 0;
+        Sprite curseSprite = MrSpell.Instance.cursePrefabLookup
+            .Find(x => x.key == curseType)
+            .icon;
+        switch (curseType)
+        {
+            case MalusController.MalusType.GoFast:
+                count = MalusController.Instance.goFastCount;
+                break;
+            case MalusController.MalusType.Shortsighted:
+                count = MalusController.Instance.shortSightedCount;
+                break;
+            case MalusController.MalusType.Rebellion:
+                count = MalusController.Instance.rebellionCount;
+                break;
+            case MalusController.MalusType.Filter:
+                count = MalusController.Instance.filterCount;
+                break;
+            case MalusController.MalusType.Brainrot:
+                count = MalusController.Instance.brainrotCount;
+                break;
+            case MalusController.MalusType.SpeedUp:
+                count = MalusController.Instance.speedUpCount;
+                break;
+            case MalusController.MalusType.Schizo:
+                count = MalusController.Instance.schizoCount;
+                break;
+            case MalusController.MalusType.Detonation:
+                count = MalusController.Instance.detonationCount;
+                break;
+        }
+        if(count == 0) return;
+        GameObject curse;
+        if (Curses.ContainsKey(curseType))
+        {
+            curse = Curses[curseType];
+        }
+        else
+        {
+            curse = Instantiate(CursePrefab, CurseCollection.transform);    
+            Curses.Add(curseType, curse);
+        }
+        curse.GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").sprite = curseSprite;
+        curse.GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").color = Color.white;
+        curse.GetComponentsInChildren<TextMeshProUGUI>().First(x=>x.name=="CurseCounter").text = count.ToString();
         
     }
     public async Task ShowQueue(Queue<SpellType> queue, bool succuess, List<SpellPrefabLookup> spelllookups)
