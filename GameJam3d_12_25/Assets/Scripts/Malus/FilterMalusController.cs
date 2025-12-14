@@ -28,12 +28,12 @@ public class FilterMalusController : MonoBehaviour
         ChromaticAberration chromaticAberration;
         if (!volume.profile.TryGet(out lensDistortion))
         {
-            Debug.LogError("Vignette override not found in Volume Profile.");
+            Debug.LogError("lensDistortion override not found in Volume Profile.");
             return;
         }
         if (!volume.profile.TryGet(out chromaticAberration))
         {
-            Debug.LogError("Vignette override not found in Volume Profile.");
+            Debug.LogError("Vignette chromaticAberration not found in Volume Profile.");
             return;
         }
         lensDistortion.intensity.value += .2f;
