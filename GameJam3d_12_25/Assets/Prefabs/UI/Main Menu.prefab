@@ -2395,8 +2395,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Daniel Stempfle (https://kastananileel.itch.io/)\nEmilian Hunsdorfer (https://https://d3baka.itch.io/)\nJonathan
-    Leopold (https://itch.io/profile/johnfleo)\nMalte Lanz \nJohannes M\xF6st "
+  m_text: "Daniel Stempfle (https://kastanileel.itch.io/)\nEmilian Hunsdorfer (https://d3baka.itch.io/)\nJonathan
+    Leopold (https://itch.io/profile/johnfleo)\nMalte Lanz (https://ml200.itch.io/)\nJohannes
+    M\xF6st (https://mj0stjo.itch.io/)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
   m_sharedMaterial: {fileID: -2941022962635570128, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
