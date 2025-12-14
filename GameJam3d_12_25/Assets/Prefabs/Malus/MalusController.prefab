@@ -190,6 +190,7 @@ MonoBehaviour:
   shortSightedController: {fileID: 5088200613103848744}
   brainrotController: {fileID: 1525210815818588164}
   speedUpMalus: {fileID: 1931137514404924365}
+  detonation: {fileID: 1409949841121097207, guid: 51cf742c9af3d9140b7e9fd00afa606b, type: 3}
   filterMalusController: {fileID: 6230144427129542660}
 --- !u!1001 &819136386380740602
 PrefabInstance:

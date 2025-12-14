@@ -11,6 +11,7 @@ public class MalusController : MonoBehaviour
     [SerializeField] private BrainrotController brainrotController;
     [SerializeField] private SpeedUpMalus speedUpMalus;
     [SerializeField] private GameObject detonation;
+    [SerializeField] private FilterMalusController filterMalusController;
 
 
 
@@ -60,7 +61,7 @@ public class MalusController : MonoBehaviour
                 //Get all current companions and turn them hostile
                 break;
             case MalusType.Filter:
-                //Add Filter as Overlay
+                filterMalusController.IncreaseFilters();
                 filterCount++;
                 break;
             case MalusType.Brainrot:
