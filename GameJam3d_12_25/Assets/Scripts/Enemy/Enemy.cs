@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float speed = 2.0f;
     [SerializeField] protected int damage = 10;
     [SerializeField] protected int health = 50;
-    Element status;
+    public Element status;
 
     public GameManager gameManager;
     [SerializeField] protected int scoreValue = 10;
