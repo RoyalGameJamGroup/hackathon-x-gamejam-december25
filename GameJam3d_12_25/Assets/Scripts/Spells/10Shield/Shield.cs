@@ -18,7 +18,7 @@ public class Shield: Spell
         {
             hits++;
             hits++;
-            Destroy(other.gameObject); 
+            other.gameObject.GetComponent<Enemy>().Kill();          
             PlayImpactSound();
         }
         else if(other.gameObject.CompareTag("Projectile"))
