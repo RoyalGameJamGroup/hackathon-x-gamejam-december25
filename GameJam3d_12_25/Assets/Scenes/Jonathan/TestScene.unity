@@ -2613,10 +2613,6 @@ PrefabInstance:
       propertyPath: inputVisualizer
       value: 
       objectReference: {fileID: 1892611102}
-    - target: {fileID: 1625297206907568906, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
-      propertyPath: cursePrefabLookup.Array.data[0].key
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1766717613415512699, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.53
@@ -6047,18 +6043,6 @@ PrefabInstance:
     - target: {fileID: 3310145040946523336, guid: 3748fe69fe11f263eb20d979f7bd3191, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5250360017020009892, guid: 3748fe69fe11f263eb20d979f7bd3191, type: 3}
-      propertyPath: right.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5250360017020009892, guid: 3748fe69fe11f263eb20d979f7bd3191, type: 3}
-      propertyPath: wrong.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5250360017020009892, guid: 3748fe69fe11f263eb20d979f7bd3191, type: 3}
-      propertyPath: semicorrect.a
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9148708315315160688, guid: 3748fe69fe11f263eb20d979f7bd3191, type: 3}
       propertyPath: m_Name
