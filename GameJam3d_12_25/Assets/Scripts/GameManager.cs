@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float minPlayerDistance = 10f;
 
     public int score;
-    private int nextLevelScoreThreshold = 5;
+    public int nextLevelScoreThreshold = 500;
     public Transform levelFillRect;
 
 
@@ -103,14 +103,14 @@ public class GameManager : MonoBehaviour
     {
         
     }*/
-    void Update()
+    /*void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
             TriggerLevelUp();
         }
        
-    }
+    }*/
 
     public GameObject SpawnEnemyPrefab(Vector3 position, GameObject enemy)
     {

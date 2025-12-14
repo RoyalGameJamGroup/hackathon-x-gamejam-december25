@@ -615,6 +615,7 @@ MonoBehaviour:
   healthBar: {fileID: 5341294303716447662, guid: bbb6e7c51b80b0c4393531f4adfa9468, type: 3}
   barOffset: 1
   gameManager: {fileID: 0}
+  dieEffect: {fileID: 3224753767020532059, guid: 1dc12b4968257b944ae90ca8226da0e7, type: 3}
 --- !u!54 &1984789016966739370
 Rigidbody:
   m_ObjectHideFlags: 0

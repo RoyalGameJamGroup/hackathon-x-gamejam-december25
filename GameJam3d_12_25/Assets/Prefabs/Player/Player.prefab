@@ -778,7 +778,6 @@ GameObject:
   - component: {fileID: 4871618071826496402}
   - component: {fileID: 1189431681595485645}
   - component: {fileID: 1693138747749260333}
-  - component: {fileID: 331777957949930710}
   - component: {fileID: 4266255046171325266}
   m_Layer: 0
   m_Name: Player
@@ -823,6 +822,7 @@ MonoBehaviour:
     m_Bits: 64
   moveTarget: {fileID: 0}
   lastLookDirection: {x: 0, y: 0, z: 1}
+  runForever: 0
 --- !u!114 &1625297206907568906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -840,118 +840,145 @@ MonoBehaviour:
     value: {fileID: 2325970627108717316, guid: c5ba1df5cd388aa4c94eeede2d353c63, type: 3}
     wordLength: 1
     icon: {fileID: 21300000, guid: 6e231b4019114ab4f97bb7f2dd9d398e, type: 3}
-    spellName: 
+    spellName: Fireball
     combo: 
-    description: 
+    description: FIREBALL
   - key: 1
     value: {fileID: 1691485492486519632, guid: 90cd7d8630673134fa226c4e4b2f7bcc, type: 3}
     wordLength: 1
     icon: {fileID: 21300000, guid: 38e70fd3d52b2fa4181a59e43ba54ba4, type: 3}
-    spellName: 
+    spellName: Freeze
     combo: 
-    description: 
+    description: 'Freezes enemies and helps with climate change. Makes enemies wet. '
   - key: 2
     value: {fileID: 3565351728660687301, guid: faa9eba6f437b244fbff256f50a09d23, type: 3}
     wordLength: 1
     icon: {fileID: 21300000, guid: f4c678704c6462c419a314ce64689f06, type: 3}
-    spellName: 
+    spellName: Shockwave
     combo: 
-    description: 
+    description: 'Shockingly effective at pusing back enemies. Makes enemies wet. '
   - key: 3
     value: {fileID: 4085808666896605890, guid: a109d5c76194fe94aad00e09e1a21b00, type: 3}
     wordLength: 2
     icon: {fileID: 21300000, guid: fa558781d94fc3546a6f707fa050fd1a, type: 3}
-    spellName: 
+    spellName: Autodrop
     combo: 
-    description: 
+    description: Orbital bombardement with a car. Car remains as an Ally.
   - key: 4
     value: {fileID: 5501196126074623107, guid: e43bbfc7882ac284190532dd6c1fcf8b, type: 3}
     wordLength: 1
     icon: {fileID: 21300000, guid: 4b44f6b2348aef345a048a0cee905905, type: 3}
-    spellName: 
+    spellName: Rock'n Roll
     combo: 
-    description: 
+    description: It belongs in a museum!
   - key: 5
     value: {fileID: 7430780266611255194, guid: f805866da7c4c8d4aba501724754535d, type: 3}
     wordLength: 2
     icon: {fileID: 21300000, guid: 6b893ae3dbcdb374d9d77195c9ab551c, type: 3}
-    spellName: 
+    spellName: Monke
     combo: 
-    description: 
+    description: Call the Librarian of the Unseen university to your aid! Fights
+      enemies for you. Is an Ally.
   - key: 6
-    value: {fileID: 3565351728660687301, guid: faa9eba6f437b244fbff256f50a09d23, type: 3}
+    value: {fileID: 3565351728660687301, guid: a4419b057a4745b46afe907c64634110, type: 3}
     wordLength: 2
     icon: {fileID: 21300000, guid: cedec3682246846429e874b55f069ead, type: 3}
-    spellName: 
+    spellName: Duplicity
     combo: 
-    description: 
+    description: Duplicates all allies.
   - key: 7
     value: {fileID: 3565351728660687301, guid: d9f5172d20eb85249a323e9b6fc23f36, type: 3}
     wordLength: 3
     icon: {fileID: 21300000, guid: 772d00d0eb392024d82940b65b8931c9, type: 3}
-    spellName: 
+    spellName: Exploding Allies
     combo: 
-    description: 
+    description: All allies explode, dealing a lot of damage to enemies. Come out
+      ye black and tans!
   - key: 8
-    value: {fileID: 3565351728660687301, guid: faa9eba6f437b244fbff256f50a09d23, type: 3}
+    value: {fileID: 8654183040624769782, guid: c3bceceb638fbcb41a8b3cd4221cfbfa, type: 3}
     wordLength: 3
     icon: {fileID: 21300000, guid: 94d82a703e1a4374f814a5c15ce881db, type: 3}
-    spellName: 
+    spellName: Twinned Spell
     combo: 
-    description: 
+    description: Casts your last spell again.
   - key: 9
-    value: {fileID: 3565351728660687301, guid: faa9eba6f437b244fbff256f50a09d23, type: 3}
+    value: {fileID: 4221267094537774080, guid: 780da6448dc759b4bac2ab166f34215e, type: 3}
     wordLength: 1
     icon: {fileID: 21300000, guid: 5ef552e1097fbf043ba8bdc5416e15e4, type: 3}
-    spellName: 
+    spellName: Shield
     combo: 
-    description: 
+    description: 'Spawns a shield at our location that absorbs damage from enemies. '
   - key: 10
     value: {fileID: 8041214988261130649, guid: ce443f918a158f945b1a3914f8690e6b, type: 3}
     wordLength: 2
     icon: {fileID: 21300000, guid: 2f2eea08693e75e4bb48f1633c132f95, type: 3}
-    spellName: 
+    spellName: Bananrang
     combo: 
-    description: 
+    description: Spawns a Bananarang which helps you fight enemies. Is an Ally.
   - key: 11
-    value: {fileID: 3565351728660687301, guid: faa9eba6f437b244fbff256f50a09d23, type: 3}
+    value: {fileID: 2192384163158280013, guid: 480574525b76b9e46bbc8ee26cac5baa, type: 3}
     wordLength: 3
     icon: {fileID: 21300000, guid: d4a8703ea8d0ad9489fad058f221810b, type: 3}
-    spellName: 
+    spellName: Chain Lightning
     combo: 
-    description: 
+    description: Damages enemies and jumps to other wet enemies in range.
   - key: 12
     value: {fileID: 4238561978152580730, guid: 148f5035d2836e449985ac48104e04cb, type: 3}
     wordLength: 1
     icon: {fileID: 21300000, guid: a6425c24358769a439dac14bf0639c30, type: 3}
-    spellName: 
+    spellName: Teleport
     combo: 
-    description: 
+    description: ' Instantly teleports you to your mouse position. Handy! '
   - key: 13
-    value: {fileID: 3565351728660687301, guid: faa9eba6f437b244fbff256f50a09d23, type: 3}
+    value: {fileID: 3114728933107909685, guid: 601109b341b9bf74fb08349d43446f60, type: 3}
     wordLength: 3
     icon: {fileID: 21300000, guid: 2dc90d6d16e13324f81c67a48c410540, type: 3}
-    spellName: 
+    spellName: Black hole
     combo: 
-    description: 
+    description: Spawns a black hole that pulls in enemies. Heavier than your mum!
   - key: 14
     value: {fileID: 5850672490497389020, guid: 91e72cf3ae76f3c4bb219684d93df998, type: 3}
     wordLength: 1
     icon: {fileID: 21300000, guid: 4fdefa877ec79914da030976bd8f614c, type: 3}
-    spellName: 
+    spellName: Mirror Image
     combo: 
-    description: 
+    description: ' Creates a clone of yourself that baits enemies into attacking
+      it. Is an Ally.'
   - key: 15
-    value: {fileID: 3565351728660687301, guid: faa9eba6f437b244fbff256f50a09d23, type: 3}
+    value: {fileID: 4478695765752278017, guid: 8cb68b5312d60d3428393a19efc71d5a, type: 3}
     wordLength: 4
     icon: {fileID: 21300000, guid: 90dbcf1554648f346a855bc28e993f25, type: 3}
-    spellName: 
+    spellName: Nuclear Bomb
     combo: 
-    description: 
+    description: Nuking is now legal! Ends the game (with a win).
   cursePrefabLookup:
   - key: 0
     weight: 1
     icon: {fileID: 21300000, guid: c336c6e0a04709c43a908ba863e40d9e, type: 3}
+  - key: 0
+    weight: 1
+    icon: {fileID: 21300000, guid: c336c6e0a04709c43a908ba863e40d9e, type: 3}
+  - key: 2
+    weight: 1
+    icon: {fileID: 21300000, guid: 3a4fc351c4bb6cf43bd541fd80cb870c, type: 3}
+  - key: 3
+    weight: 1
+    icon: {fileID: 21300000, guid: 43932641797a1004b84edec0269ac40a, type: 3}
+  - key: 4
+    weight: 1
+    icon: {fileID: 21300000, guid: ede1dd79ca259f7459f22cbfe96a6220, type: 3}
+  - key: 5
+    weight: 1
+    icon: {fileID: 21300000, guid: 5b6a0cc3663573541b7d24595ff09e6a, type: 3}
+  - key: 6
+    weight: 1
+    icon: {fileID: 21300000, guid: ab754f9b998a4c748bf0f44c4756d39d, type: 3}
+  - key: 7
+    weight: 1
+    icon: {fileID: 21300000, guid: 8a9f825258efd684dab89aba782b2585, type: 3}
+  - key: 8
+    weight: 1
+    icon: {fileID: 21300000, guid: 0d98a924050d2f748a39c9f3dadd64c5, type: 3}
   typedText: 
   queueSize: 1
   spellNames: []
@@ -990,6 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fda5c4d8f6ffd46960c437837ae9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthFillRect: {fileID: 0}
   maxHealth: 100
   currentHealth: 0
 --- !u!114 &1189431681595485645
@@ -1042,24 +1070,6 @@ MonoBehaviour:
   returnToNeutralWhenIdle: 1
   neutralReturnSpeed: 10
   phaseOffset: 0
---- !u!114 &331777957949930710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4722283113841516540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c51e656d41d6bc48a2b3b30bba3fe01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 4871618071826496402}
-  playermovement: {fileID: 1178607099976764321}
-  shortSightedController: {fileID: 0}
-  brainrotController: {fileID: 0}
-  speedUpMalus: {fileID: 0}
-  detonation: {fileID: 0}
 --- !u!54 &4266255046171325266
 Rigidbody:
   m_ObjectHideFlags: 0

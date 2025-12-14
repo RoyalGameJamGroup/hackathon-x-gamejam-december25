@@ -15,6 +15,7 @@ public class MalusController : MonoBehaviour
     [SerializeField] private FilterMalusController filterMalusController;
     [SerializeField] private SchizoMalusController schizoMalusController;
     [SerializeField] private DoppelagentMalus doppelagentMalus;
+    [SerializeField] private GameManager gman;
 
 
 
@@ -22,17 +23,18 @@ public class MalusController : MonoBehaviour
     public static MalusController Instance { get; private set; }
 
     //not really used but let's still implement it
-    private int goFastCount = 0;
-    private int shortSightedCount = 0;
+    public int goFastCount = 0;
+    public int shortSightedCount = 0;
     //not really used but let's still implement it
-    private int rebellionCount = 0;
-    private int filterCount = 0;
-    private int brainrotCount = 0;
+    public int rebellionCount = 0;
+    public int filterCount = 0;
+    public int brainrotCount = 0;
     //not really used but let's still implement it
-    private int speedUpCount = 0;
-    private int schizoCount = 0;
+    public int speedUpCount = 0;
+    public int schizoCount = 0;
     //not really used but let's still implement it
-    private int detonationCount = 0;
+    public int detonationCount = 0;
+    public int runForeverCount = 0;
 
     private void Awake()
     {
@@ -49,8 +51,8 @@ public class MalusController : MonoBehaviour
         {
             case MalusType.GoFast:
                 //Access player controller, double (?) speed, halve HP
-                playermovement.Speed *= 2;
-                playerHealth.maxHealth-= playerHealth.maxHealth / 2;
+                playermovement.Speed *= 1.05f;
+                playerHealth.maxHealth-= (int)(playerHealth.maxHealth / 1.1f);
                 if (playerHealth.maxHealth < playerHealth.currentHealth)
                     playerHealth.currentHealth = playerHealth.maxHealth;
                 goFastCount++;
@@ -59,6 +61,10 @@ public class MalusController : MonoBehaviour
                 //Add Overlay that get worse, depending on the already aquired shortSightedCount
                 shortSightedController.AddShortSightedNess();
                 shortSightedCount++;
+
+                gman.playerDamageMult *= 1.1f;
+
+
                 break;
             case MalusType.Rebellion:
                 //Get all current companions and turn them hostile
@@ -89,6 +95,10 @@ public class MalusController : MonoBehaviour
                 StartCoroutine(WaitForDetonation());
                 detonationCount++;
                 break;
+            case MalusType.RunForest:
+                playermovement.runForever = true;
+                runForeverCount++;
+                break;
 
         }
     }
@@ -108,6 +118,7 @@ public class MalusController : MonoBehaviour
         Brainrot,
         SpeedUp,
         Schizo,
-        Detonation
+        Detonation,
+        RunForest
     }
 }
