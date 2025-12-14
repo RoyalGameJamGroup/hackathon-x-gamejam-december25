@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using System.Collections;
 
 public class MalusController : MonoBehaviour
 {
@@ -91,6 +92,7 @@ public class MalusController : MonoBehaviour
                 //Kill the player but for now do nothing (we don't use that one without conditions being met)
                 GameObject player = GameObject.FindWithTag("Player");
                 Instantiate(detonation, player.transform.position, Quaternion.identity);
+                StartCoroutine(WaitForDetonation());
                 detonationCount++;
                 break;
             case MalusType.RunForest:
@@ -99,6 +101,12 @@ public class MalusController : MonoBehaviour
                 break;
 
         }
+    }
+
+    IEnumerator WaitForDetonation()
+    {
+        yield return new WaitForSeconds(3);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>().Die();
     }
 
     public enum MalusType

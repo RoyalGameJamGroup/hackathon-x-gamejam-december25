@@ -39,12 +39,12 @@ public class PlayerHealth : MonoBehaviour
         Vector3 newScale = healthFillRect.localScale;
         newScale.x = fraction;
         healthFillRect.localScale = newScale;
- 
    }
 
-    void Die()
+    public void Die()
     {
-        Debug.Log("Player has died!");
         // Add death handling logic here (e.g., respawn, game over screen, etc.)
+       GameObject.FindGameObjectWithTag("Loose").transform.GetChild(0).gameObject.SetActive(true);
+            PauseManager.Instance.SetGameRunningState(false); 
     }
 }
