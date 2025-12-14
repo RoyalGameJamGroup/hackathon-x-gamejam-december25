@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float minPlayerDistance = 10f;
 
     public int score;
-    public int nextLevelScoreThreshold = 50;
+    public int nextLevelScoreThreshold = 5;
     public Transform levelFillRect;
 
 
