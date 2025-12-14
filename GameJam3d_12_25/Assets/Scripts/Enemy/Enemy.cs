@@ -79,8 +79,7 @@ public class Enemy : MonoBehaviour
         status = el;
         if(health <= 0)
         {
-            gameManager?.AddScore(scoreValue);
-            Destroy(gameObject);
+            Kill();
         }
     }
 
