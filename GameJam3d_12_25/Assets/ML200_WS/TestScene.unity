@@ -372,7 +372,7 @@ PrefabInstance:
     - target: {fileID: 1625297206907568906, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
       propertyPath: spellPrefabLookup.Array.data[0].value
       value: 
-      objectReference: {fileID: 4478695765752278017, guid: 8cb68b5312d60d3428393a19efc71d5a, type: 3}
+      objectReference: {fileID: 3114728933107909685, guid: 601109b341b9bf74fb08349d43446f60, type: 3}
     - target: {fileID: 1625297206907568906, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
       propertyPath: spellPrefabLookup.Array.data[10].icon
       value: 
@@ -4015,6 +4015,10 @@ PrefabInstance:
       propertyPath: zombiePrefab
       value: 
       objectReference: {fileID: 2144925515459413, guid: 4b93455504b0ab4468dd98038c482565, type: 3}
+    - target: {fileID: 994048932113462493, guid: f301bf9edbf12944a838b1077bd601a5, type: 3}
+      propertyPath: spawnInterval
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 994048932113462493, guid: f301bf9edbf12944a838b1077bd601a5, type: 3}
       propertyPath: sceletonPrefab
       value: 

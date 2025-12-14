@@ -9,6 +9,8 @@ public class BlackHole: Spell
     float spellSize = 20f;
     float triggerTime = 0.5f;
 
+    public GameObject sparks;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,8 +44,10 @@ public class BlackHole: Spell
                 Enemy enemy = hitCollider.gameObject.GetComponent<Enemy>();
                 enemy.PoopNei(damage, Element.Water);
 
-                Vector3 direction = (hitCollider.transform.position - transform.position).normalized;
-                enemy.KnockbackNei(-direction * knockbackForce);
+                Vector3 direction = (hitCollider.transform.position - transform.position);
+                enemy.KnockbackNei(-direction);
+
+                Instantiate(sparks, enemy.transform.position, Quaternion.identity);
             }
         }
     }
