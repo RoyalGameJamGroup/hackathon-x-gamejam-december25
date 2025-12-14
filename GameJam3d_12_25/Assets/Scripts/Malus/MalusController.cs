@@ -1,10 +1,14 @@
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class MalusController : MonoBehaviour
 {
     //Millions of references, if this wasn't a gamejam these should all be accessible through some central singleton but alas...
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private Playermovement playermovement;
+    [SerializeField] private Volume volume;
+    [SerializeField] private BrainrotController brainrotController;
 
 
 
@@ -47,6 +51,14 @@ public class MalusController : MonoBehaviour
                 break;
             case MalusType.Shortsighted:
                 //Add Overlay that get worse, depending on the already aquired shortSightedCount
+                VolumeProfile volumeProfile = volume.profile;
+                Vignette vignette;
+                if (!volume.profile.TryGet(out vignette))
+                {
+                    Debug.LogError("Vignette override not found in Volume Profile.");
+                    break;
+                }
+                vignette.intensity.value += .3f;
                 shortSightedCount++;
                 break;
             case MalusType.Filter:
@@ -55,6 +67,7 @@ public class MalusController : MonoBehaviour
                 break;
             case MalusType.Brainrot:
                 //Add Brainrot as Overlay and Audio
+                brainrotController.ActivateRandomVideoPlayer();
                 brainrotCount++;
                 break;
             case MalusType.SpeedUp:
