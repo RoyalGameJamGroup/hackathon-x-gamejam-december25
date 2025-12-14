@@ -8,6 +8,7 @@ public class MalusController : MonoBehaviour
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private Playermovement playermovement;
     [SerializeField] private Volume volume;
+    [SerializeField] private BrainrotController brainrotController;
 
 
 
@@ -66,6 +67,7 @@ public class MalusController : MonoBehaviour
                 break;
             case MalusType.Brainrot:
                 //Add Brainrot as Overlay and Audio
+                brainrotController.ActivateRandomVideoPlayer();
                 brainrotCount++;
                 break;
             case MalusType.SpeedUp:
