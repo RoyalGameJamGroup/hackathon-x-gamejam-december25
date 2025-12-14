@@ -301,6 +301,7 @@ public class MrSpell : MonoBehaviour
     {
         int idx = spellPrefabLookup.FindIndex(x=>x.key == spell);
         spellname =  spellPrefabLookup[idx].spellName;
+        Debug.Log("Getting data for spell: " + spellname);
         combo = spellPrefabLookup[idx].combo;
         description = spellPrefabLookup[idx].description;
         icon = spellPrefabLookup[idx].icon;

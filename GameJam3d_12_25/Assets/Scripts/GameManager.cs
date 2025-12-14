@@ -29,6 +29,13 @@ public class GameManager : MonoBehaviour
  [SerializeField]   public Button spell1button;
  [SerializeField]   public Button spell2button;
  [SerializeField]   public GameObject uiObject;
+
+    public GameObject combo;
+    public TextMeshProUGUI newSpellTitle;
+    public Image newSpellIcon;
+    public TextMeshProUGUI newSpellCombo;
+    public Button newSpellOkButton;
+
     [Header("Enemy Prefabs")]
     [SerializeField] GameObject zombiePrefab;
     [SerializeField] GameObject sceletonPrefab;
@@ -73,6 +80,10 @@ public class GameManager : MonoBehaviour
         });
         spell2button.onClick.AddListener(() => {
            pressedSpellButton(spell2Type);
+        });
+
+        newSpellOkButton.onClick.AddListener(() => {
+            continueNowDuHurenMalte();
         });
 
         spawnTimer = spawnInterval;
@@ -202,15 +213,16 @@ public class GameManager : MonoBehaviour
         bool didWork;
         (spell1Type, spell2Type, didWork) = playerTransform.GetComponent<MrSpell>().GetRandomUnknownSpell();
 
-        playerTransform.GetComponent<MrSpell>().GetKnownSpellData(spell1Type, out spell1Name, out spell1Desc, out spell1Combo, out spell1Icon);
-        playerTransform.GetComponent<MrSpell>().GetKnownSpellData(spell2Type, out spell2Name, out spell2Desc, out spell2Combo, out spell2Icon);
+        playerTransform.GetComponent<MrSpell>().GetSpellData(spell1Type, out spell1Name, out spell1Desc, out spell1Combo, out spell1Icon);
+        playerTransform.GetComponent<MrSpell>().GetSpellData(spell2Type, out spell2Name, out spell2Desc, out spell2Combo, out spell2Icon);
 
         // trigger UI popup
         uiObject.SetActive(true);
         spell1ImageUI.sprite = spell1Icon;
         spell2ImageUI.sprite = spell2Icon;
-//        spell1text.text = spell1Name + "\n" + spell1Desc;
-//        spell2text.text = spell2Name + "\n" + spell2Desc;
+        Debug.Log("Spell 1: " + spell1Name + " - " + spell1Desc);
+        spell1text.text = spell1Name + "\n" + spell1Desc;
+        spell2text.text = spell2Name + "\n" + spell2Desc;
 
         PauseManager.Instance.SetGameRunningState(false);
 
@@ -227,6 +239,26 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player selected spell: " + spellType.ToString());
 
         // hide Level Up UI
+        //uiObject.SetActive(false);
+        string spellName;
+        string comboString;
+        string description;
+        Sprite icon;
+        playerTransform.GetComponent<MrSpell>().GetSpellData(spellType, out spellName, out description, out  comboString, out  icon);
+        newSpellTitle.text = "New Spell Learned: " + spellName + "\n" + description;
+        newSpellIcon.sprite = icon;
+        newSpellCombo.text = "Cast spell with: \n" + "->\"" + comboString + "\"<-";
+
+
+        MrSpell.Instance.SetSpellKnown(spellType);
+
+        combo.SetActive(true);
+    }
+
+    public void continueNowDuHurenMalte(){
+
+
+        combo.SetActive(false);
         uiObject.SetActive(false);
         PauseManager.Instance.SetGameRunningState(true);
     }
