@@ -1,12 +1,34 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI; // Required for handling UI elements
+using Spells;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    
-    
-    
+    private string spell1Name = "";
+    private string spell2Name = "";
 
+    private string spell1Desc = "";
+    private string spell2Desc = "";
+    private string spell1Combo = "";
+    private string spell2Combo = "";
+
+    private Sprite spell1Icon = null;
+    private Sprite spell2Icon = null;
+
+    SpellType spell1Type;
+    SpellType spell2Type;
+
+
+    [Header("Ui Prefabs")]
+[SerializeField] public Image spell1ImageUI;
+ [SerializeField]   public Image spell2ImageUI;
+ [SerializeField]   public TextMeshProUGUI spell1text;
+ [SerializeField]   public TextMeshProUGUI spell2text;
+ [SerializeField]   public Button spell1button;
+ [SerializeField]   public Button spell2button;
+ [SerializeField]   public GameObject uiObject;
     [Header("Enemy Prefabs")]
     [SerializeField] GameObject zombiePrefab;
     [SerializeField] GameObject sceletonPrefab;
@@ -45,12 +67,23 @@ public class GameManager : MonoBehaviour
     {
         UpdateLevelBar();
 
+        spell1button.onClick.AddListener(() => {
+           pressedSpellButton(spell1Type);
+        });
+        spell2button.onClick.AddListener(() => {
+           pressedSpellButton(spell2Type);
+        });
+
         spawnTimer = spawnInterval;
         FindPlayer();
     }
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            TriggerLevelUp();
+        }
         spawnTimer -= Time.deltaTime;
 
         if (spawnTimer <= 0f)
@@ -158,13 +191,41 @@ public class GameManager : MonoBehaviour
         nextLevelScoreThreshold += 10; // Increase threshold for next level
         Debug.Log("Level Up! Next level score threshold: " + nextLevelScoreThreshold);
 
+        // Retrieve random unknown spells from MrSpell
+        //playerTransform.GetComponent<MrSpell>().RetrieveRandomUnknownSpells(2);
+        bool didWork;
+        (spell1Type, spell2Type, didWork) = playerTransform.GetComponent<MrSpell>().GetRandomUnknownSpell();
 
+        playerTransform.GetComponent<MrSpell>().GetKnownSpellData(spell1Type, out spell1Name, out spell1Desc, out spell1Combo, out spell1Icon);
+        playerTransform.GetComponent<MrSpell>().GetKnownSpellData(spell2Type, out spell2Name, out spell2Desc, out spell2Combo, out spell2Icon);
 
+        // trigger UI popup
+        uiObject.SetActive(true);
+        spell1ImageUI.sprite = spell1Icon;
+        spell2ImageUI.sprite = spell2Icon;
+        spell1text.text = spell1Name + "\n" + spell1Desc;
+        spell2text.text = spell2Name + "\n" + spell2Desc;
+
+        PauseManager.Instance.SetGameRunningState(false);
+
+        // add listeners to buttons to select spells
+        
         // heal player
         playerTransform.GetComponent<PlayerHealth>().heal();
 
         UpdateLevelBar();
     }
+
+    public void pressedSpellButton(SpellType spellType)
+    {
+        Debug.Log("Player selected spell: " + spellType.ToString());
+
+        // hide Level Up UI
+        uiObject.SetActive(false);
+        PauseManager.Instance.SetGameRunningState(true);
+    }
+
+
 
     
 }

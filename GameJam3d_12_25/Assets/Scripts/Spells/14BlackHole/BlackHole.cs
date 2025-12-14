@@ -41,7 +41,7 @@ public class BlackHole: Spell
             if (hitCollider.gameObject.CompareTag("Enemy"))
             {
                 Enemy enemy = hitCollider.gameObject.GetComponent<Enemy>();
-                enemy.PoopNei(damage, Element.Water);
+                enemy.PoopNei(damage, Element.Lightning);
 
                 Vector3 direction = (hitCollider.transform.position - transform.position);
                 enemy.KnockbackNei(-direction);
@@ -56,7 +56,7 @@ public class BlackHole: Spell
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Fire);
+            other.gameObject.GetComponent<Enemy>().PoopNei(damage, Element.Lightning);
             PlayImpactSound();
             Destroy(gameObject);
         }

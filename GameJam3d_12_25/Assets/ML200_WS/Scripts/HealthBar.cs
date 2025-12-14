@@ -10,7 +10,12 @@ public class HealthBar : MonoBehaviour
     
     [Tooltip("Drag the foreground 'Fill' GameObject's RectTransform here")]
     public RectTransform healthFillRect; 
-
+    [Header("Status Icons")]
+    public GameObject fireIcon;
+    public GameObject waterIcon;
+    public GameObject lightningIcon;
+    public GameObject PhysicalIcon;
+    
     private Camera _mainCam;
     private RectTransform _mainRectTransform;
     private CanvasGroup _canvasGroup;
@@ -78,5 +83,10 @@ public class HealthBar : MonoBehaviour
             newScale.x = healthPct;
             healthFillRect.localScale = newScale;
         }
+        // Update status icons
+        fireIcon.SetActive(monitor.status == Element.Fire);
+        waterIcon.SetActive(monitor.status == Element.Water);
+        lightningIcon.SetActive(monitor.status == Element.Lightning);
+        PhysicalIcon.SetActive(monitor.status == Element.Physical);
     }
 }

@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public int health = 50;
     [HideInInspector]
     public int maxhealth;
-    public Element status;
+    public Element status = Element.None;
 
     public GameObject healthBar;
     public float barOffset = 1.0f;
@@ -79,8 +79,7 @@ public class Enemy : MonoBehaviour
         status = el;
         if(health <= 0)
         {
-            gameManager?.AddScore(scoreValue);
-            Destroy(gameObject);
+            Kill();
         }
     }
 
