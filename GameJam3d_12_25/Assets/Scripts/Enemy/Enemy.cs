@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public int health = 50;
     [HideInInspector]
     public int maxhealth;
-    public Element status;
+    public Element status = Element.None;
 
     public GameObject healthBar;
     public float barOffset = 1.0f;
