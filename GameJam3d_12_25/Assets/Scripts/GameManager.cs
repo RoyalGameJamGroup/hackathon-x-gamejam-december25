@@ -216,6 +216,11 @@ public class GameManager : MonoBehaviour
         playerTransform.GetComponent<MrSpell>().GetSpellData(spell1Type, out spell1Name, out spell1Desc, out spell1Combo, out spell1Icon);
         playerTransform.GetComponent<MrSpell>().GetSpellData(spell2Type, out spell2Name, out spell2Desc, out spell2Combo, out spell2Icon);
 
+        if(!didWork)
+        {
+            Debug.Log("No more unknown spells to learn.");
+            return;
+        }
         // trigger UI popup
         uiObject.SetActive(true);
         spell1ImageUI.sprite = spell1Icon;
