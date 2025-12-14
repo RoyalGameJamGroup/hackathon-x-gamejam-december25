@@ -20,6 +20,8 @@ public class MrInputVisualizer : MonoBehaviour
     [SerializeField]
     private GameObject QueueCollection;
 
+    [SerializeField] private GameObject CurseCollection;
+
     [SerializeField] private Color wrong;
     [SerializeField] private Color right;
     [SerializeField] private Color semicorrect;
@@ -59,6 +61,7 @@ public class MrInputVisualizer : MonoBehaviour
         ClearKeys();
         CreateWord(word);
         KeysCollection.GetComponent<Image>().color = right;
+        
         await WordEnded();
         KeysCollection.GetComponent<Image>().color = Color.clear;
         ClearKeys();
@@ -109,6 +112,7 @@ public class MrInputVisualizer : MonoBehaviour
             nextKey.GetComponentInChildren<TextMeshProUGUI>().text = c.ToString().ToUpper();
             CurrentSpell.Add(nextKey);
         }
+        
     }
     
     private void ClearKeys()
@@ -120,6 +124,14 @@ public class MrInputVisualizer : MonoBehaviour
         CurrentSpell.Clear();
     }
 
+    public async Task AnimateSpellToQueue(Sprite spell)
+    {
+        var spellAnimation = Instantiate(QueueElementPrefab, KeysCollection.transform);
+        spellAnimation.GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").sprite = spell;
+        spellAnimation.GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").color = Color.white;
+        CurrentSpell.Add(spellAnimation);
+        
+    }
     public async Task ShowQueue(Queue<SpellType> queue, bool succuess, List<SpellPrefabLookup> spelllookups)
     {
         ctqueue?.Cancel();
