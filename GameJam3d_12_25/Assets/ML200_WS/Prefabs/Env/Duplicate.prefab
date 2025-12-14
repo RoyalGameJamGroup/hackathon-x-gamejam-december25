@@ -244,7 +244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3965375808112927908, guid: 6fabaf01c8fdf7143953964842d2cfa2, type: 3}
       propertyPath: CollisionModule.enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3965375808112927908, guid: 6fabaf01c8fdf7143953964842d2cfa2, type: 3}
       propertyPath: SizeModule.separateAxes

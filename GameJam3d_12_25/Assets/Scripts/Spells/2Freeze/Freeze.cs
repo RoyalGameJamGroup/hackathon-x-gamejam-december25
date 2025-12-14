@@ -31,6 +31,7 @@ public class Freeze: Spell
             if (hitCollider.gameObject.CompareTag("Enemy"))
             {
                 hitCollider.gameObject.GetComponent<Enemy>().Freeze(length);
+                hitCollider.gameObject.GetComponent<Enemy>().status = Element.Water;
                 Destroy(gameObject);
             }
         }

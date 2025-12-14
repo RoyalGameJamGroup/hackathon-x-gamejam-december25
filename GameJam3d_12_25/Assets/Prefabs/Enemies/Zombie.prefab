@@ -128,6 +128,10 @@ MonoBehaviour:
   speed: 2
   damage: 10
   health: 50
+  maxhealth: 0
+  status: 0
+  healthBar: {fileID: 5341294303716447662, guid: bbb6e7c51b80b0c4393531f4adfa9468, type: 3}
+  barOffset: 1
   gameManager: {fileID: 0}
   scoreValue: 10
   CollisionRadius: 0.5
