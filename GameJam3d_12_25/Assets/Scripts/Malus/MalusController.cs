@@ -61,6 +61,9 @@ public class MalusController : MonoBehaviour
                 vignette.intensity.value += .3f;
                 shortSightedCount++;
                 break;
+            case MalusType.Rebellion:
+                //Get all current companions and turn them hostile
+                break;
             case MalusType.Filter:
                 //Add Filter as Overlay
                 filterCount++;
