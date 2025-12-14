@@ -201,15 +201,15 @@ MonoBehaviour:
     Check the spellbook for help (tab).
 
 
-    |ou
+    You
     cannot cast a spell twice in a row.
 
 
     Discover new spells by leveling up
     and try not to die to enemies or misfiring spells! Good luck!'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
+  m_sharedMaterial: {fileID: -4573732402175010879, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
