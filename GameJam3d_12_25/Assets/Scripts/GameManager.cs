@@ -4,6 +4,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     
+    
+    
 
     [Header("Enemy Prefabs")]
     [SerializeField] GameObject zombiePrefab;
@@ -17,14 +19,26 @@ public class GameManager : MonoBehaviour
     [SerializeField] float minPlayerDistance = 10f;
 
     public int score;
+    private int nextLevelScoreThreshold = 5;
+    public Transform levelFillRect;
 
-    
+    void UpdateLevelBar()
+    {
+        float fraction = Mathf.Clamp01((float)score / (float)nextLevelScoreThreshold) *0.68f;
+        Vector3 newScale = levelFillRect.localScale;
+        newScale.x = fraction;
+        levelFillRect.localScale = newScale;
+    }
+
+   
 
     private float spawnTimer;
     
 
     void Start()
     {
+        UpdateLevelBar();
+
         spawnTimer = spawnInterval;
         FindPlayer();
     }
@@ -106,6 +120,30 @@ public class GameManager : MonoBehaviour
     {
         score += points;
         Debug.Log("Score: " + score);
+
+        UpdateLevelBar();
+
+        if(score >= nextLevelScoreThreshold)
+        {
+            TriggerLevelUp();
+        }
+
+
+    }
+
+    void TriggerLevelUp()
+    {
+        Debug.Log("Level Up Triggered!");
+        score = 0;
+        nextLevelScoreThreshold += 10; // Increase threshold for next level
+        Debug.Log("Level Up! Next level score threshold: " + nextLevelScoreThreshold);
+
+
+
+        // heal player
+        playerTransform.GetComponent<PlayerHealth>().heal();
+
+        UpdateLevelBar();
     }
 
     

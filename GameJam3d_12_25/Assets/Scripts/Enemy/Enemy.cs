@@ -84,6 +84,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public virtual void Kill(){
+        gameManager?.AddScore(scoreValue);
+        Destroy(gameObject);
+    }
+
     public void Freeze(float length)
     {
         Debug.Log("I'm freezing");
