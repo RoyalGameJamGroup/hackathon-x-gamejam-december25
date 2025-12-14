@@ -6559,9 +6559,8 @@ MonoBehaviour:
   - {fileID: 1239828645}
   - {fileID: 1635707505}
   enemyPrefabs:
-  - {fileID: 7303138421928064261, guid: a82bbc9e25cf98948848aa10f9ecc454, type: 3}
-  - {fileID: 7842535421275196409, guid: 93655d714835562418d3fcf78f5ac9d9, type: 3}
-  bossPrefab: {fileID: 7303138421928064261, guid: a5d9b88aaae7184419e204168ea25f44, type: 3}
+  - {fileID: 7430780266611255194, guid: 966be5f5d61f2364e964a50fc0e9d0c7, type: 3}
+  bossPrefab: {fileID: 7430780266611255194, guid: 74c7cd11903062a40a177dc6f3b12b4b, type: 3}
   prerequisiteRooms:
   - {fileID: 641303533}
   - {fileID: 1492176096}
@@ -29482,6 +29481,10 @@ PrefabInstance:
       propertyPath: newSpellOkButton
       value: 
       objectReference: {fileID: 969579399}
+    - target: {fileID: 994048932113462493, guid: f301bf9edbf12944a838b1077bd601a5, type: 3}
+      propertyPath: nextLevelScoreThreshold
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 8190997790495473574, guid: f301bf9edbf12944a838b1077bd601a5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.2709708
@@ -32415,7 +32418,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: d2a31edf555c4af41ab587ab52f9d252, type: 3}
     - target: {fileID: 1625297206907568906, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
       propertyPath: cursePrefabLookup.Array.data[0].weight
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1625297206907568906, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
       propertyPath: cursePrefabLookup.Array.data[1].weight
@@ -32515,7 +32518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4871618071826496402, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
       propertyPath: maxHealth
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4871618071826496402, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
       propertyPath: healthFillRect

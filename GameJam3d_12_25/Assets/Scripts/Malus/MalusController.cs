@@ -52,7 +52,7 @@ public class MalusController : MonoBehaviour
             case MalusType.GoFast:
                 //Access player controller, double (?) speed, halve HP
                 playermovement.Speed *= 1.05f;
-                playerHealth.maxHealth-= (int)(playerHealth.maxHealth / 1.1f);
+                playerHealth.maxHealth-= (int)(playerHealth.maxHealth / 1.01f);
                 if (playerHealth.maxHealth < playerHealth.currentHealth)
                     playerHealth.currentHealth = playerHealth.maxHealth;
                 goFastCount++;
