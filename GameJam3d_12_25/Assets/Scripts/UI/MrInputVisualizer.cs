@@ -13,6 +13,7 @@ public class MrInputVisualizer : MonoBehaviour
 {
     public GameObject KeyPrefab;
     public GameObject QueueElementPrefab;
+    public GameObject QueueElementPrefab1;
     public GameObject CursePrefab;
     public List<GameObject> CurrentSpell = new List<GameObject>();
     public List<GameObject> CurrentQueue = new List<GameObject>();
@@ -35,7 +36,7 @@ public class MrInputVisualizer : MonoBehaviour
         PauseManager.Instance.OnPauseStateChanged += ToggleUI;
         for (int i = 0; i < MrSpell.Instance.queueSize; i++)
         {
-            var queueElement = Instantiate(QueueElementPrefab, QueueCollection.transform);
+            var queueElement = Instantiate(QueueElementPrefab1, QueueCollection.transform);
             CurrentQueue.Add(queueElement);
             queueElement.GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").color = Color.clear;
         }

@@ -2615,6 +2615,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1625297206907568906, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
+      propertyPath: queueSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625297206907568906, guid: 5bc82c3de3f7fc04ea581e42bd8c9b2a, type: 3}
       propertyPath: inputVisualizer
       value: 
       objectReference: {fileID: 1892611102}
@@ -6213,6 +6217,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5250360017020009892, guid: 3748fe69fe11f263eb20d979f7bd3191, type: 3}
+      propertyPath: QueueElementPrefab1
+      value: 
+      objectReference: {fileID: 4199795205286750753, guid: c674c0817bfa6ca4eb529526423992cf, type: 3}
     - target: {fileID: 5316134046190776095, guid: 3748fe69fe11f263eb20d979f7bd3191, type: 3}
       propertyPath: m_IsActive
       value: 0
