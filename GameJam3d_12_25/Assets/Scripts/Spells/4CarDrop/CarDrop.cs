@@ -33,7 +33,7 @@ public class CarDrop: Spell
         Debug.Log("CarDrop hit " + other.gameObject.name);
         if (other.gameObject.CompareTag("Enemy") && !hasLanded)
         {
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<Enemy>().Kill();
         }
     }
 }
