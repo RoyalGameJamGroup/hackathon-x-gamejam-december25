@@ -29,6 +29,10 @@ public class NukeDeto : MonoBehaviour
             light.color = lightIntensity.Evaluate((Time.time - startTime) / lightDuration);
             light.intensity = maxLightInensity * (1.0f / Mathf.Max(Mathf.Pow(Time.time - startTime, maxLightExponent), 0.00001f));
         }
+        else{
+            GameObject.FindGameObjectWithTag("Win").transform.GetChild(0).gameObject.SetActive(true);
+            PauseManager.Instance.SetGameRunningState(false);
+        }
     }
 
     IEnumerator wixxBums()
