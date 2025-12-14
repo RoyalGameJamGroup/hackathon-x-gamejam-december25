@@ -45,6 +45,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: {fileID: 2324996938101728781}
+--- !u!1 &3519310447815270040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8327662174054041741}
+  - component: {fileID: 6230144427129542660}
+  m_Layer: 0
+  m_Name: FilterMalusController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8327662174054041741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519310447815270040}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2649629805936604859}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6230144427129542660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519310447815270040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98bd67a432ae67544a412666fa1e69ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: {fileID: 2324996938101728781}
 --- !u!1 &4438220265500874484
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +170,7 @@ Transform:
   - {fileID: 8268745197536900265}
   - {fileID: 7779809006999420132}
   - {fileID: 7861416058021917965}
+  - {fileID: 8327662174054041741}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4189603428292660130
@@ -144,6 +190,7 @@ MonoBehaviour:
   shortSightedController: {fileID: 5088200613103848744}
   brainrotController: {fileID: 1525210815818588164}
   speedUpMalus: {fileID: 1931137514404924365}
+  filterMalusController: {fileID: 6230144427129542660}
 --- !u!1001 &819136386380740602
 PrefabInstance:
   m_ObjectHideFlags: 0
