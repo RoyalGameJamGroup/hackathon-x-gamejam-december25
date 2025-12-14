@@ -12,6 +12,7 @@ public class MalusController : MonoBehaviour
     [SerializeField] private SpeedUpMalus speedUpMalus;
     [SerializeField] private GameObject detonation;
     [SerializeField] private FilterMalusController filterMalusController;
+    [SerializeField] private SchizoMalusController schizoMalusController;
 
 
 
@@ -75,7 +76,7 @@ public class MalusController : MonoBehaviour
                 speedUpCount++;
                 break;
             case MalusType.Schizo:
-                //Activate audiosource/increase it's severity
+                schizoMalusController.InCreaseSchizoLevel();
                 schizoCount++;
                 break;
             case MalusType.Detonation:
