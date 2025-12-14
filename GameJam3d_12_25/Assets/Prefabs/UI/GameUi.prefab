@@ -498,9 +498,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3220630266057173521, guid: f47358332412ab245a86ee00ea1c2b89, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2941022962635570128, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
     - target: {fileID: 6014679069009925435, guid: f47358332412ab245a86ee00ea1c2b89, type: 3}
       propertyPath: m_Name
       value: Introduction
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014679069009925435, guid: f47358332412ab245a86ee00ea1c2b89, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1486,10 +1494,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4308463544750525168, guid: 262a2d3557ef4a44da2fac96d206224b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4963547599438399234, guid: 262a2d3557ef4a44da2fac96d206224b, type: 3}
       propertyPath: m_Name
       value: Loose
       objectReference: {fileID: 0}
+    - target: {fileID: 8525750159401368747, guid: 262a2d3557ef4a44da2fac96d206224b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2941022962635570128, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1841,14 +1857,82 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3190151914933185251}
     m_Modifications:
+    - target: {fileID: 568775865102779389, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2941022962635570128, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
+    - target: {fileID: 1012130529943098153, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2941022962635570128, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
+    - target: {fileID: 1225124957741061572, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1225124957741061572, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1225124957741061572, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2093462649799536503, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2093462649799536503, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2131687081780622597, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
       propertyPath: m_Name
       value: FireBallSpellPage (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 2235287299269871265, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389499189945361995, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843125970814639884, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2941022962635570128, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
+    - target: {fileID: 3502677422847806258, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2941022962635570128, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
+    - target: {fileID: 3558210264306157163, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2941022962635570128, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
     - target: {fileID: 4641837389244576496, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
       propertyPath: spellType
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 4656872620442062688, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4786021567832896189, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4786021567832896189, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4786021567832896189, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068858088038517866, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2941022962635570128, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
     - target: {fileID: 5080017109122883614, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1929,10 +2013,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5146846920612873354, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146846920612873354, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290058231658933728, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290058231658933728, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290058231658933728, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872426336728851366, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872426336728851366, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5875273101384254052, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6547213637486834473, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
       propertyPath: m_Name
       value: PauseMenuAndSpellBook
       objectReference: {fileID: 0}
+    - target: {fileID: 6665514637988596198, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2941022962635570128, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
+    - target: {fileID: 7583893768022375109, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2941022962635570128, guid: 510c5af0687906943a58c6f1320807bb, type: 2}
     - target: {fileID: 9155987624358904965, guid: ad40fba15f69a6048afc1e4d85a34c81, type: 3}
       propertyPath: pages.Array.size
       value: 16
