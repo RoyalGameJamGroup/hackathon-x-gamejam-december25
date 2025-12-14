@@ -24,54 +24,46 @@ public class Zombie : Enemy
         base.Start();
     }
 
-    void Update()
+    protected override void Update()
     {
-        base.Update(); 
+        base.Update(); // Runs Knockback logic
 
-        if (target == null) return;
+        // 1. Stop AI if impaired
+        if (target == null || IsStatusImpaired()) return;
 
+        // 2. Rotation
         Vector3 lookAtTarget = target.transform.position;
-        lookAtTarget.y = transform.position.y; // keep only horizontal rotation
-        transform.LookAt(target.transform);
+        lookAtTarget.y = transform.position.y;
+        transform.LookAt(lookAtTarget);
 
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
         switch (currentState)
         {
             case AttackState.Chase:
-                step = speed * Time.deltaTime;
-                
-                if(distanceToTarget < stepBackRadius)
+                if (distanceToTarget < stepBackRadius)
                 {
-                    moveDir = (transform.position - target.transform.position).normalized;
-                    retreatTarget = transform.position + moveDir * stepBackDistance;
+                    // Calculate retreat position
+                    Vector3 directionAway = (transform.position - target.transform.position).normalized;
+                    retreatTarget = transform.position + directionAway * stepBackDistance;
 
                     currentState = AttackState.SteppingBack;
                     stateTimer = 0f;
-                }else{
-                    moveDir = (target.transform.position - transform.position).normalized;
-                    if(!movementBlocked){
-                        transform.position = Vector3.MoveTowards(
-                            transform.position,
-                            target.transform.position,
-                            step
-                        );
-                    }
+                }
+                else
+                {
+                    // Chase the player using collision helper
+                    float currentSpeed = speed * gameManager.speedMult;
+                    MoveWithCollisionCheck(target.transform.position, currentSpeed);
                 }
                 break;
 
             case AttackState.SteppingBack:
-                step = stepBackSpeed * Time.deltaTime;
-                if(!movementBlocked){
-                    transform.position = Vector3.MoveTowards(
-                        transform.position,
-                        retreatTarget,
-                        step
-                    );
-                }
-                
-                // Check if the zombie has reached the retreat target
-                if (transform.position == retreatTarget)
+                // Move towards retreat point
+                MoveWithCollisionCheck(retreatTarget, stepBackSpeed);
+
+                // Check if reached (allow small margin of error)
+                if (Vector3.Distance(transform.position, retreatTarget) < 0.1f)
                 {
                     currentState = AttackState.Pausing;
                     stateTimer = 0f;
@@ -80,7 +72,6 @@ public class Zombie : Enemy
 
             case AttackState.Pausing:
                 stateTimer += Time.deltaTime;
-
                 if (stateTimer >= pauseTime)
                 {
                     currentState = AttackState.Chase;
@@ -89,14 +80,12 @@ public class Zombie : Enemy
         }
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
-        // Only trigger if we are chasing and not already in an attack sequence
-        if (other.gameObject.CompareTag("Player"))
+        // Only trigger damage if we are chasing
+        if (other.gameObject.CompareTag("Player") && currentState == AttackState.Chase)
         {
-            
-            other.gameObject.GetComponent<PlayerHealth>()?.PoopNei(damage);
+            other.gameObject.GetComponent<PlayerHealth>()?.PoopNei((int)(damage * gameManager.damageMult));
         }
     }
 }
