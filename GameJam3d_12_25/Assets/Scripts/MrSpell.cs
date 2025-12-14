@@ -22,8 +22,7 @@ public class SpellPrefabLookup
 [Serializable] 
 public class CursePrefabLookup
 {
-    public SpellType key;
-    public GameObject value;
+    public MalusController.MalusType key;
     public float weight;
     public Sprite icon;
 }
@@ -41,6 +40,8 @@ public class MrSpell : MonoBehaviour
     public List<string> spellNames;
     [SerializeField]
     private MrInputVisualizer inputVisualizer;
+
+    public GameObject lastSpell;
     
     public Dictionary<SpellType, HashSet<int>> knownSpellCharIdxs = new Dictionary<SpellType, HashSet<int>>(); 
     
@@ -105,7 +106,7 @@ public class MrSpell : MonoBehaviour
     public void ProcessInputToSpell(string uncheckedInput)
     {
         
-        Debug.Log(uncheckedInput);
+        //Debug.Log(uncheckedInput);
         if (!SpellLookup.Keys.ToList().Any(x => IsPrefixOfSpell(uncheckedInput, x)))
         {
             string closest = GetClosestSpell(typedText);
@@ -152,7 +153,7 @@ public class MrSpell : MonoBehaviour
         SpellType spellType = SpellLookup[spell];
         if (spellQueue.Contains(spellType))
         {
-            Debug.Log("Spell is in Queue");
+            //Debug.Log("Spell is in Queue");
             inputVisualizer.ShowQueue(spellQueue, false, spellPrefabLookup);
             return;
         }
@@ -170,9 +171,24 @@ public class MrSpell : MonoBehaviour
         Debug.Log(spell+" is casted "+ spellPrefabLookup.Find((x=>x.key == SpellLookup[spell])).spellName);
         var castedSpell = Instantiate(prefab, transform.position + new Vector3(direction.x, 0, direction.y), prefab.transform.rotation);
         castedSpell.GetComponent<Spell>().direction = direction;
+        castedSpell.GetComponent<Spell>().lastSpell = lastSpell;
+        lastSpell = prefab;
     }
 
-    public GameObject GetRandomCurse()
+    public void RedoSpell(GameObject lastSpell){
+        Debug.Log("Redoing last spell");
+        Debug.Log(lastSpell);
+        if(lastSpell == null) return;
+        Vector2 screenCenter = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+        Vector2 mousePos = (Vector2)Input.mousePosition;
+        Vector2 direction = (mousePos - screenCenter).normalized;
+
+        GameObject prefab = lastSpell;
+        var castedSpell = Instantiate(prefab, transform.position + new Vector3(direction.x, 0, direction.y), prefab.transform.rotation);
+        castedSpell.GetComponent<Spell>().direction = direction;
+    }
+
+    public MalusController.MalusType GetRandomCurse()
     {
         float probSum= cursePrefabLookup.Select(x => x.weight).Sum(); 
         float random = Random.value * probSum;
@@ -180,17 +196,16 @@ public class MrSpell : MonoBehaviour
         {
             random -= i.weight;
             if (random <= 0f)
-                return i.value;
+                return i.key;
         }
 
         // Fallback (in case of floating-point precision issues)
-        return cursePrefabLookup[^1].value;
+        return cursePrefabLookup[^1].key;
     }
     public void TriggerCurse()
     {
-        GameObject prefab = GetRandomCurse();
-        var castedSpell =Instantiate(prefab,new Vector3(0, 0, 0), Quaternion.identity);
-        castedSpell.GetComponent<Spell>().direction=new Vector2(1, 0);
+        MalusController.MalusType malus = GetRandomCurse();
+        MalusController.Instance.AddMalus(malus);
     }
     public bool IsPrefixOfSpell(string possiblePrefix, string spell)
     {

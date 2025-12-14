@@ -34,6 +34,7 @@ public class MalusController : MonoBehaviour
 
     public void AddMalus(MalusType malusType)
     {
+        Debug.Log("Adding malus type: " + malusType);
         switch (malusType)
         {
             case MalusType.GoFast:

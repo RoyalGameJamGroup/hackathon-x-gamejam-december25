@@ -153,7 +153,7 @@ public class MrInputVisualizer : MonoBehaviour
         {
             if (i < queue.Count)
             {
-                SpellType e = queue.ToArray()[i];
+                SpellType e = queue.Reverse().ToArray()[i];
                 Sprite s = spelllookups.Find(x => x.key == e).icon;
                 CurrentQueue[i].GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").sprite = s;
                 CurrentQueue[i].GetComponentsInChildren<Image>().First(x=>x.name=="SpellSprite").color = Color.white;

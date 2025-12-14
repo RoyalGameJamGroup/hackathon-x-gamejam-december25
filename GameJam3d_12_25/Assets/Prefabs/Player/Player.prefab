@@ -1530,6 +1530,7 @@ GameObject:
   - component: {fileID: 4871618071826496402}
   - component: {fileID: 1189431681595485645}
   - component: {fileID: 1693138747749260333}
+  - component: {fileID: 331777957949930710}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1700,10 +1701,9 @@ MonoBehaviour:
     combo: 
     description: 
   cursePrefabLookup:
-  - key: 2
-    value: {fileID: 3565351728660687301, guid: faa9eba6f437b244fbff256f50a09d23, type: 3}
+  - key: 0
     weight: 1
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: c336c6e0a04709c43a908ba863e40d9e, type: 3}
   typedText: 
   queueSize: 1
   spellNames: []
@@ -1793,6 +1793,20 @@ MonoBehaviour:
   returnToNeutralWhenIdle: 1
   neutralReturnSpeed: 10
   phaseOffset: 0
+--- !u!114 &331777957949930710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4722283113841516540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c51e656d41d6bc48a2b3b30bba3fe01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 4871618071826496402}
+  playermovement: {fileID: 1178607099976764321}
 --- !u!1 &4883052699969434953
 GameObject:
   m_ObjectHideFlags: 0
