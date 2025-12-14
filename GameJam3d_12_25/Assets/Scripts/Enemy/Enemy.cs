@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField] public GameObject target;
-    [SerializeField] protected float speed = 2.0f;
+    [SerializeField] public float speed = 2.0f;
     [SerializeField] protected int damage = 10;
     public int health = 50;
     [HideInInspector]

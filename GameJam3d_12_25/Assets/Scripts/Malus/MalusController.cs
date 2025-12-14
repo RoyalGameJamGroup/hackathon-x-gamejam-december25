@@ -9,6 +9,7 @@ public class MalusController : MonoBehaviour
     [SerializeField] private Playermovement playermovement;
     [SerializeField] private ShortSightedController shortSightedController;
     [SerializeField] private BrainrotController brainrotController;
+    [SerializeField] private SpeedUpMalus speedUpMalus;
 
 
 
@@ -68,6 +69,7 @@ public class MalusController : MonoBehaviour
                 break;
             case MalusType.SpeedUp:
                 //Access enemies, double their speed
+                speedUpMalus.ApplySpeedUp();
                 speedUpCount++;
                 break;
             case MalusType.Schizo:
