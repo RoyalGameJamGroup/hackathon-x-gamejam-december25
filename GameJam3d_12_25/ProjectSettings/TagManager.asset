@@ -9,6 +9,7 @@ TagManager:
   - Spawnable
   - Projectile
   - HealthBars
+  - GameManager
   layers:
   - Default
   - TransparentFX
