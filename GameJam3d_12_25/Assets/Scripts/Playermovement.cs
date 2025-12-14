@@ -10,6 +10,8 @@ public class Playermovement : MonoBehaviour
     public Transform moveTarget;
     public Vector3 lastLookDirection = Vector3.forward;
 
+    public bool runForever = false;
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(1))
@@ -61,13 +63,22 @@ public class Playermovement : MonoBehaviour
 
         // Normalize for movement direction
         moveDir.Normalize();
+        float step;
+        if (!runForever)
+        {
+            // Prevent overshoot:
+            // if the next frame's movement is greater than the remaining distance,
+            // just snap to the target instead of passing it.
+            float moveStep = Speed * Time.deltaTime;
 
-        // Prevent overshoot:
-        // if the next frame's movement is greater than the remaining distance,
-        // just snap to the target instead of passing it.
-        float moveStep = Speed * Time.deltaTime;
-
-        float step = Mathf.Min(moveStep, distanceToTarget);
+            step = Mathf.Min(moveStep, distanceToTarget);
+        }else
+        {
+            Debug.Log("????????????????");
+            step = Speed * Time.deltaTime;
+            moveTarget.position += 2 * step * moveDir;
+        }
+        
 
         // Check if movement is blocked
         if (Physics.SphereCast(
