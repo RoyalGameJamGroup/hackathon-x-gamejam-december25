@@ -63,6 +63,7 @@ public class Dummy : Spell
     {
         // Only trigger if we are chasing and not already in an attack sequence
         
+        SpawnEffect();
         PlayImpactSound();
         other.gameObject.GetComponent<Enemy>()?.PoopNei(damage, Element.Physical);
         Destroy(gameObject);

@@ -76,6 +76,7 @@ public class Banana : Spell
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            SpawnEffect();
             PlayImpactSound();
             other.gameObject.GetComponent<Enemy>()?.PoopNei(damage, Element.Physical);
         }

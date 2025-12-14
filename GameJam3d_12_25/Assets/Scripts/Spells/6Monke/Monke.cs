@@ -117,12 +117,14 @@ public class Monke : Spell
     {
         // Only trigger if we are chasing and not already in an attack sequence
         if (other.gameObject.CompareTag("Enemy") && currentState == AttackState.Chase)
-        {
+        {   
+            SpawnEffect();
             PlayImpactSound();
             other.gameObject.GetComponent<Enemy>()?.PoopNei(damage, Element.Physical);
         }
         if(other.gameObject.CompareTag("Player") && doppelAgent)
         {
+            SpawnEffect();
             PlayImpactSound();
             other.gameObject.GetComponent<PlayerHealth>()?.PoopNei(damage);
         }

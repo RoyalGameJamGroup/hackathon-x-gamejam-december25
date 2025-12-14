@@ -42,6 +42,8 @@ public class Shockwave: Spell
         {
             if (hitCollider.gameObject.CompareTag("Enemy"))
             {
+                SpawnEffect();
+                
                 Enemy enemy = hitCollider.gameObject.GetComponent<Enemy>();
                 enemy.PoopNei(damage, Element.Water);
 
