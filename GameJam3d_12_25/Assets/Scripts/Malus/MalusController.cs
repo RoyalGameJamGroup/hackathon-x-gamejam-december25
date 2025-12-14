@@ -21,17 +21,17 @@ public class MalusController : MonoBehaviour
     public static MalusController Instance { get; private set; }
 
     //not really used but let's still implement it
-    private int goFastCount = 0;
-    private int shortSightedCount = 0;
+    public int goFastCount = 0;
+    public int shortSightedCount = 0;
     //not really used but let's still implement it
-    private int rebellionCount = 0;
-    private int filterCount = 0;
-    private int brainrotCount = 0;
+    public int rebellionCount = 0;
+    public int filterCount = 0;
+    public int brainrotCount = 0;
     //not really used but let's still implement it
-    private int speedUpCount = 0;
-    private int schizoCount = 0;
+    public int speedUpCount = 0;
+    public int schizoCount = 0;
     //not really used but let's still implement it
-    private int detonationCount = 0;
+    public int detonationCount = 0;
 
     private void Awake()
     {
