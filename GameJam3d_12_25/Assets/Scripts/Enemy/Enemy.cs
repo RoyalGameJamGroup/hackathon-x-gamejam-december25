@@ -9,8 +9,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] public GameObject target;
     [SerializeField] protected float speed = 2.0f;
     [SerializeField] protected int damage = 10;
-    [SerializeField] protected int health = 50;
+    public int health = 50;
+    [HideInInspector]
+    public int maxhealth;
     public Element status;
+
+    public GameObject healthBar;
+    public float barOffset = 1.0f;
 
     public GameManager gameManager;
     [SerializeField] protected int scoreValue = 10;
@@ -26,6 +31,17 @@ public class Enemy : MonoBehaviour
     protected bool movementBlocked = false;
     protected bool frozen = false;
 
+
+    protected virtual void Start()
+    {
+        maxhealth = health;
+        // Instantiate health bar
+        GameObject healthBars = GameObject.FindWithTag("HealthBars");
+        var bar = Instantiate(healthBar, healthBars.transform);
+
+        bar.GetComponent<HealthBar>().SetMonitor(gameObject.GetComponent<Enemy>(),gameObject.transform, barOffset);
+        Debug.Log("Set health bar for enemy" + gameObject.GetInstanceID());
+    }
 
     // Update is called once per frame
     protected void Update()

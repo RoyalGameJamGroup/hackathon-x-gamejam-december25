@@ -3,11 +3,10 @@ using UnityEngine;
 public class BlackHole: Spell
 {
     float spawnTime;
-    float lifeTime = 5f;
-    int damage = 10;
-    float knockbackForce = 20f;
-    float spellSize = 20f;
-    float triggerTime = 0.5f;
+    public float lifeTime = 5f;
+    public int damage = 10;
+    public float spellSize = 20f;
+    public float triggerTime = 0.5f;
 
     public GameObject sparks;
 

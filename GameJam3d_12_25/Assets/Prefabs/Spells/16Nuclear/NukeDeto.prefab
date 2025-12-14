@@ -317,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pitchVariance: 0.1
   destroyAfterClip: 1
-  manualLifetime: 3
+  manualLifetime: 300
 --- !u!1 &3249163621069303741
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +434,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 20
+      scalar: 200
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5325,7 +5325,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 20
+      scalar: 200
       minScalar: 10
       maxCurve:
         serializedVersion: 2

@@ -9,6 +9,7 @@ public class ChainLightning : Spell
     public int maxBounces = 10;
     public int baseDamage = 40;
     public float bounceDelay = 0.1f;
+    public float bounceDamageMultiplier = 0.85f;
 
     [Header("Visuals")]
     public GameObject strikeEffect;
@@ -48,7 +49,7 @@ public class ChainLightning : Spell
             currentSearchPos = hitPosition;
 
             // 4. Calculate & Apply Damage
-            int calculatedDamage = baseDamage * (int)(1.0f / (i + 1));
+            int calculatedDamage = Mathf.RoundToInt(baseDamage * Mathf.Pow(bounceDamageMultiplier, i));
 
             if (nextTarget.status == Element.Water)
             {
