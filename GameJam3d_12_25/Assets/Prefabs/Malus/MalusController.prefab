@@ -136,6 +136,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMultiplier: 1.2
   gameManager: {fileID: 0}
+--- !u!1 &5251473877807257153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4996304990130041545}
+  - component: {fileID: 4698646109320073850}
+  m_Layer: 0
+  m_Name: DoppelagentMalus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4996304990130041545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5251473877807257153}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2649629805936604859}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4698646109320073850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5251473877807257153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f207bd1efc006b241b2c8066421f122e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5739025787635441689
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +233,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6c096792505a0f244844d2d19f2a0c1e, type: 3}
   - {fileID: 8300000, guid: d592c956cdab786479601bf0620c1c8b, type: 3}
   chancePerSchizoLevel: 0.1
+  blockedCounterMax: 10
+  counterValue: 0
 --- !u!82 &4047615153451528203
 AudioSource:
   m_ObjectHideFlags: 0
@@ -322,6 +368,7 @@ Transform:
   - {fileID: 7861416058021917965}
   - {fileID: 8327662174054041741}
   - {fileID: 7559973850426539417}
+  - {fileID: 4996304990130041545}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4189603428292660130
@@ -344,6 +391,7 @@ MonoBehaviour:
   detonation: {fileID: 1409949841121097207, guid: 51cf742c9af3d9140b7e9fd00afa606b, type: 3}
   filterMalusController: {fileID: 6230144427129542660}
   schizoMalusController: {fileID: 7200784780064244196}
+  doppelagentMalus: {fileID: 4698646109320073850}
 --- !u!1001 &819136386380740602
 PrefabInstance:
   m_ObjectHideFlags: 0

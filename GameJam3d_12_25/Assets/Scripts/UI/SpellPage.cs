@@ -18,6 +18,7 @@ public class SpellPage : MonoBehaviour
         string description;
         Sprite icon;
 
+        
         bool ranCorrectly = MrSpell.Instance.GetKnownSpellData(spellType,out name, out description, out comboNameString, out icon);
         if (!ranCorrectly)
             Debug.LogError("Something went wrong when trying to get Spell Data !");
