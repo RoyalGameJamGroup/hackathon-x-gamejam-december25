@@ -6,7 +6,7 @@ public class Sceleton : Enemy
     [SerializeField] GameObject arrowPrefab;
     [SerializeField] GameObject spawnPos;
     [SerializeField] float fireRate = 3f;
-    
+
     [Header("Movement")]
     [SerializeField] float minEngagementDistance = 5f;
 
@@ -18,31 +18,33 @@ public class Sceleton : Enemy
         fireTimer = fireRate;
     }
 
-    void Update()
+    protected override void Update()
     {
-        base.Update();
+        base.Update(); // Runs Knockback logic
+
         if (target == null) return;
 
-        Vector3 lookAtTarget = target.transform.position;
-        lookAtTarget.y = transform.position.y; // keep only horizontal rotation
-        transform.LookAt(target.transform);
-        
-        float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+        // 1. Rotation (Happens even if frozen? Usually no, let's block it if frozen)
+        if (!IsStatusImpaired())
+        {
+            Vector3 lookAtTarget = target.transform.position;
+            lookAtTarget.y = transform.position.y;
+            transform.LookAt(lookAtTarget);
+        }
 
-        step = speed * Time.deltaTime;
-        moveDir = (target.transform.position - transform.position).normalized;
+        // 2. Logic blocked by Freeze/Knockback
+        if (IsStatusImpaired()) return;
+
+        // 3. Movement Logic
+        float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
         if (distanceToTarget > minEngagementDistance)
         {
-            if(!movementBlocked){
-                transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    target.transform.position,
-                    step
-                );
-            }
+            float currentSpeed = speed * gameManager.speedMult;
+            MoveWithCollisionCheck(target.transform.position, currentSpeed);
         }
 
+        // 4. Shooting Logic
         fireTimer -= Time.deltaTime;
 
         if (fireTimer <= 0)
@@ -55,10 +57,13 @@ public class Sceleton : Enemy
     void Shoot()
     {
         Vector3 shootDirection = transform.forward;
-
         GameObject newArrow = Instantiate(arrowPrefab, spawnPos.transform.position, Quaternion.LookRotation(shootDirection));
 
-        newArrow.GetComponent<Arrow>().direction = new Vector2(shootDirection.x, shootDirection.z);
-        newArrow.GetComponent<Arrow>().damage = damage;
+        Arrow arrowScript = newArrow.GetComponent<Arrow>();
+        if (arrowScript != null)
+        {
+            arrowScript.direction = new Vector2(shootDirection.x, shootDirection.z);
+            arrowScript.damage = (int)(damage * gameManager.damageMult);
+        }
     }
 }

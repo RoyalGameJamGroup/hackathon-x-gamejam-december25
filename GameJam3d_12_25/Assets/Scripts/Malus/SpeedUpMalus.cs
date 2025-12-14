@@ -19,8 +19,6 @@ public class SpeedUpMalus : MonoBehaviour
             }
         }
 
-        gameManager.GetComponent<GameManager>().zombieSpeed *= speedMultiplier;
-        gameManager.GetComponent<GameManager>().sceletonSpeed *= speedMultiplier;
-        gameManager.GetComponent<GameManager>().seekerSpeed *= speedMultiplier;
+        gameManager.GetComponent<GameManager>().speedMult *= speedMultiplier;
     }
 }

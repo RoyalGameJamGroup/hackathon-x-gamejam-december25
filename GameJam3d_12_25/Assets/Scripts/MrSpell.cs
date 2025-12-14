@@ -134,6 +134,7 @@ public class MrSpell : MonoBehaviour
             inputVisualizer.OnSpellFailure(correct, contained, typedText);
             typedText = "";
             TriggerCurse();
+            inputVisualizer.updateCurses();
             return;   
         }
         if(SpellLookup.ContainsKey(uncheckedInput))
@@ -208,6 +209,7 @@ public class MrSpell : MonoBehaviour
     }
     public void TriggerCurse()
     {
+        
         MalusController.MalusType malus = GetRandomCurse();
         MalusController.Instance.AddMalus(malus);
     }
@@ -301,6 +303,7 @@ public class MrSpell : MonoBehaviour
     {
         int idx = spellPrefabLookup.FindIndex(x=>x.key == spell);
         spellname =  spellPrefabLookup[idx].spellName;
+        Debug.Log("Getting data for spell: " + spellname);
         combo = spellPrefabLookup[idx].combo;
         description = spellPrefabLookup[idx].description;
         icon = spellPrefabLookup[idx].icon;
@@ -327,6 +330,8 @@ public class MrSpell : MonoBehaviour
         int randmIdx1 = (int)Math.Floor( Random.value * stillUnknownSpells.Count());
         SpellType spell1 = stillUnknownSpells[randmIdx1];
         stillUnknownSpells.RemoveAt(randmIdx1);
+        
+        if(stillUnknownSpells.Count == 0) return (spell1, spell1, true);
         int randmIdx2 = (int)Math.Floor( Random.value * stillUnknownSpells.Count());
         SpellType spell2 = stillUnknownSpells[randmIdx2];
         stillUnknownSpells.RemoveAt(randmIdx2);
