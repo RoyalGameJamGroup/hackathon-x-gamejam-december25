@@ -179,6 +179,9 @@ public class MrInputVisualizer : MonoBehaviour
             case MalusController.MalusType.Detonation:
                 count = MalusController.Instance.detonationCount;
                 break;
+            case MalusController.MalusType.RunForest:
+                count = MalusController.Instance.runForeverCount;
+                break;
         }
         if(count == 0) return;
         GameObject curse;

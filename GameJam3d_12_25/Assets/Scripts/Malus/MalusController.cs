@@ -32,6 +32,7 @@ public class MalusController : MonoBehaviour
     public int schizoCount = 0;
     //not really used but let's still implement it
     public int detonationCount = 0;
+    public int runForeverCount = 0;
 
     private void Awake()
     {
@@ -87,6 +88,10 @@ public class MalusController : MonoBehaviour
                 Instantiate(detonation, player.transform.position, Quaternion.identity);
                 detonationCount++;
                 break;
+            case MalusType.RunForest:
+                playermovement.runForever = true;
+                runForeverCount++;
+                break;
 
         }
     }
@@ -100,6 +105,7 @@ public class MalusController : MonoBehaviour
         Brainrot,
         SpeedUp,
         Schizo,
-        Detonation
+        Detonation,
+        RunForest
     }
 }
