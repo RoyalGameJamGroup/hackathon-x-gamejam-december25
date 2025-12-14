@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     public int health = 50;
 
     [HideInInspector] public int maxhealth;
-    public Element status = Element.None;;
+    public Element status = Element.None;
     [SerializeField] protected int scoreValue = 10;
 
 
